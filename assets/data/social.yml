@@ -17,7 +17,7 @@ twitter:
 # 003: LinkedIn
 linkedin:
   Weight: 3
-  Prefix: https://linkedin.com/
+  Prefix: https://linkedin.com/in/
   Title: LinkedIn
   Icon:
     Simpleicons: linkedin
@@ -25,7 +25,7 @@ linkedin:
 # 004: HackTheBox
 hackthebox:
   Weight: 4
-  Prefix: https://hackthebox.com/
+  Prefix: https://app.hackthebox.com/profile/
   Title: HackTheBox
   Icon:
     Simpleicons: hackthebox
@@ -33,7 +33,7 @@ hackthebox:
 # 005: TryHackMe
 tryhackme:
   Weight: 5
-  Prefix: https://tryhackme.com/
+  Prefix: https://tryhackme.com/p/
   Title: TryHackMe
   Icon:
     Simpleicons: tryhackme
