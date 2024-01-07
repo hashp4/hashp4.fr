@@ -1,0 +1,282 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noodp" />
+    <title>[ESAIP CTF 2022] - The Proof of the Malware - Blog - hashp4</title><meta name="Description" content="Solution of the challenge &#39;The Proof of the Malware&#39; made by Hippie at ESAIP 2022."><meta property="og:title" content="[ESAIP CTF 2022] - The Proof of the Malware" />
+<meta property="og:description" content="Solution of the challenge &#39;The Proof of the Malware&#39; made by Hippie at ESAIP 2022." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://hashp4.fr/esaip-ctf-2022/" /><meta property="og:image" content="https://hashp4.fr/esaip-ctf-2022/feature.png" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-11-21T23:53:53+01:00" />
+<meta property="article:modified_time" content="2022-11-21T23:53:53+01:00" /><meta property="og:site_name" content="hashp4" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://hashp4.fr/esaip-ctf-2022/feature.png" /><meta name="twitter:title" content="[ESAIP CTF 2022] - The Proof of the Malware"/>
+<meta name="twitter:description" content="Solution of the challenge &#39;The Proof of the Malware&#39; made by Hippie at ESAIP 2022."/>
+<meta name="twitter:site" content="@hashp4_"/>
+<meta name="application-name" content="hashp4">
+<meta name="apple-mobile-web-app-title" content="hashp4">
+
+<meta name="theme-color" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><meta name="twitter:creator" content="@hashp4_" /><link rel="icon" href="/favicon.ico"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="https://hashp4.fr/esaip-ctf-2022/" /><link rel="prev" href="https://hashp4.fr/hello-world/" /><link rel="next" href="https://hashp4.fr/breizh-ctf-2023/" />
+<link rel="stylesheet" href="/css/main.d5cb6f29e0750a13b17688d628b04d50f9fbbd32e0629ccc0dcf796a299ae226.css" integrity="sha256-1ctvKeB1ChOxdojWKLBNUPn7vTLgYpzMDc95aima4iY="><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/css/color.b0a0f8c429ce52dfa2805b5f9e99ccdae1e8fbfd9adf4f3ddb409d8201fc0c5a.css" integrity="sha256-sKD4xCnOUt&#43;igFtfnpnM2uHo&#43;/2a308920CdggH8DFo="><link rel="stylesheet" href="/css/style.min.a2848814ceb26d36c7d2e21c38279a73fd9d1d9820ca2cf62feb98ef0bea90ac.css" integrity="sha256-ooSIFM6ybTbH0uIcOCeac/2dHZggyiz2L&#43;uY7wvqkKw="><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "[ESAIP CTF 2022] - The Proof of the Malware",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https://hashp4.fr/esaip-ctf-2022/"
+        },"image": ["https://hashp4.fr/images/Apple-Devices-Preview.png"],"genre": "posts","keywords": "OSINT, ESAIP CTF, SOCMINT","wordcount":  580 ,
+        "url": "https://hashp4.fr/esaip-ctf-2022/","datePublished": "2022-11-21T23:53:53+01:00","dateModified": "2022-11-21T23:53:53+01:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "hashp4","logo": {
+                    "@type": "ImageObject",
+                    "url": "https://hashp4.fr/images/logo.png",
+                    "width":  288 ,
+                    "height":  288 
+                }},"authors": [{
+                        "@type": "Person",
+                        "name": "hashp4"                    
+                    }],"description": "Solution of the challenge 'The Proof of the Malware' made by Hippie at ESAIP 2022."
+    }
+    </script></head>
+
+<body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">
+        function setTheme(theme) {document.body.setAttribute('theme', theme); document.documentElement.style.setProperty('color-scheme', theme === 'light' ? 'light' : 'dark'); window.theme = theme;   window.isDark = window.theme !== 'light' }
+        function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
+        function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
+        if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('black' === 'light' || 'black' === 'dark' || 'black' === 'black') setTheme('black'), saveTheme('black'); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
+        let metaColors = {'light': '#f8f8f8','dark': '#252627','black': '#000000'}
+        getMeta('theme-color').content = metaColors[document.body.getAttribute('theme')];
+        window.switchThemeEventSet = new Set()
+    </script>
+    <div id="back-to-top"></div>
+    <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Blog - hashp4"><span id="desktop-header-typeit" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/whoami">🇫🇷 whoami </a><a class="menu-item" href="/categories/article/">✒ Blog </a><a class="menu-item" href="/projects/">📚 Projects </a><a class="menu-item" href="/categories/writeup/">🚩 Writeups </a><a class="menu-item" href="/music/">🎵 Music </a><span class="menu-item delimiter"></span><a href="javascript:void(0);" class="menu-item language" title="Select Language">English<i class="fas fa-chevron-right fa-fw"></i>
+                        <select class="language-select" title="Select Language" id="language-select-desktop" onchange="location = this.value;"><option value="/esaip-ctf-2022/" selected>English</option></select>
+                    </a><a href="javascript:void(0);" class="menu-item theme-select" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw"></i>
+                    <select class="color-theme-select" id="theme-select-desktop" title="Switch Theme">
+                        <option value="light">Light</option>
+                        <option value="dark">Dark</option>
+                        <option value="black">Black</option>
+                        <option value="auto">Auto</option>
+                    </select>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Blog - hashp4"><span id="mobile-header-typeit" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><a class="menu-item" href="/whoami" title="">🇫🇷whoami</a><a class="menu-item" href="/categories/article/" title="">✒Blog</a><a class="menu-item" href="/projects/" title="">📚Projects</a><a class="menu-item" href="/categories/writeup/" title="">🚩Writeups</a><a class="menu-item" href="/music/" title="">🎵Music</a><a href="javascript:void(0);" class="menu-item theme-select" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw"></i>
+                <select class="color-theme-select" id="theme-select-mobile" title="Switch Theme">
+                    <option value="light">Light</option>
+                    <option value="dark">Dark</option>
+                    <option value="black">Black</option>
+                    <option value="auto">Auto</option>
+                </select>
+            </a><a href="javascript:void(0);" class="menu-item" title="Select Language">English<i class="fas fa-chevron-right fa-fw"></i>
+                    <select class="language-select" title="Select Language" onchange="location = this.value;"><option value="/esaip-ctf-2022/" selected>English</option></select>
+                </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+            <div class="container"><div class="toc" id="toc-auto">
+        <h2 class="toc-title">Contents</h2>
+        <div class="toc-content" id="toc-content-auto"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#instructions">Instructions</a></li>
+    <li><a href="#information-gathering---finding-the-target">Information Gathering - Finding the target</a></li>
+    <li><a href="#pivoting---lets-find-the-malware">Pivoting - Let’s find the malware</a>
+      <ul>
+        <li><a href="#twitter---a-white-rabbit-hole">Twitter - A (white) rabbit hole</a></li>
+        <li><a href="#github---not-stealthy-enough-noé">Github - Not stealthy enough, Noé</a></li>
+      </ul>
+    </li>
+    <li><a href="#finding-the-flag---commits">Finding the flag - Commits</a></li>
+  </ul>
+</nav></div>
+    </div><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">[ESAIP CTF 2022] - The Proof of the Malware</h1><div class="post-meta">
+            <div class="post-meta-line">
+                <span class="post-author"><span class='author'><span class="author fas fa-user-circle fa-fw"></span><span class='screen-reader-text'>  </span><a href='https://hashp4.fr/authors/hashp4'>hashp4</a></span>
+                </span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">category <a href="/categories/writeup/"><i class="far fa-folder fa-fw"></i>Writeup</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-11-21">2022-11-21</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2022-11-21">2022-11-21</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;580 words&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;3 minutes&nbsp;</div>
+        </div><div class="featured-image"><img
+        
+        loading="eager"
+        src="/esaip-ctf-2022/feature.png"
+        srcset="/esaip-ctf-2022/feature.png, /esaip-ctf-2022/feature.png 1.5x, /esaip-ctf-2022/feature.png 2x"
+        sizes="auto"
+        alt="Solution of the challenge &#39;The Proof of the Malware&#39; made by Hippie at ESAIP 2022."
+        title="Solution of the challenge &#39;The Proof of the Malware&#39; made by Hippie at ESAIP 2022." height="360"   width="1200" ></div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#instructions">Instructions</a></li>
+    <li><a href="#information-gathering---finding-the-target">Information Gathering - Finding the target</a></li>
+    <li><a href="#pivoting---lets-find-the-malware">Pivoting - Let’s find the malware</a>
+      <ul>
+        <li><a href="#twitter---a-white-rabbit-hole">Twitter - A (white) rabbit hole</a></li>
+        <li><a href="#github---not-stealthy-enough-noé">Github - Not stealthy enough, Noé</a></li>
+      </ul>
+    </li>
+    <li><a href="#finding-the-flag---commits">Finding the flag - Commits</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>Here is the writeup of <code>The Proof of the Malware</code>, a cool OSINT challenge categorized as <code>medium</code> during the <strong>ESAIP CTF.</strong></p>
+<p>After some time without anybody solving the challenge I managed to first blood it🩸.</p>
+<img src="img/image1.png" class=wuimages/>
+<h2 id="instructions" class="headerLink">
+    <a href="#instructions" class="header-mark"></a>Instructions</h2><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">We have discovered that a person currently working at Metacortexxs is 
+</span></span><span class="line"><span class="cl">developing a powerful virus. Find the proof of the development of this 
+</span></span><span class="line"><span class="cl">virus by this employee
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="information-gathering---finding-the-target" class="headerLink">
+    <a href="#information-gathering---finding-the-target" class="header-mark"></a>Information Gathering - Finding the target</h2><p>According to the instructions, we are searching for someone who is working at <code>Metacortexxs</code>.</p>
+<p>The first idea that came into my mind is to do some research on <strong>LinkedIn</strong>. To do this, I used a simple Google dork :</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">site:linkedin.com &#34;megacortexxs&#34;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>The first result seemed interesting.</p>
+<img src="img/image2.png" class="wuimages"/>
+<p>Apparently, there is a certain <code>Noe Trimax</code> working at <code>Metacortexxs</code> as <strong>Informatics Specialist</strong>. Interesting 👀. So I went on his profile to find some more informations.</p>
+<hr>
+<img src="img/image3.png" class="wuimages"/>
+<p>As you can see, I saw there was some additionnal contact informations on his profile.</p>
+<p>In order to see this, you have to be logged in on a LinkedIn account. Otherwise you’ll miss it !</p>
+<img src="img/image4.png" class="wuimages"/>
+<p>The investigation proceeds with the finding of his email.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">n3oth3h4xx0r@protonmail.com
+</span></span></code></pre></td></tr></table>
+</div>
+</div><hr>
+<h2 id="pivoting---lets-find-the-malware" class="headerLink">
+    <a href="#pivoting---lets-find-the-malware" class="header-mark"></a>Pivoting - Let’s find the malware</h2><p>I can now pivot on <a href="https://epieos.com/" target="_blank" rel="noopener noreferrer">EPIOS</a>. For those who doesn’t know the tool, it is an OSINT search engine that allows performing reverse email search. Using it, I am able to retrieve information linked to an email address without notifying the user.</p>
+<img src="img/image5.png" class="wuimages"/>
+<p>Thanks to <code>Holehe</code>, we can see that Noe’s email is used on two different websites : <strong>Github</strong> and <strong>Twitter</strong>. Since we have to find the proof of the development of a virus, the github seems to be the most interesting place. But let’s see if I can find something interesting on his Twitter account (like a link to his github profile for example).</p>
+<h3 id="twitter---a-white-rabbit-hole" class="headerLink">
+    <a href="#twitter---a-white-rabbit-hole" class="header-mark"></a>Twitter - A (white) rabbit hole</h3><p>In order to find his Twitter account, I just typed his username : <code>n3oth3h4xx0r</code></p>
+<img src="img/image6.png" class="wuimages"/>
+<p>Sadly, there’s nothing interesting on his profile. But I liked his bio. (:</p>
+<h3 id="github---not-stealthy-enough-noé" class="headerLink">
+    <a href="#github---not-stealthy-enough-no%c3%a9" class="header-mark"></a>Github - Not stealthy enough, Noé</h3><p>Here’s the tricky part of the challenge. I had to use a technique that is not very well known in order to find his github profile. Because yes, it is actually possible to find a Github username only with the associated email.</p>
+<p>To do so, I needed to make a commit on a personal repository with the flag <code>--author</code>. The value of this flag must respect the following format : <code>--author=&quot;Name &lt;email@domain.tld&gt;&quot;</code>. In this case, I ran the following commands :</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git commit --author<span class="o">=</span><span class="s2">&#34;Test &lt;n3oth3h4xx0r@protonmail.com&gt;&#34;</span> -m <span class="s2">&#34;test&#34;</span>
+</span></span><span class="line"><span class="cl">git push origin main
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Then, I went on <a href="https://github.com/" target="_blank" rel="noopener noreferrer">Github</a> in order to find out Noe’s account :</p>
+<img src="img/image7.png" class="wuimages"/>
+<p>Hmm, so he is the so-called <code>Und3rc0ver-h4xx0r-fr0m-the-m4tr1x</code>. The cover is burnt Noé.</p>
+<p>By going on his profile, I can see there’s an interesting repo :</p>
+<img src="img/image8.png" class="wuimages"/>
+<p>The repo called <code>Backdoor-python-polymorph</code> is very suspicious, right ? Let’s see what’s in there.</p>
+<img src="img/image9.png" class="wuimages"/>
+<p>It looks like we’ve found our virus development proof here. I was quite chocked when I found out that Linus Torvald was involved though 😢 !</p>
+<h2 id="finding-the-flag---commits" class="headerLink">
+    <a href="#finding-the-flag---commits" class="header-mark"></a>Finding the flag - Commits</h2><p>Now we have to find the flag. Let’s see the commits :</p>
+<img src="img/image10.png" class="wuimages"/>
+<p>We can see there’s plenty of them. After some manual inspection, the <code>added bin and header</code> one contains what I was looking for : the flag.</p>
+<img src="img/image11.png" class="wuimages"/>
+<p>Flag : <code>ECTF{N07_7H47_C13V3r_70_137_1NF0rM4710N5_A80U7_Y0Ur531F}</code></p>
+<p>Thanks to the author <a href="https://hippie.cat/" target="_blank" rel="noopener noreferrer">Hippie</a> for this challenge. It was very entertaining and it was a great opportunity to put some light on this secret github technique.</p>
+</div>
+
+        <div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2022-11-21</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span><a class="link-to-mardown" href=/esaip-ctf-2022/index.md target="_blank" rel="noopener noreferrer">Read markdown</a>
+                    </span></div>
+            <div class="post-info-share"><button title="Share on Twitter" data-sharer="twitter" data-url="https://hashp4.fr/esaip-ctf-2022/" data-title="[ESAIP CTF 2022] - The Proof of the Malware" data-via="hashp4_" data-hashtags="OSINT,ESAIP CTF,SOCMINT"><span class="fab fa-twitter fa-fw"></span></button><button title="Share on Linkedin" data-sharer="linkedin" data-url="https://hashp4.fr/esaip-ctf-2022/"><span class="fab fa-linkedin fa-fw"></span></button></div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/osint/">OSINT</a>,&nbsp;<a href="/tags/esaip-ctf/">ESAIP CTF</a>,&nbsp;<a href="/tags/socmint/">SOCMINT</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/hello-world/" class="prev" rel="prev" title="Hello World"><i class="fas fa-angle-left fa-fw"></i>Hello World</a>
+            <a href="/breizh-ctf-2023/" class="next" rel="next" title="[BreizhCTF 2023] - Yakuza Serie">[BreizhCTF 2023] - Yakuza Serie<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+</article></div>
+        </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">
+                    Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreferrer" title="Hugo 0.121.2">Hugo</a>&nbsp;|&nbsp;Theme - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreferrer" title="DoIt 0.4.0"><i class="far fa-edit fa-fw"></i> DoIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2022 - 2024</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank" rel="noopener noreferrer"></a></span>&nbsp;|&nbsp;<span class="license"><a rel="" href="https://www.gnu.org/licenses/gpl-3.0.en.html" target="_blank">GPL-V3</a></span></div>
+            <div class="footer-line"></div>
+            <div class="footer-line">
+            </div>
+        </div></footer></div>
+
+    <div id="fixed-buttons"><a href="#back-to-top" id="back-to-top-button" class="fixed-button" title="Back to Top">
+            <i class="fas fa-arrow-up fa-fw"></i>
+        </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+            <i class="fas fa-comment fa-fw"></i>
+        </a>
+    </div><div class="assets"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/contrib/copy-tex.min.css">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/contrib/copy-tex.min.css"></noscript><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{},"data":{"desktop-header-typeit":"hashp4 (\u003eᴗ•)","mobile-header-typeit":"hashp4 (\u003eᴗ•)"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":false,"left":"$","right":"$"}],"strict":false},"sharerjs":true,"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"desktop-header-typeit":["desktop-header-typeit"],"mobile-header-typeit":["mobile-header-typeit"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.4.2/sharer.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/typeit@7.0.4/dist/typeit.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js" defer></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/contrib/auto-render.min.js" defer></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/contrib/copy-tex.min.js" defer></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/contrib/mhchem.min.js" defer></script><script type="text/javascript" src="/js/katex.min.js" defer></script><script type="text/javascript" src="/js/theme.min.js" defer></script></div>
+</body>
+
+</html>

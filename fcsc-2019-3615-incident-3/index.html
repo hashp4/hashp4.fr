@@ -1,0 +1,629 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noodp" />
+    <title>[FCSC 2019] - 3615 Incident (3/3) - Blog - hashp4</title><meta name="Description" content="Solution to the **last** challenge in the `3615 Incident` series published at FCSC 2019."><meta property="og:title" content="[FCSC 2019] - 3615 Incident (3/3)" />
+<meta property="og:description" content="Solution to the **last** challenge in the `3615 Incident` series published at FCSC 2019." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://hashp4.fr/fcsc-2019-3615-incident-3/" /><meta property="og:image" content="https://hashp4.fr/fcsc-2019-3615-incident-3/feature.png" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-12-09T00:00:00+00:00" />
+<meta property="article:modified_time" content="2023-12-09T00:00:00+00:00" /><meta property="og:site_name" content="hashp4" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://hashp4.fr/fcsc-2019-3615-incident-3/feature.png" /><meta name="twitter:title" content="[FCSC 2019] - 3615 Incident (3/3)"/>
+<meta name="twitter:description" content="Solution to the **last** challenge in the `3615 Incident` series published at FCSC 2019."/>
+<meta name="twitter:site" content="@hashp4_"/>
+<meta name="application-name" content="hashp4">
+<meta name="apple-mobile-web-app-title" content="hashp4">
+
+<meta name="theme-color" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><meta name="twitter:creator" content="@hashp4_" /><link rel="icon" href="/favicon.ico"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="https://hashp4.fr/fcsc-2019-3615-incident-3/" /><link rel="prev" href="https://hashp4.fr/fcsc-2019-3615-incident-2/" /><link rel="next" href="https://hashp4.fr/malware-analysis-wannacry-pt1/" />
+<link rel="stylesheet" href="/css/main.d5cb6f29e0750a13b17688d628b04d50f9fbbd32e0629ccc0dcf796a299ae226.css" integrity="sha256-1ctvKeB1ChOxdojWKLBNUPn7vTLgYpzMDc95aima4iY="><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/css/color.b0a0f8c429ce52dfa2805b5f9e99ccdae1e8fbfd9adf4f3ddb409d8201fc0c5a.css" integrity="sha256-sKD4xCnOUt&#43;igFtfnpnM2uHo&#43;/2a308920CdggH8DFo="><link rel="stylesheet" href="/css/style.min.a2848814ceb26d36c7d2e21c38279a73fd9d1d9820ca2cf62feb98ef0bea90ac.css" integrity="sha256-ooSIFM6ybTbH0uIcOCeac/2dHZggyiz2L&#43;uY7wvqkKw="><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "[FCSC 2019] - 3615 Incident (3/3)",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https://hashp4.fr/fcsc-2019-3615-incident-3/"
+        },"image": ["https://hashp4.fr/images/Apple-Devices-Preview.png"],"genre": "posts","keywords": "Forensic, FCSC 2019, Volatility, Ransomware","wordcount":  1583 ,
+        "url": "https://hashp4.fr/fcsc-2019-3615-incident-3/","datePublished": "2023-12-09T00:00:00+00:00","dateModified": "2023-12-09T00:00:00+00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "hashp4","logo": {
+                    "@type": "ImageObject",
+                    "url": "https://hashp4.fr/images/logo.png",
+                    "width":  288 ,
+                    "height":  288 
+                }},"authors": [{
+                        "@type": "Person",
+                        "name": "hashp4"                    
+                    }],"description": "Solution to the **last** challenge in the `3615 Incident` series published at FCSC 2019."
+    }
+    </script></head>
+
+<body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">
+        function setTheme(theme) {document.body.setAttribute('theme', theme); document.documentElement.style.setProperty('color-scheme', theme === 'light' ? 'light' : 'dark'); window.theme = theme;   window.isDark = window.theme !== 'light' }
+        function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
+        function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
+        if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('black' === 'light' || 'black' === 'dark' || 'black' === 'black') setTheme('black'), saveTheme('black'); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
+        let metaColors = {'light': '#f8f8f8','dark': '#252627','black': '#000000'}
+        getMeta('theme-color').content = metaColors[document.body.getAttribute('theme')];
+        window.switchThemeEventSet = new Set()
+    </script>
+    <div id="back-to-top"></div>
+    <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Blog - hashp4"><span id="desktop-header-typeit" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/whoami">🇫🇷 whoami </a><a class="menu-item" href="/categories/article/">✒ Blog </a><a class="menu-item" href="/projects/">📚 Projects </a><a class="menu-item" href="/categories/writeup/">🚩 Writeups </a><a class="menu-item" href="/music/">🎵 Music </a><span class="menu-item delimiter"></span><a href="javascript:void(0);" class="menu-item language" title="Select Language">English<i class="fas fa-chevron-right fa-fw"></i>
+                        <select class="language-select" title="Select Language" id="language-select-desktop" onchange="location = this.value;"><option value="/fcsc-2019-3615-incident-3/" selected>English</option><option value="/fr/fcsc-2019-3615-incident-3/">Français</option></select>
+                    </a><a href="javascript:void(0);" class="menu-item theme-select" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw"></i>
+                    <select class="color-theme-select" id="theme-select-desktop" title="Switch Theme">
+                        <option value="light">Light</option>
+                        <option value="dark">Dark</option>
+                        <option value="black">Black</option>
+                        <option value="auto">Auto</option>
+                    </select>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Blog - hashp4"><span id="mobile-header-typeit" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><a class="menu-item" href="/whoami" title="">🇫🇷whoami</a><a class="menu-item" href="/categories/article/" title="">✒Blog</a><a class="menu-item" href="/projects/" title="">📚Projects</a><a class="menu-item" href="/categories/writeup/" title="">🚩Writeups</a><a class="menu-item" href="/music/" title="">🎵Music</a><a href="javascript:void(0);" class="menu-item theme-select" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw"></i>
+                <select class="color-theme-select" id="theme-select-mobile" title="Switch Theme">
+                    <option value="light">Light</option>
+                    <option value="dark">Dark</option>
+                    <option value="black">Black</option>
+                    <option value="auto">Auto</option>
+                </select>
+            </a><a href="javascript:void(0);" class="menu-item" title="Select Language">English<i class="fas fa-chevron-right fa-fw"></i>
+                    <select class="language-select" title="Select Language" onchange="location = this.value;"><option value="/fcsc-2019-3615-incident-3/" selected>English</option><option value="/fr/fcsc-2019-3615-incident-3/">Français</option></select>
+                </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+            <div class="container"><div class="toc" id="toc-auto">
+        <h2 class="toc-title">Contents</h2>
+        <div class="toc-content" id="toc-content-auto"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#introduction-pushpin">Introduction </a></li>
+    <li><a href="#1-study-of-the-encryption-algorithm-">1. Study of the encryption algorithm 📋</a>
+      <ul>
+        <li><a href="#zoom-on-ransomwarego-again-yes">Zoom on <code>ransomware.go</code> (again, yes)</a></li>
+        <li><a href="#zoom-on-filego">Zoom on <code>file.go</code></a></li>
+      </ul>
+    </li>
+    <li><a href="#2-decrypting-the-data-file-">2. Decrypting the <code>data</code> file 🔓</a>
+      <ul>
+        <li><a href="#iv-extraction">IV Extraction</a></li>
+        <li><a href="#decryption-with-cyberchef-lazy-way">Decryption with Cyberchef <em>(lazy way)</em></a></li>
+        <li><a href="#decrypting-with-python-street-credibility">Decrypting with Python <em>(street credibility++)</em></a></li>
+      </ul>
+    </li>
+    <li><a href="#3-flag-">3. Flag 🚩</a></li>
+    <li><a href="#bonus---find-the-flag-without-the-data-file-">BONUS - Find the flag without the <code>data</code> file 💡</a></li>
+  </ul>
+</nav></div>
+    </div><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">[FCSC 2019] - 3615 Incident (3/3)</h1><div class="post-meta">
+            <div class="post-meta-line">
+                <span class="post-author"><span class='author'><span class="author fas fa-user-circle fa-fw"></span><span class='screen-reader-text'>  </span><a href='https://hashp4.fr/authors/hashp4'>hashp4</a></span>
+                </span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">category <a href="/categories/writeup/"><i class="far fa-folder fa-fw"></i>Writeup</a></span>&nbsp;<span class="post-category">and</span>&nbsp;<span class="post-series">series <a href=""><i class="far fa-list-alt fa-fw"></i></a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2023-12-09">2023-12-09</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2023-12-09">2023-12-09</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;1583 words&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;8 minutes&nbsp;</div>
+        </div><div class="featured-image"><img
+        
+        loading="eager"
+        src="/fcsc-2019-3615-incident-3/feature.png"
+        srcset="/fcsc-2019-3615-incident-3/feature.png, /fcsc-2019-3615-incident-3/feature.png 1.5x, /fcsc-2019-3615-incident-3/feature.png 2x"
+        sizes="auto"
+        alt="Solution to the **last** challenge in the `3615 Incident` series published at FCSC 2019."
+        title="Solution to the **last** challenge in the `3615 Incident` series published at FCSC 2019." height="360"   width="1200" ></div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#introduction-pushpin">Introduction </a></li>
+    <li><a href="#1-study-of-the-encryption-algorithm-">1. Study of the encryption algorithm 📋</a>
+      <ul>
+        <li><a href="#zoom-on-ransomwarego-again-yes">Zoom on <code>ransomware.go</code> (again, yes)</a></li>
+        <li><a href="#zoom-on-filego">Zoom on <code>file.go</code></a></li>
+      </ul>
+    </li>
+    <li><a href="#2-decrypting-the-data-file-">2. Decrypting the <code>data</code> file 🔓</a>
+      <ul>
+        <li><a href="#iv-extraction">IV Extraction</a></li>
+        <li><a href="#decryption-with-cyberchef-lazy-way">Decryption with Cyberchef <em>(lazy way)</em></a></li>
+        <li><a href="#decrypting-with-python-street-credibility">Decrypting with Python <em>(street credibility++)</em></a></li>
+      </ul>
+    </li>
+    <li><a href="#3-flag-">3. Flag 🚩</a></li>
+    <li><a href="#bonus---find-the-flag-without-the-data-file-">BONUS - Find the flag without the <code>data</code> file 💡</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h2 id="introduction-pushpin" class="headerLink">
+    <a href="#introduction-pushpin" class="header-mark"></a>Introduction &#x1f4cc;</h2><p>The context remains the same as in Part 1 and Part 2. Yet another victim has fallen victim to ransomware. Payment of the ransom is not an option, given the amount involved. So we&rsquo;re called in to try and restore the encrypted files.</p>
+<p>This time, the objective is to <strong>decrypt the attached data file</strong>.</p>
+<p>(The challenge is always solved using the <code>mem.dmp.tar.xz</code> file. As a reminder, this is a memory image of the victim&rsquo;s computer. In concrete terms, it corresponds to the contents of volatile memory (<code>RAM</code>) at the time of acquisition. We also have the <code>data</code> file to decrypt.)</p>
+<h2 id="1-study-of-the-encryption-algorithm-" class="headerLink">
+    <a href="#1-study-of-the-encryption-algorithm-" class="header-mark"></a>1. Study of the encryption algorithm 📋</h2><p>In order to decrypt the <code>data</code> file, we&rsquo;ll need to study the encryption algorithm implemented by this ransomware. Since we have access to the source code, this greatly simplifies the process.</p>
+<h3 id="zoom-on-ransomwarego-again-yes" class="headerLink">
+    <a href="#zoom-on-ransomwarego-again-yes" class="header-mark"></a>Zoom on <code>ransomware.go</code> (again, yes)</h3><p>Let&rsquo;s go back to the file <a href="https://github.com/mauri870/ransomware/blob/master/cmd/ransomware/ransomware.go#L223" target="_blank" rel="noopener noreferrer">/cmd/ransomware/ransomware.go, line 223</a> this time.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="c1">// Encrypt the file sending the content to temporary file
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">err</span> <span class="p">=</span> <span class="nx">file</span><span class="p">.</span><span class="nf">Encrypt</span><span class="p">(</span><span class="nx">keys</span><span class="p">[</span><span class="s">&#34;enckey&#34;</span><span class="p">],</span> <span class="nx">tempFile</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">cmd</span><span class="p">.</span><span class="nx">Logger</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">continue</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>We can see that the <code>Encrypt()</code> encryption function comes from the <code>file</code> file. It seems to take the encryption key and a temporary file name as parameters. It is therefore necessary to analyze what exactly this function does.</p>
+<h3 id="zoom-on-filego" class="headerLink">
+    <a href="#zoom-on-filego" class="header-mark"></a>Zoom on <code>file.go</code></h3><p>The encryption algorithm used by the <code>Encrypt()</code> function can be found in <a href="https://github.com/mauri870/ransomware/blob/master/cryptofs/file.go#L21" target="_blank" rel="noopener noreferrer">line 21 of the cryptofs/file.go file</a>.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">func</span> <span class="p">(</span><span class="nx">file</span> <span class="o">*</span><span class="nx">File</span><span class="p">)</span> <span class="nf">Encrypt</span><span class="p">(</span><span class="nx">enckey</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">dst</span> <span class="nx">io</span><span class="p">.</span><span class="nx">Writer</span><span class="p">)</span> <span class="kt">error</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="p">[</span><span class="o">...</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">// Create a 128 bits cipher.Block for AES-256
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nx">block</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">aes</span><span class="p">.</span><span class="nf">NewCipher</span><span class="p">([]</span><span class="nb">byte</span><span class="p">(</span><span class="nx">enckey</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="k">return</span> <span class="nx">err</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="c1">// The IV needs to be unique, but not secure
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nx">iv</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">([]</span><span class="kt">byte</span><span class="p">,</span> <span class="nx">aes</span><span class="p">.</span><span class="nx">BlockSize</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="nx">_</span><span class="p">,</span> <span class="nx">err</span> <span class="p">=</span> <span class="nx">io</span><span class="p">.</span><span class="nf">ReadFull</span><span class="p">(</span><span class="nx">rand</span><span class="p">.</span><span class="nx">Reader</span><span class="p">,</span> <span class="nx">iv</span><span class="p">);</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="k">return</span> <span class="nx">err</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="c1">// Get a stream for encrypt/decrypt in counter mode (best performance I guess)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nx">stream</span> <span class="o">:=</span> <span class="nx">cipher</span><span class="p">.</span><span class="nf">NewCTR</span><span class="p">(</span><span class="nx">block</span><span class="p">,</span> <span class="nx">iv</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="c1">// Write the Initialization Vector (iv) as the first block
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="c1">// of the dst writer
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nx">dst</span><span class="p">.</span><span class="nf">Write</span><span class="p">(</span><span class="nx">iv</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">[</span><span class="o">...</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>The first part of the code shows the use of the AES-256 encryption algorithm. Encryption is carried out in <em>counter mode (CTR)</em>, as can be seen below.</p>
+<p>The second part of the code tells us that the <code>IV</code> is <strong>the first block</strong> of the encrypted file. This is good news for us. Since we have the encrypted files and the encryption key, all we need to do to decrypt them is extract the IV from them.</p>
+<h2 id="2-decrypting-the-data-file-" class="headerLink">
+    <a href="#2-decrypting-the-data-file-" class="header-mark"></a>2. Decrypting the <code>data</code> file 🔓</h2><h3 id="iv-extraction" class="headerLink">
+    <a href="#iv-extraction" class="header-mark"></a>IV Extraction</h3><p>To extract the <code>IV</code> from <code>data</code>, we can use <code>xxd</code> to get the file contents in hexadecimal and <code>fold</code> to split it into 32-character blocks <em>(remember, the IV is a 32-character hexadecimal string)</em>. Then we can use <code>head</code> to keep only the first block, using the <code>-n 1</code> option.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">┌──<span class="o">(</span>hashp4㉿kali<span class="o">)</span>-<span class="o">[</span>~/Bureau<span class="o">]</span>
+</span></span><span class="line"><span class="cl">└─$ xxd -p data <span class="p">|</span> fold -b32 <span class="p">|</span> head -n <span class="m">1</span>                
+</span></span><span class="line"><span class="cl">b627d24fc90dfe7ce421c43312dc2f2e
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>In this way, we obtain the <code>IV</code> corresponding to our <code>data</code> file : <code>b627d24fc90dfe7ce421c43312dc2f2e</code></p>
+<h3 id="decryption-with-cyberchef-lazy-way" class="headerLink">
+    <a href="#decryption-with-cyberchef-lazy-way" class="header-mark"></a>Decryption with Cyberchef <em>(lazy way)</em></h3><p>To decrypt our file, we can use <a href="https://gchq.github.io/CyberChef/" target="_blank" rel="noopener noreferrer">Cyberchef</a>. To do this, we need to give it an input (<em>input</em>) the contents of the encrypted file (here <em>data</em>) in hexadecimal. To do this, we can use <code>xxd</code>.</p>
+<div class="details admonition warning open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-exclamation-triangle fa-fw"></i>Warning<i class="details-icon fas fa-angle-right fa-fw"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content">Don&rsquo;t forget to delete the contents corresponding to the IV of our file, otherwise decryption won&rsquo;t work. We use the <code>sed</code> tool to do this.</div>
+        </div>
+    </div>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">┌──<span class="o">(</span>hashp4㉿kali<span class="o">)</span>-<span class="o">[</span>~/Bureau<span class="o">]</span>
+</span></span><span class="line"><span class="cl">└─$ xxd -p -c0 data <span class="p">|</span> sed <span class="s1">&#39;s/b627d24fc90dfe7ce421c43312dc2f2e//g&#39;</span>
+</span></span><span class="line"><span class="cl">abf961d204bf8c684dff45fc658d5bba4da43a8 <span class="o">[</span>...<span class="o">]</span>7febfd28649595e720a8
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>*As the result is too large, I will only write the characters corresponding to the beginning and end of the file here.</p>
+<p>We then need to copy/paste this result into Cyberchef, select the <code>AES Decrypt</code> recipe and enter the following parameters:</p>
+<ul>
+<li><strong>Key (UTF-8) :</strong> <code>95511870061fb3a2899aa6b2dc9838aa</code></li>
+<li><strong>IV (HEX) :</strong> <code>b627d24fc90dfe7ce421c43312dc2f2e</code></li>
+<li><strong>Mode :</strong> <code>CTR</code></li>
+<li><strong>Input :</strong> <code>HEX</code></li>
+<li><strong>Output :</strong> <code>RAW</code></li>
+</ul>
+<img width="704" alt="dechiffrement-cyberchef" src="https://gist.github.com/assets/92587864/af7c8e2c-bc6a-4864-9ee6-9aca0bf3f1c3">
+<p>We can see that decryption seems to be effective, since we can see the header of a ZIP file <code>50 4b 03 04</code> corresponding to <code>PK</code> and other strings such as :</p>
+<ul>
+<li><em>_rels/.rels</em></li>
+<li><em>docProps/core.xml</em></li>
+<li><em>docProps/app.xml</em></li>
+<li><em>word/_rels/document.xml.rels</em></li>
+<li><em>word/document.xml</em>
+<em>[&hellip;]</em></li>
+</ul>
+<p>These lead us to believe that we are dealing with a Word document. Our file would therefore be the equivalent of <code>flag.docx</code> that we found in the first part of this test. We can then download the file to our machine. Here, we call it <code>flag.zip</code>. We can now unzip it:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">┌──<span class="o">(</span>hashp4㉿kali<span class="o">)</span>-<span class="o">[</span>~/Bureau<span class="o">]</span>
+</span></span><span class="line"><span class="cl">└─$ unzip flag.zip                                                            
+</span></span><span class="line"><span class="cl">Archive:  flag.zip
+</span></span><span class="line"><span class="cl">  inflating: _rels/.rels             
+</span></span><span class="line"><span class="cl">  inflating: docProps/core.xml       
+</span></span><span class="line"><span class="cl">  inflating: docProps/app.xml        
+</span></span><span class="line"><span class="cl">  inflating: word/_rels/document.xml.rels  
+</span></span><span class="line"><span class="cl">  inflating: word/document.xml       
+</span></span><span class="line"><span class="cl">  inflating: word/styles.xml         
+</span></span><span class="line"><span class="cl">  inflating: word/fontTable.xml      
+</span></span><span class="line"><span class="cl">  inflating: word/settings.xml       
+</span></span><span class="line"><span class="cl">  inflating: <span class="o">[</span>Content_Types<span class="o">]</span>.xml
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>The content of a word file is usually found in the <code>word/document.xml</code> document. We can therefore use <code>grep</code> to display the flag directly without having to open it:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">┌──<span class="o">(</span>hashp4㉿dragon<span class="o">)</span>-<span class="o">[</span>~/Bureau<span class="o">]</span>
+</span></span><span class="line"><span class="cl">└─$ grep <span class="s2">&#34;ECSC{&#34;</span> word/document.xml 
+</span></span><span class="line"><span class="cl"><span class="o">[</span>...<span class="o">]</span>
+</span></span><span class="line"><span class="cl">&lt;/w:rPr&gt;&lt;w:t&gt;Flag: ECSC<span class="o">{</span>M4ud1t3_C4mp4gn3_2_r4NC0nG1c13L<span class="o">}</span>&lt;/w:t&gt;&lt;/w:r&gt;&lt;/w:p&gt;&lt;w:sectPr&gt;
+</span></span><span class="line"><span class="cl"><span class="o">[</span>...<span class="o">]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>And that&rsquo;s it! The decryption is a success. Now let&rsquo;s look at another way of doing it.</p>
+<h3 id="decrypting-with-python-street-credibility" class="headerLink">
+    <a href="#decrypting-with-python-street-credibility" class="header-mark"></a>Decrypting with Python <em>(street credibility++)</em></h3><p>To decrypt our <code>data</code> file, we can also call on our programming skills (<em>or call on our friend ChatGPT :p</em>). Since we&rsquo;re more familiar with Python, we&rsquo;ll use it to decrypt our file. However, you&rsquo;re free to choose another programming language for this exercise.</p>
+<p>Here&rsquo;s the <code>decrypt.py</code> script in question:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">cryptography.hazmat.primitives.ciphers</span> <span class="kn">import</span> <span class="n">Cipher</span><span class="p">,</span> <span class="n">algorithms</span><span class="p">,</span> <span class="n">modes</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">cryptography.hazmat.backends</span> <span class="kn">import</span> <span class="n">default_backend</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">decrypt_file</span><span class="p">(</span><span class="n">input_file</span><span class="p">,</span> <span class="n">output_file</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># Read encrypted content from file</span>
+</span></span><span class="line"><span class="cl">    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">input_file</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">encrypted_content</span> <span class="o">=</span> <span class="n">file</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1"># Extract IV (first 32 characters)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">iv</span> <span class="o">=</span> <span class="n">encrypted_content</span><span class="p">[:</span><span class="mi">16</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;The IV of the file is : </span><span class="si">{</span><span class="n">iv</span><span class="o">.</span><span class="n">hex</span><span class="p">()</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">encrypted_data</span> <span class="o">=</span> <span class="n">encrypted_content</span><span class="p">[</span><span class="mi">16</span><span class="p">:]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1"># Initialize AES-CTR cipher</span>
+</span></span><span class="line"><span class="cl">    <span class="n">backend</span> <span class="o">=</span> <span class="n">default_backend</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cipher</span> <span class="o">=</span> <span class="n">Cipher</span><span class="p">(</span><span class="n">algorithms</span><span class="o">.</span><span class="n">AES</span><span class="p">(</span><span class="n">key</span><span class="p">),</span> <span class="n">modes</span><span class="o">.</span><span class="n">CTR</span><span class="p">(</span><span class="n">iv</span><span class="p">),</span> <span class="n">backend</span><span class="o">=</span><span class="n">backend</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">decryptor</span> <span class="o">=</span> <span class="n">cipher</span><span class="o">.</span><span class="n">decryptor</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1"># Decrypt the content</span>
+</span></span><span class="line"><span class="cl">    <span class="n">decrypted_data</span> <span class="o">=</span> <span class="n">decryptor</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">encrypted_data</span><span class="p">)</span> <span class="o">+</span> <span class="n">decryptor</span><span class="o">.</span><span class="n">finalize</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1"># Write the decrypted content to the output file</span>
+</span></span><span class="line"><span class="cl">    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">output_file</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">decrypted_data</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">    <span class="n">input_file</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&#34;Enter the path to the encrypted file: &#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">output_file</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&#34;Enter the path for the output file (decrypted content): &#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">key</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&#34;Enter the AES key: &#34;</span><span class="p">)</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s2">&#34;utf-8&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">flag</span> <span class="o">=</span> <span class="n">decrypt_file</span><span class="p">(</span><span class="n">input_file</span><span class="p">,</span> <span class="n">output_file</span><span class="p">,</span> <span class="n">key</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;Decryption completed. Decrypted content saved in &#39;</span><span class="si">{</span><span class="n">output_file</span><span class="si">}</span><span class="s2">&#39;.&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&#34;__main__&#34;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">main</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>The principle is simple:</p>
+<ul>
+<li>Ask the user <strong>the path to the encrypted file</strong>.</li>
+<li>Ask the user for <strong>the path and name of the file in which to store the decrypted content</strong>.</li>
+<li>Ask the user for <strong>the decryption key</strong>.</li>
+</ul>
+<p>Then, this script will <strong>automatically extract the IV</strong> from the encrypted file, display it to the user and finally decrypt its contents.</p>
+<p>*It would be interesting to modify this script so as to be able to decrypt all files with the extension <code>.encrypted' and name them by their original name (just decode their name in </code>base64&rsquo;).</p>
+<p>Here&rsquo;s an example:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">┌──<span class="o">(</span>hashp4㉿kali<span class="o">)</span>-<span class="o">[</span>~/Bureau<span class="o">]</span>
+</span></span><span class="line"><span class="cl">└─$ python3 decrypt.py 
+</span></span><span class="line"><span class="cl">Enter the path to the encrypted file: data
+</span></span><span class="line"><span class="cl">Enter the path <span class="k">for</span> the output file <span class="o">(</span>decrypted content<span class="o">)</span>: /tmp/flag
+</span></span><span class="line"><span class="cl">Enter the AES key: 95511870061fb3a2899aa6b2dc9838aa
+</span></span><span class="line"><span class="cl">The IV of the file is : b627d24fc90dfe7ce421c43312dc2f2e
+</span></span><span class="line"><span class="cl">Decryption completed. Decrypted content saved in <span class="s1">&#39;/tmp/flag&#39;</span>.
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>We can check the file type using <code>file</code> :</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">┌──<span class="o">(</span>hashp4㉿kali<span class="o">)</span>-<span class="o">[</span>~/Bureau<span class="o">]</span>
+</span></span><span class="line"><span class="cl">└─$ file /tmp/flag 
+</span></span><span class="line"><span class="cl">/tmp/flag: Microsoft Word 2007+
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>The script works, since the command correctly detects the decrypted file as a Word document. We can now unzip it and use the same <code>grep</code> as before:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">┌──<span class="o">(</span>hashp4㉿dragon<span class="o">)</span>-<span class="o">[</span>~/Bureau<span class="o">]</span>
+</span></span><span class="line"><span class="cl">└─$ grep <span class="s2">&#34;ECSC{&#34;</span> /tmp/word/document.xml 
+</span></span><span class="line"><span class="cl"><span class="o">[</span>...<span class="o">]</span>
+</span></span><span class="line"><span class="cl">&lt;/w:rPr&gt;&lt;w:t&gt;Flag: ECSC<span class="o">{</span>M4ud1t3_C4mp4gn3_2_r4NC0nG1c13L<span class="o">}</span>&lt;/w:t&gt;&lt;/w:r&gt;&lt;/w:p&gt;&lt;w:sectPr&gt;
+</span></span><span class="line"><span class="cl"><span class="o">[</span>...<span class="o">]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>We&rsquo;ve got our flag back. :D</p>
+<h2 id="3-flag-" class="headerLink">
+    <a href="#3-flag-" class="header-mark"></a>3. Flag 🚩</h2><p>We have therefore succeeded in helping our victim to decrypt his files.</p>
+<p>The flag for this final challenge is: <code>ECSC{M4ud1t3_C4mp4gn3_2_r4NC0nG1c13L}</code>.</p>
+<p>This third and final challenge marks the end of the event. I&rsquo;d like to thank you for reading my writeups and hope I&rsquo;ve made my explanations clear enough. Don&rsquo;t hesitate to give me your feedback by contacting me directly on Discord or Twitter ;)</p>
+<h2 id="bonus---find-the-flag-without-the-data-file-" class="headerLink">
+    <a href="#bonus---find-the-flag-without-the-data-file-" class="header-mark"></a>BONUS - Find the flag without the <code>data</code> file 💡</h2><p>Being curious by nature, I wanted to see if it was possible to find the flag directly using the encrypted <code>flag.docx</code> file (<em>ZmxhZy5kb2N4.encrypted</em>) from the memory dump. As a reminder, we had found its virtual address in the dump using the <code>windows.filescan</code> plugin from <strong>Volatility3</strong>.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">┌──<span class="o">(</span>hashp4㉿kali<span class="o">)</span>-<span class="o">[</span>~/Bureau<span class="o">]</span>
+</span></span><span class="line"><span class="cl">└─$ python3 ~/Tools/volatility3/vol.py -f mem.dmp windows.filescan <span class="p">|</span> grep <span class="s2">&#34;ZmxhZy5kb2N4&#34;</span> 
+</span></span><span class="line"><span class="cl">0xe000123988d0.0<span class="se">\Z</span>mxhZy5kb2N4.chiffré   <span class="m">216</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>I then recovered the file using the <code>windows.dumpfiles</code> plugin and the <code>--virtaddr</code> option, followed by the virtual address of <code>ZmxhZy5kb2N4.encrypted</code>.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">┌──<span class="o">(</span>hashp4㉿kali<span class="o">)</span>-<span class="o">[</span>~/Bureau<span class="o">]</span>
+</span></span><span class="line"><span class="cl">└─$ python3 vol.py -f mem.dmp windows.dumpfiles --virtaddr 0xe000123988d0  
+</span></span><span class="line"><span class="cl">Volatility <span class="m">3</span> Framework 2.5.2
+</span></span><span class="line"><span class="cl">Progress:  100.00               PDB scanning finished                                
+</span></span><span class="line"><span class="cl">Cache   FileObject      FileName        Result
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">DataSectionObject       0xe000123988d0  ZmxhZy5kb2N4.chiffré    file.0xe000123988d0.0xe00010401370.DataSectionObject.ZmxhZy5kb2N4.chiffré.dat
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>I then ran my Python script on the encrypted file:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">┌──<span class="o">(</span>hashp4㉿kali<span class="o">)</span>-<span class="o">[</span>~/Bureau<span class="o">]</span>
+</span></span><span class="line"><span class="cl">└─$ python3 decrypt.py 
+</span></span><span class="line"><span class="cl">Enter the path to the encrypted file: ZmxhZy5kb2N4.chiffré
+</span></span><span class="line"><span class="cl">Enter the path <span class="k">for</span> the output file <span class="o">(</span>decrypted content<span class="o">)</span>: /tmp/flag
+</span></span><span class="line"><span class="cl">Enter the AES key: 95511870061fb3a2899aa6b2dc9838aa
+</span></span><span class="line"><span class="cl">The IV of the file is : b627d24fc90dfe7ce421c43312dc2f2e
+</span></span><span class="line"><span class="cl">Decryption completed. Decrypted content saved in <span class="s1">&#39;/tmp/flag&#39;</span>.
+</span></span><span class="line"><span class="cl">                                                                                                                                    
+</span></span><span class="line"><span class="cl">┌──<span class="o">(</span>hashp4㉿kali<span class="o">)</span>-<span class="o">[</span>~/Bureau<span class="o">]</span>
+</span></span><span class="line"><span class="cl">└─$ file /tmp/flag 
+</span></span><span class="line"><span class="cl">/tmp/flag: Microsoft Word 2007+
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>As this is indeed considered a Word document, I unzipped it and used <code>grep</code> to extract the flag :</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">┌──<span class="o">(</span>hashp4㉿dragon<span class="o">)</span>-<span class="o">[</span>~/Bureau<span class="o">]</span>
+</span></span><span class="line"><span class="cl">└─$ grep <span class="s2">&#34;ECSC{&#34;</span> /tmp/word/document.xml 
+</span></span><span class="line"><span class="cl"><span class="o">[</span>...<span class="o">]</span>
+</span></span><span class="line"><span class="cl">&lt;/w:rPr&gt;&lt;w:t&gt;Flag: ECSC<span class="o">{</span>M4ud1t3_C4mp4gn3_2_r4NC0nG1c13L<span class="o">}</span>&lt;/w:t&gt;&lt;/w:r&gt;&lt;/w:p&gt;&lt;w:sectPr&gt;
+</span></span><span class="line"><span class="cl"><span class="o">[</span>...<span class="o">]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>It is therefore possible to solve this last test without relying on the attached <code>data</code> file.</p>
+</div>
+
+        <div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2023-12-09</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span><a class="link-to-mardown" href=/fcsc-2019-3615-incident-3/index.md target="_blank" rel="noopener noreferrer">Read markdown</a>
+                    </span></div>
+            <div class="post-info-share"><button title="Share on Twitter" data-sharer="twitter" data-url="https://hashp4.fr/fcsc-2019-3615-incident-3/" data-title="[FCSC 2019] - 3615 Incident (3/3)" data-via="hashp4_" data-hashtags="Forensic,FCSC 2019,Volatility,Ransomware"><span class="fab fa-twitter fa-fw"></span></button><button title="Share on Linkedin" data-sharer="linkedin" data-url="https://hashp4.fr/fcsc-2019-3615-incident-3/"><span class="fab fa-linkedin fa-fw"></span></button></div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/forensic/">Forensic</a>,&nbsp;<a href="/tags/fcsc-2019/">FCSC 2019</a>,&nbsp;<a href="/tags/volatility/">Volatility</a>,&nbsp;<a href="/tags/ransomware/">Ransomware</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/fcsc-2019-3615-incident-2/" class="prev" rel="prev" title="[FCSC 2019] - 3615 Incident (2/3)"><i class="fas fa-angle-left fa-fw"></i>[FCSC 2019] - 3615 Incident (2/3)</a>
+            <a href="/malware-analysis-wannacry-pt1/" class="next" rel="next" title="Malware Analysis : WannaCry (part 1)">Malware Analysis : WannaCry (part 1)<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+</article></div>
+        </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">
+                    Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreferrer" title="Hugo 0.121.2">Hugo</a>&nbsp;|&nbsp;Theme - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreferrer" title="DoIt 0.4.0"><i class="far fa-edit fa-fw"></i> DoIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2022 - 2024</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank" rel="noopener noreferrer"></a></span>&nbsp;|&nbsp;<span class="license"><a rel="" href="https://www.gnu.org/licenses/gpl-3.0.en.html" target="_blank">GPL-V3</a></span></div>
+            <div class="footer-line"></div>
+            <div class="footer-line">
+            </div>
+        </div></footer></div>
+
+    <div id="fixed-buttons"><a href="#back-to-top" id="back-to-top-button" class="fixed-button" title="Back to Top">
+            <i class="fas fa-arrow-up fa-fw"></i>
+        </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+            <i class="fas fa-comment fa-fw"></i>
+        </a>
+    </div><div class="assets"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/contrib/copy-tex.min.css">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/contrib/copy-tex.min.css"></noscript><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{},"data":{"desktop-header-typeit":"hashp4 (\u003eᴗ•)","mobile-header-typeit":"hashp4 (\u003eᴗ•)"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":false,"left":"$","right":"$"}],"strict":false},"sharerjs":true,"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"desktop-header-typeit":["desktop-header-typeit"],"mobile-header-typeit":["mobile-header-typeit"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.4.2/sharer.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/typeit@7.0.4/dist/typeit.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js" defer></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/contrib/auto-render.min.js" defer></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/contrib/copy-tex.min.js" defer></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/contrib/mhchem.min.js" defer></script><script type="text/javascript" src="/js/katex.min.js" defer></script><script type="text/javascript" src="/js/theme.min.js" defer></script></div>
+</body>
+
+</html>

@@ -1,0 +1,15 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>whoami - Category - Blog - hashp4</title>
+        <link>https://hashp4.fr/categories/whoami/</link>
+        <description>whoami - Category - Blog - hashp4</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Tue, 25 Jan 2022 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://hashp4.fr/categories/whoami/" rel="self" type="application/rss+xml" /><item>
+    <title>whoami?</title>
+    <link>https://hashp4.fr/whoami/</link>
+    <pubDate>Tue, 25 Jan 2022 00:00:00 &#43;0000</pubDate><author>
+                    <name>hashp4</name>
+                </author><guid>https://hashp4.fr/whoami/</guid>
+    <description><![CDATA[Info I&rsquo;m currently looking for a new job opportunity in the field of DFIR, Malware analysis and Threat Hunting. I&rsquo;m willing to relocate anywhere. Feel free to reach me out. :) ❓ IntroductionI am a former cyberdefense student at ENSIBS and former pentester for AlgoSecure. My favorite categories are OSINT, pentest, forensics and malware analysis.
+💻 Infosec, or about 80% of my lifeBeing passionate about computer security, I practice during my free time various activities in the field.]]></description>
+</item></channel>
+</rss>

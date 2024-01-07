@@ -1,0 +1,16 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>WannaCry - Tag - Blog - hashp4</title>
+        <link>https://hashp4.fr/tags/wannacry/</link>
+        <description>WannaCry - Tag - Blog - hashp4</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sun, 26 Nov 2023 22:00:53 &#43;0100</lastBuildDate><atom:link href="https://hashp4.fr/tags/wannacry/" rel="self" type="application/rss+xml" /><item>
+    <title>Malware Analysis : WannaCry (part 1)</title>
+    <link>https://hashp4.fr/malware-analysis-wannacry-pt1/</link>
+    <pubDate>Sun, 26 Nov 2023 22:00:53 &#43;0100</pubDate><author>
+                    <name>hashp4</name>
+                </author><guid>https://hashp4.fr/malware-analysis-wannacry-pt1/</guid>
+    <description><![CDATA[<div class="featured-image">
+                <img src="/malware-analysis-wannacry-pt1/feature.png" referrerpolicy="no-referrer">
+            </div>Walkthrough of my malware analysis for the Bossfight challenge from the <em>Practical Malware Analysis &amp; Triage</em> course created by <strong>@HuskyHacks</strong>. This time, I dive into the infamous WannaCry, a great challenge to apply everything I&rsquo;ve learnt from now on !]]></description>
+</item></channel>
+</rss>

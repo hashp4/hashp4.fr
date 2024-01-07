@@ -1,0 +1,16 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Techno - Tag - Blog - hashp4</title>
+        <link>https://hashp4.fr/tags/techno/</link>
+        <description>Techno - Tag - Blog - hashp4</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sun, 19 Mar 2023 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://hashp4.fr/tags/techno/" rel="self" type="application/rss+xml" /><item>
+    <title>Music</title>
+    <link>https://hashp4.fr/music/</link>
+    <pubDate>Sun, 19 Mar 2023 00:00:00 &#43;0000</pubDate><author>
+                    <name>hashp4</name>
+                </author><guid>https://hashp4.fr/music/</guid>
+    <description><![CDATA[<div class="featured-image">
+                <img src="feature.png" referrerpolicy="no-referrer">
+            </div> Breizh CTF 2023 Songs played during the BreizhCTF 2023. Playlist made with Zeecka :) Read more... Insomni&#39;Hack 2022 All the songs that have been played during Insomni&#39;Hack 2022 Read more... Insomni&#39;Hack 2023 All the songs that have been played during Insomni&#39;Hack 2023 Read more... ]]></description>
+</item></channel>
+</rss>

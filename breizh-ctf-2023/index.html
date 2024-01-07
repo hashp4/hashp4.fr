@@ -1,0 +1,1009 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noodp" />
+    <title>[BreizhCTF 2023] - Yakuza Serie - Blog - hashp4</title><meta name="Description" content="Solution to the OSINT challenges I created for BreizhCTF 2023."><meta property="og:title" content="[BreizhCTF 2023] - Yakuza Serie" />
+<meta property="og:description" content="Solution to the OSINT challenges I created for BreizhCTF 2023." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://hashp4.fr/breizh-ctf-2023/" /><meta property="og:image" content="https://hashp4.fr/breizh-ctf-2023/feature.png" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-03-19T22:00:53+01:00" />
+<meta property="article:modified_time" content="2023-03-19T22:00:53+01:00" /><meta property="og:site_name" content="hashp4" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://hashp4.fr/breizh-ctf-2023/feature.png" /><meta name="twitter:title" content="[BreizhCTF 2023] - Yakuza Serie"/>
+<meta name="twitter:description" content="Solution to the OSINT challenges I created for BreizhCTF 2023."/>
+<meta name="twitter:site" content="@hashp4_"/>
+<meta name="application-name" content="hashp4">
+<meta name="apple-mobile-web-app-title" content="hashp4">
+
+<meta name="theme-color" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><meta name="twitter:creator" content="@hashp4_" /><link rel="icon" href="/favicon.ico"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="https://hashp4.fr/breizh-ctf-2023/" /><link rel="prev" href="https://hashp4.fr/esaip-ctf-2022/" /><link rel="next" href="https://hashp4.fr/malware-analysis-sillyputty/" />
+<link rel="stylesheet" href="/css/main.d5cb6f29e0750a13b17688d628b04d50f9fbbd32e0629ccc0dcf796a299ae226.css" integrity="sha256-1ctvKeB1ChOxdojWKLBNUPn7vTLgYpzMDc95aima4iY="><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/css/color.b0a0f8c429ce52dfa2805b5f9e99ccdae1e8fbfd9adf4f3ddb409d8201fc0c5a.css" integrity="sha256-sKD4xCnOUt&#43;igFtfnpnM2uHo&#43;/2a308920CdggH8DFo="><link rel="stylesheet" href="/css/style.min.a2848814ceb26d36c7d2e21c38279a73fd9d1d9820ca2cf62feb98ef0bea90ac.css" integrity="sha256-ooSIFM6ybTbH0uIcOCeac/2dHZggyiz2L&#43;uY7wvqkKw="><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "[BreizhCTF 2023] - Yakuza Serie",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https://hashp4.fr/breizh-ctf-2023/"
+        },"image": ["https://hashp4.fr/images/Apple-Devices-Preview.png"],"genre": "posts","keywords": "OSINT, BreizhCTF, SOCMINT, GEOINT, irl","wordcount":  2846 ,
+        "url": "https://hashp4.fr/breizh-ctf-2023/","datePublished": "2023-03-19T22:00:53+01:00","dateModified": "2023-03-19T22:00:53+01:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "hashp4","logo": {
+                    "@type": "ImageObject",
+                    "url": "https://hashp4.fr/images/logo.png",
+                    "width":  288 ,
+                    "height":  288 
+                }},"authors": [{
+                        "@type": "Person",
+                        "name": "hashp4"                    
+                    }],"description": "Solution to the OSINT challenges I created for BreizhCTF 2023."
+    }
+    </script></head>
+
+<body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">
+        function setTheme(theme) {document.body.setAttribute('theme', theme); document.documentElement.style.setProperty('color-scheme', theme === 'light' ? 'light' : 'dark'); window.theme = theme;   window.isDark = window.theme !== 'light' }
+        function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
+        function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
+        if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('black' === 'light' || 'black' === 'dark' || 'black' === 'black') setTheme('black'), saveTheme('black'); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
+        let metaColors = {'light': '#f8f8f8','dark': '#252627','black': '#000000'}
+        getMeta('theme-color').content = metaColors[document.body.getAttribute('theme')];
+        window.switchThemeEventSet = new Set()
+    </script>
+    <div id="back-to-top"></div>
+    <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Blog - hashp4"><span id="desktop-header-typeit" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/whoami">🇫🇷 whoami </a><a class="menu-item" href="/categories/article/">✒ Blog </a><a class="menu-item" href="/projects/">📚 Projects </a><a class="menu-item" href="/categories/writeup/">🚩 Writeups </a><a class="menu-item" href="/music/">🎵 Music </a><span class="menu-item delimiter"></span><a href="javascript:void(0);" class="menu-item language" title="Select Language">English<i class="fas fa-chevron-right fa-fw"></i>
+                        <select class="language-select" title="Select Language" id="language-select-desktop" onchange="location = this.value;"><option value="/breizh-ctf-2023/" selected>English</option><option value="/fr/breizh-ctf-2023/">Français</option></select>
+                    </a><a href="javascript:void(0);" class="menu-item theme-select" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw"></i>
+                    <select class="color-theme-select" id="theme-select-desktop" title="Switch Theme">
+                        <option value="light">Light</option>
+                        <option value="dark">Dark</option>
+                        <option value="black">Black</option>
+                        <option value="auto">Auto</option>
+                    </select>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Blog - hashp4"><span id="mobile-header-typeit" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><a class="menu-item" href="/whoami" title="">🇫🇷whoami</a><a class="menu-item" href="/categories/article/" title="">✒Blog</a><a class="menu-item" href="/projects/" title="">📚Projects</a><a class="menu-item" href="/categories/writeup/" title="">🚩Writeups</a><a class="menu-item" href="/music/" title="">🎵Music</a><a href="javascript:void(0);" class="menu-item theme-select" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw"></i>
+                <select class="color-theme-select" id="theme-select-mobile" title="Switch Theme">
+                    <option value="light">Light</option>
+                    <option value="dark">Dark</option>
+                    <option value="black">Black</option>
+                    <option value="auto">Auto</option>
+                </select>
+            </a><a href="javascript:void(0);" class="menu-item" title="Select Language">English<i class="fas fa-chevron-right fa-fw"></i>
+                    <select class="language-select" title="Select Language" onchange="location = this.value;"><option value="/breizh-ctf-2023/" selected>English</option><option value="/fr/breizh-ctf-2023/">Français</option></select>
+                </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+            <div class="container"><div class="toc" id="toc-auto">
+        <h2 class="toc-title">Contents</h2>
+        <div class="toc-content" id="toc-content-auto"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#introduction">Introduction</a></li>
+    <li><a href="#yakuza-15---nihon-he-yōkoso">Yakuza (1/5) - Nihon he yōkoso</a>
+      <ul>
+        <li><a href="#challenge-description">Challenge description</a></li>
+        <li><a href="#challenge-details">Challenge details</a></li>
+        <li><a href="#tldr">TL;DR</a></li>
+        <li><a href="#goal">Goal</a></li>
+        <li><a href="#methodology">Methodology</a></li>
+        <li><a href="#flag">Flag</a></li>
+      </ul>
+    </li>
+    <li><a href="#yakuza-25---tebori">Yakuza (2/5) - Tebori</a>
+      <ul>
+        <li><a href="#challenge-description-1">Challenge description</a></li>
+        <li><a href="#challenge-details-1">Challenge details</a></li>
+        <li><a href="#tldr-1">TL;DR</a></li>
+        <li><a href="#goal-1">Goal</a></li>
+        <li><a href="#methodology-1">Methodology</a></li>
+        <li><a href="#flag-1">Flag</a></li>
+      </ul>
+    </li>
+    <li><a href="#yakuza-35---onigiri">Yakuza (3/5) - Onigiri</a>
+      <ul>
+        <li><a href="#challenge-description-2">Challenge description</a></li>
+        <li><a href="#challenge-details-2">Challenge details</a></li>
+        <li><a href="#tldr-2">TL;DR</a></li>
+        <li><a href="#objectif">Objectif</a></li>
+        <li><a href="#méthodologie">Méthodologie</a></li>
+        <li><a href="#flag-2">Flag</a></li>
+      </ul>
+    </li>
+    <li><a href="#yakuza-45---is-that-a-supra-">Yakuza (4/5) - IS THAT A SUPRA ???</a>
+      <ul>
+        <li><a href="#challenge-description-3">Challenge description</a></li>
+        <li><a href="#détails-du-challenge">Détails du challenge</a></li>
+        <li><a href="#tldr-3">TL;DR</a></li>
+        <li><a href="#goal-2">Goal</a></li>
+        <li><a href="#methodology-2">Methodology</a>
+          <ul>
+            <li><a href="#1-geoint-part">1. GEOINT Part</a></li>
+            <li><a href="#2-socmint-part">2. SOCMINT Part</a></li>
+          </ul>
+        </li>
+        <li><a href="#flag-3">Flag</a></li>
+      </ul>
+    </li>
+    <li><a href="#yakuza-55---détective-conan">Yakuza (5/5) - Détective Conan</a>
+      <ul>
+        <li><a href="#challenge-description-4">Challenge description</a></li>
+        <li><a href="#challenge-details-3">Challenge details</a></li>
+        <li><a href="#tldr-4">TL;DR</a></li>
+        <li><a href="#goal-3">Goal</a></li>
+        <li><a href="#methodology-3">Methodology</a></li>
+        <li><a href="#flag-4">Flag</a></li>
+      </ul>
+    </li>
+    <li><a href="#conclusion">Conclusion</a></li>
+  </ul>
+</nav></div>
+    </div><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">[BreizhCTF 2023] - Yakuza Serie</h1><div class="post-meta">
+            <div class="post-meta-line">
+                <span class="post-author"><span class='author'><span class="author fas fa-user-circle fa-fw"></span><span class='screen-reader-text'>  </span><a href='https://hashp4.fr/authors/hashp4'>hashp4</a></span>
+                </span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">category <a href="/categories/writeup/"><i class="far fa-folder fa-fw"></i>Writeup</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2023-03-19">2023-03-19</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2023-03-19">2023-03-19</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;2846 words&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;14 minutes&nbsp;</div>
+        </div><div class="featured-image"><img
+        
+        loading="eager"
+        src="/breizh-ctf-2023/feature.png"
+        srcset="/breizh-ctf-2023/feature.png, /breizh-ctf-2023/feature.png 1.5x, /breizh-ctf-2023/feature.png 2x"
+        sizes="auto"
+        alt="Solution to the OSINT challenges I created for BreizhCTF 2023."
+        title="Solution to the OSINT challenges I created for BreizhCTF 2023." height="360"   width="1200" ></div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#introduction">Introduction</a></li>
+    <li><a href="#yakuza-15---nihon-he-yōkoso">Yakuza (1/5) - Nihon he yōkoso</a>
+      <ul>
+        <li><a href="#challenge-description">Challenge description</a></li>
+        <li><a href="#challenge-details">Challenge details</a></li>
+        <li><a href="#tldr">TL;DR</a></li>
+        <li><a href="#goal">Goal</a></li>
+        <li><a href="#methodology">Methodology</a></li>
+        <li><a href="#flag">Flag</a></li>
+      </ul>
+    </li>
+    <li><a href="#yakuza-25---tebori">Yakuza (2/5) - Tebori</a>
+      <ul>
+        <li><a href="#challenge-description-1">Challenge description</a></li>
+        <li><a href="#challenge-details-1">Challenge details</a></li>
+        <li><a href="#tldr-1">TL;DR</a></li>
+        <li><a href="#goal-1">Goal</a></li>
+        <li><a href="#methodology-1">Methodology</a></li>
+        <li><a href="#flag-1">Flag</a></li>
+      </ul>
+    </li>
+    <li><a href="#yakuza-35---onigiri">Yakuza (3/5) - Onigiri</a>
+      <ul>
+        <li><a href="#challenge-description-2">Challenge description</a></li>
+        <li><a href="#challenge-details-2">Challenge details</a></li>
+        <li><a href="#tldr-2">TL;DR</a></li>
+        <li><a href="#objectif">Objectif</a></li>
+        <li><a href="#méthodologie">Méthodologie</a></li>
+        <li><a href="#flag-2">Flag</a></li>
+      </ul>
+    </li>
+    <li><a href="#yakuza-45---is-that-a-supra-">Yakuza (4/5) - IS THAT A SUPRA ???</a>
+      <ul>
+        <li><a href="#challenge-description-3">Challenge description</a></li>
+        <li><a href="#détails-du-challenge">Détails du challenge</a></li>
+        <li><a href="#tldr-3">TL;DR</a></li>
+        <li><a href="#goal-2">Goal</a></li>
+        <li><a href="#methodology-2">Methodology</a>
+          <ul>
+            <li><a href="#1-geoint-part">1. GEOINT Part</a></li>
+            <li><a href="#2-socmint-part">2. SOCMINT Part</a></li>
+          </ul>
+        </li>
+        <li><a href="#flag-3">Flag</a></li>
+      </ul>
+    </li>
+    <li><a href="#yakuza-55---détective-conan">Yakuza (5/5) - Détective Conan</a>
+      <ul>
+        <li><a href="#challenge-description-4">Challenge description</a></li>
+        <li><a href="#challenge-details-3">Challenge details</a></li>
+        <li><a href="#tldr-4">TL;DR</a></li>
+        <li><a href="#goal-3">Goal</a></li>
+        <li><a href="#methodology-3">Methodology</a></li>
+        <li><a href="#flag-4">Flag</a></li>
+      </ul>
+    </li>
+    <li><a href="#conclusion">Conclusion</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h2 id="introduction" class="headerLink">
+    <a href="#introduction" class="header-mark"></a>Introduction</h2><p>During BreizhCTF 2023, which took place from 17/03/2023 to 18/03/2023, I had the opportunity to carry out some of the OSINT challenges. As a CTF player myself and a great fan of OSINT, my idea was to create a series of realistic challenges, something rarely seen in CTF. The aim was to immerse the player in a real investigation. The player quickly finds himself overwhelmed by a flow of information, and it&rsquo;s up to him to sort it all out, in conjunction with the guiding statement. Several essential components were required to create these challenges:</p>
+<ul>
+<li>the theme and associated language (Japanese),</li>
+<li>the use of real actors,</li>
+<li>the use of real accounts.</li>
+</ul>
+<p>The series comprises 5 challenges combining several OSINT techniques: SOCMINT, GEOINT and physical investigation. The aim is to find and trace an attacker, a member of a Japanese criminal group whose objective is to meet a contact of his in France during the BreizhCTF. Throughout these challenges, the player is required to collect various pieces of evidence that will be useful in incriminating the man in question.</p>
+<hr>
+<h2 id="yakuza-15---nihon-he-yōkoso" class="headerLink">
+    <a href="#yakuza-15---nihon-he-y%c5%8dkoso" class="header-mark"></a>Yakuza (1/5) - Nihon he yōkoso</h2><h3 id="challenge-description" class="headerLink">
+    <a href="#challenge-description" class="header-mark"></a>Challenge description</h3><p><figure><img
+        
+        loading="lazy"
+        src="/breizh-ctf-2023/gifs/cat-bowl.gif"
+        srcset="/breizh-ctf-2023/gifs/cat-bowl.gif, /breizh-ctf-2023/gifs/cat-bowl.gif 1.5x, /breizh-ctf-2023/gifs/cat-bowl.gif 2x"
+        sizes="auto"
+        alt="/breizh-ctf-2023/gifs/cat-bowl.gif"
+        title="/breizh-ctf-2023/gifs/cat-bowl.gif" height="280"   width="497" ></figure></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Oh tiens, je viens de recevoir un message. À cette heure-là ? Sur mon tél pro ? C’est étrange. Il faut que je l’ouvre sans plus tarder. Moi qui pensais pouvoir me détendre au BreizhCTF avec une bonne galette saucisse, me voilà de nouveau sur une enquête…
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">“Good evening Conan,
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">I hope your stay in Rennes is going well. Unfortunately, we have to interrupt it. We&#39;re asking for your help tonight, as part of our YKZ_001 investigation. As you know, several months ago we were tracking down a group of yakuzas who had compromised an OIV for profit. However, they have left almost no trace since then.
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">It was only a few minutes ago that we intercepted a message from the group about their next attack. Luckily, it contained a signature. It consists of a series of characters in Japanese: &#34;土方剛史&#34;.
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">We&#39;re sure that with this information, you&#39;ll be able to track down one of the players in this group.
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">We&#39;re counting on your expertise to carry out this investigation. Remember, every detail counts. Gathering, recording and cross-checking information is essential to the success of any mission. You only have a few hours to find the individual and help uncover their next target.
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Good luck to you.”
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="challenge-details" class="headerLink">
+    <a href="#challenge-details" class="header-mark"></a>Challenge details</h3><table>
+<thead>
+<tr>
+<th>Event</th>
+<th>Serie</th>
+<th>Challenge</th>
+<th>Category</th>
+<th>Points</th>
+<th>Solves</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>BreizhCTF 2023</td>
+<td>Yakuza</td>
+<td>Nihon he yōkoso (1/5)</td>
+<td>OSINT</td>
+<td>N/C</td>
+<td>N/C</td>
+</tr>
+</tbody>
+</table>
+<h3 id="tldr" class="headerLink">
+    <a href="#tldr" class="header-mark"></a>TL;DR</h3><ol>
+<li>Translation of signature into rōmaji: <code>土方剛史</code> =&gt; <em>Takeshi Hijikata</em></li>
+<li>Twitter name search -&gt; Account <a href="https://twitter.com/HijikataTakeshi/" target="_blank" rel="noopener noreferrer">@HijikataTakeshi</a></li>
+<li>In a tweet, the target talks about a group in which he would be more active. He is said to be on a very popular social network in Japan.</li>
+<li>Search for popular Japanese social networks =&gt; <strong>LINE</strong> is #1</li>
+<li>Search for a user on LINE with the same username as on Twitter (also works with first name + last name) =&gt; We find his account</li>
+<li>In the banner, there&rsquo;s a URL to join a LINE group</li>
+<li>When you join, the flag appears in the &ldquo;Notes&rdquo; section of the group.</li>
+</ol>
+<h3 id="goal" class="headerLink">
+    <a href="#goal" class="header-mark"></a>Goal</h3><p>The aim of this first challenge is to link the message signature to a real person. This means finding traces of the target on the Internet.</p>
+<h3 id="methodology" class="headerLink">
+    <a href="#methodology" class="header-mark"></a>Methodology</h3><p>To do this, we need to start with this famous signature: <code>土方剛史</code>. Unless you have the JLPT and understand its meaning directly, you need to start by translating it. To do this, we can use <strong>DeepL</strong>.</p>
+<p><figure><img
+        
+        loading="lazy"
+        src="/breizh-ctf-2023/1/traduction-signature.png"
+        srcset="/breizh-ctf-2023/1/traduction-signature.png, /breizh-ctf-2023/1/traduction-signature.png 1.5x, /breizh-ctf-2023/1/traduction-signature.png 2x"
+        sizes="auto"
+        alt="/breizh-ctf-2023/1/traduction-signature.png"
+        title="/breizh-ctf-2023/1/traduction-signature.png" height="273"   width="1725" ></figure></p>
+<p>So we end up with a first and last name: <code>Takeshi Hijikata.</code> By searching for him on Twitter, we can find his account.</p>
+<p><figure><img
+        
+        loading="lazy"
+        src="/breizh-ctf-2023/1/compte-twitter.png"
+        srcset="/breizh-ctf-2023/1/compte-twitter.png, /breizh-ctf-2023/1/compte-twitter.png 1.5x, /breizh-ctf-2023/1/compte-twitter.png 2x"
+        sizes="auto"
+        alt="/breizh-ctf-2023/1/compte-twitter.png"
+        title="/breizh-ctf-2023/1/compte-twitter.png" height="368"   width="611" ></figure></p>
+<p>After investigating his account, two tweets turned out to be particularly interesting:</p>
+<p><figure><img
+        
+        loading="lazy"
+        src="/breizh-ctf-2023/1/tweet-1.png"
+        srcset="/breizh-ctf-2023/1/tweet-1.png, /breizh-ctf-2023/1/tweet-1.png 1.5x, /breizh-ctf-2023/1/tweet-1.png 2x"
+        sizes="auto"
+        alt="/breizh-ctf-2023/1/tweet-1.png"
+        title="/breizh-ctf-2023/1/tweet-1.png" height="190"   width="606" ></figure>
+<figure><img
+        
+        loading="lazy"
+        src="/breizh-ctf-2023/1/tweet-2.png"
+        srcset="/breizh-ctf-2023/1/tweet-2.png, /breizh-ctf-2023/1/tweet-2.png 1.5x, /breizh-ctf-2023/1/tweet-2.png 2x"
+        sizes="auto"
+        alt="/breizh-ctf-2023/1/tweet-2.png"
+        title="/breizh-ctf-2023/1/tweet-2.png" height="190"   width="603" ></figure></p>
+<p>The target itself tells us that it happens to be more active on another social network. This one is said to be the most popular in Japan. After a rather basic internet search, we quickly come across <code>LINE</code>.</p>
+<p><figure><img
+        
+        loading="lazy"
+        src="/breizh-ctf-2023/1/popular-sn.png"
+        srcset="/breizh-ctf-2023/1/popular-sn.png, /breizh-ctf-2023/1/popular-sn.png 1.5x, /breizh-ctf-2023/1/popular-sn.png 2x"
+        sizes="auto"
+        alt="/breizh-ctf-2023/1/popular-sn.png"
+        title="/breizh-ctf-2023/1/popular-sn.png" height="833"   width="965" ></figure></p>
+<p>Searching for the user&rsquo;s name on LINE brings up his account:</p>
+<p><figure><img
+        
+        loading="lazy"
+        src="/breizh-ctf-2023/1/compte-line.png"
+        srcset="/breizh-ctf-2023/1/compte-line.png, /breizh-ctf-2023/1/compte-line.png 1.5x, /breizh-ctf-2023/1/compte-line.png 2x"
+        sizes="auto"
+        alt="/breizh-ctf-2023/1/compte-line.png"
+        title="/breizh-ctf-2023/1/compte-line.png" height="517"   width="469" ></figure></p>
+<p>We notice a link in the banner of his account. This allows you to join your LINE group. Note that to join a group, you need the mobile application.</p>
+<p><figure><img
+        
+        loading="lazy"
+        src="/breizh-ctf-2023/1/compte-line-2.png"
+        srcset="/breizh-ctf-2023/1/compte-line-2.png, /breizh-ctf-2023/1/compte-line-2.png 1.5x, /breizh-ctf-2023/1/compte-line-2.png 2x"
+        sizes="auto"
+        alt="/breizh-ctf-2023/1/compte-line-2.png"
+        title="/breizh-ctf-2023/1/compte-line-2.png" height="624"   width="432" ></figure></p>
+<p>Once we&rsquo;re on the group, we head for the notes, which contain a wealth of information, including our flag, which marks the end of this first challenge.</p>
+<p><figure><img
+        
+        loading="lazy"
+        src="/breizh-ctf-2023/1/flag.png"
+        srcset="/breizh-ctf-2023/1/flag.png, /breizh-ctf-2023/1/flag.png 1.5x, /breizh-ctf-2023/1/flag.png 2x"
+        sizes="auto"
+        alt="/breizh-ctf-2023/1/flag.png"
+        title="/breizh-ctf-2023/1/flag.png" height="220"   width="801" ></figure></p>
+<h3 id="flag" class="headerLink">
+    <a href="#flag" class="header-mark"></a>Flag</h3><p><code>BZHCTF{L1N3_1s_v3ry_f4m0us_1n_J4p4n}</code></p>
+<hr>
+<h2 id="yakuza-25---tebori" class="headerLink">
+    <a href="#yakuza-25---tebori" class="header-mark"></a>Yakuza (2/5) - Tebori</h2><h3 id="challenge-description-1" class="headerLink">
+    <a href="#challenge-description-1" class="header-mark"></a>Challenge description</h3><p><figure><img
+        
+        loading="lazy"
+        src="/breizh-ctf-2023/gifs/swag-cat-swagger.gif"
+        srcset="/breizh-ctf-2023/gifs/swag-cat-swagger.gif, /breizh-ctf-2023/gifs/swag-cat-swagger.gif 1.5x, /breizh-ctf-2023/gifs/swag-cat-swagger.gif 2x"
+        sizes="auto"
+        alt="/breizh-ctf-2023/gifs/swag-cat-swagger.gif"
+        title="/breizh-ctf-2023/gifs/swag-cat-swagger.gif" height="373"   width="498" ></figure></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Perfect, I managed to find the individual in question and join his group of friends. To say the least, it&#39;s a real goldmine in terms of information. However, there&#39;s nothing to link him to this group of yakuza... But there&#39;s one note that catches my eye. In it, he mentions a tattoo store and &#34;Kamon Tomoe&#34;.
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">I feel there&#39;s something to be dug up here.
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">In any case, I&#39;ve got to keep going before he notices something. He seems very active on this newsgroup.
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="challenge-details-1" class="headerLink">
+    <a href="#challenge-details-1" class="header-mark"></a>Challenge details</h3><table>
+<thead>
+<tr>
+<th>Event</th>
+<th>Serie</th>
+<th>Challenge</th>
+<th>Category</th>
+<th>Points</th>
+<th>Solves</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>BreizhCTF 2023</td>
+<td>Yakuza</td>
+<td>Tebori (2/5)</td>
+<td>OSINT</td>
+<td>N/C</td>
+<td>N/C</td>
+</tr>
+</tbody>
+</table>
+<h3 id="tldr-1" class="headerLink">
+    <a href="#tldr-1" class="header-mark"></a>TL;DR</h3><ol>
+<li>Note on a tattoo store + photo of a <code>Kamon Tomoe</code>.</li>
+<li>Search &ldquo;most famous tattoo shop in japan&rdquo; =&gt; Tokyo Three Tides Tattoo</li>
+<li>Store logo is a <code>Kamon Tomoe</code> =&gt; store confirmation</li>
+<li>There are 2 in Japan (Osaka and Tokyo). Thanks to the photos on the LINE group, we know it&rsquo;s in Osaka.</li>
+<li>Filter by most recent comment to obtain the flag.</li>
+</ol>
+<h3 id="goal-1" class="headerLink">
+    <a href="#goal-1" class="header-mark"></a>Goal</h3><p>The aim of this second challenge is now to link the target to the Yakuza group. Proof of membership must be obtained.</p>
+<h3 id="methodology-1" class="headerLink">
+    <a href="#methodology-1" class="header-mark"></a>Methodology</h3><p>As the statement for this second challenge underlines, there are two messages on the LINE group about a tattoo parlour and tattooing itself. In these, our target says she would have had a traditional tattoo in a store with a <em>&ldquo;Kamon Tomoe &ldquo;</em> sign.</p>
+<p><figure><img
+        
+        loading="lazy"
+        src="/breizh-ctf-2023/2/post-line.png"
+        srcset="/breizh-ctf-2023/2/post-line.png, /breizh-ctf-2023/2/post-line.png 1.5x, /breizh-ctf-2023/2/post-line.png 2x"
+        sizes="auto"
+        alt="/breizh-ctf-2023/2/post-line.png"
+        title="/breizh-ctf-2023/2/post-line.png" height="753"   width="790" ></figure></p>
+<p>The tattoo in question:</p>
+<p><figure><img
+        
+        loading="lazy"
+        src="/breizh-ctf-2023/2/post-line-2.png"
+        srcset="/breizh-ctf-2023/2/post-line-2.png, /breizh-ctf-2023/2/post-line-2.png 1.5x, /breizh-ctf-2023/2/post-line-2.png 2x"
+        sizes="auto"
+        alt="/breizh-ctf-2023/2/post-line-2.png"
+        title="/breizh-ctf-2023/2/post-line-2.png" height="761"   width="782" ></figure></p>
+<p>The first step is to research tattoo stores in Japan. A good place to start is with the best-known stores.</p>
+<p><figure><img
+        
+        loading="lazy"
+        src="/breizh-ctf-2023/2/famous-tattoo-shop.png"
+        srcset="/breizh-ctf-2023/2/famous-tattoo-shop.png, /breizh-ctf-2023/2/famous-tattoo-shop.png 1.5x, /breizh-ctf-2023/2/famous-tattoo-shop.png 2x"
+        sizes="auto"
+        alt="/breizh-ctf-2023/2/famous-tattoo-shop.png"
+        title="/breizh-ctf-2023/2/famous-tattoo-shop.png" height="548"   width="1562" ></figure></p>
+<p>We quickly, if not immediately, come across &ldquo;Tokyo Three Tides&rdquo;. Researching this sign, we come across the store&rsquo;s logo:</p>
+<p><figure><img
+        
+        loading="lazy"
+        src="/breizh-ctf-2023/2/logo-tattoo.png"
+        srcset="/breizh-ctf-2023/2/logo-tattoo.png, /breizh-ctf-2023/2/logo-tattoo.png 1.5x, /breizh-ctf-2023/2/logo-tattoo.png 2x"
+        sizes="auto"
+        alt="/breizh-ctf-2023/2/logo-tattoo.png"
+        title="/breizh-ctf-2023/2/logo-tattoo.png" height="496"   width="1504" ></figure></p>
+<p>The logo turns out to be a kind of <em>Kamon Tomoe</em>, telling us we&rsquo;re on the right track. Considering that the target had a tattoo there, he potentially left a review or photo. It remains to be seen which of the two stores in Tokyo or Osaka is the right one. With a slight correlation of information and a little GEOINT on the photos present on LINE or Twitter, we can deduce that he is very often in Osaka. Here&rsquo;s an example:</p>
+<p><figure><img
+        
+        loading="lazy"
+        src="/breizh-ctf-2023/2/exemple-osaka.png"
+        srcset="/breizh-ctf-2023/2/exemple-osaka.png, /breizh-ctf-2023/2/exemple-osaka.png 1.5x, /breizh-ctf-2023/2/exemple-osaka.png 2x"
+        sizes="auto"
+        alt="/breizh-ctf-2023/2/exemple-osaka.png"
+        title="/breizh-ctf-2023/2/exemple-osaka.png" height="711"   width="692" ></figure></p>
+<p>Let&rsquo;s talk a look at the reviews of <a href="https://www.google.com/search?client=firefox-b-d&amp;q=tokyo&#43;three&#43;tides&#43;osaka#lrd=0x6000e70e351eebd3:0x5cfbe83df2d33f5b,1,,,," target="_blank" rel="noopener noreferrer">Tokyo Three Tides Osaka</a>. Sorting by most recent photo, we come across a comment by Hijikata Takeshi.</p>
+<p><figure><img
+        
+        loading="lazy"
+        src="/breizh-ctf-2023/2/avis.png"
+        srcset="/breizh-ctf-2023/2/avis.png, /breizh-ctf-2023/2/avis.png 1.5x, /breizh-ctf-2023/2/avis.png 2x"
+        sizes="auto"
+        alt="/breizh-ctf-2023/2/avis.png"
+        title="/breizh-ctf-2023/2/avis.png" height="708"   width="1046" ></figure></p>
+<p>It also contains an image on which the flag is written.</p>
+<p><figure><img
+        
+        loading="lazy"
+        src="2/flag.png"
+        srcset="2/flag.png, 2/flag.png 1.5x, 2/flag.png 2x"
+        sizes="auto"
+        alt="2/flag.png"
+        title="2/flag.png" ></figure></p>
+<h3 id="flag-1" class="headerLink">
+    <a href="#flag-1" class="header-mark"></a>Flag</h3><p><code>BZHCTF{t4tt00s_4r3_p4rt_0f_th3_tr4d1t10n}</code></p>
+<hr>
+<h2 id="yakuza-35---onigiri" class="headerLink">
+    <a href="#yakuza-35---onigiri" class="header-mark"></a>Yakuza (3/5) - Onigiri</h2><h3 id="challenge-description-2" class="headerLink">
+    <a href="#challenge-description-2" class="header-mark"></a>Challenge description</h3><p><figure><img
+        
+        loading="lazy"
+        src="/breizh-ctf-2023/gifs/squirtle-eating.gif"
+        srcset="/breizh-ctf-2023/gifs/squirtle-eating.gif, /breizh-ctf-2023/gifs/squirtle-eating.gif 1.5x, /breizh-ctf-2023/gifs/squirtle-eating.gif 2x"
+        sizes="auto"
+        alt="/breizh-ctf-2023/gifs/squirtle-eating.gif"
+        title="/breizh-ctf-2023/gifs/squirtle-eating.gif" height="371"   width="498" ></figure></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Here&#39;s my proof! Tattoos are a yakuza tradition. In fact, he claims loud and clear that he belongs to this group and that it was an obligation. Anyway, now that I&#39;ve got that, I&#39;ll have to work on locating it. I think I&#39;ll be a while, it&#39;s never easy.
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Where should I start? I need to keep a cool head and pull together what I&#39;ve already got on him. Maybe I could go back to his LINE group or his Twitter account and look for information? He&#39;s bound to have mentioned meeting someone. That would be a good pivot point. Maybe that person will give me more information.
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="challenge-details-2" class="headerLink">
+    <a href="#challenge-details-2" class="header-mark"></a>Challenge details</h3><table>
+<thead>
+<tr>
+<th>Event</th>
+<th>Serie</th>
+<th>Challenge</th>
+<th>Category</th>
+<th>Points</th>
+<th>Solves</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>BreizhCTF 2023</td>
+<td>Yakuza</td>
+<td>Onigiri (3/5)</td>
+<td>OSINT</td>
+<td>???</td>
+<td>???</td>
+</tr>
+</tbody>
+</table>
+<h3 id="tldr-2" class="headerLink">
+    <a href="#tldr-2" class="header-mark"></a>TL;DR</h3><ol>
+<li>Use Shazam (or other) to recognize the song and artist =&gt; <em>Onigiri</em> by <em>Tonikaku Jay</em>.</li>
+<li>The artist has an Instagram (<a href="https://www.instagram.com/tonikakujay/" target="_blank" rel="noopener noreferrer">@tonikakujay</a>) on which he doesn&rsquo;t seem very active. Looking at his followers, we notice his personal account (<a href="https://www.instagram.com/jaylaalynvicks/" target="_blank" rel="noopener noreferrer">@jaylaalynvicks</a>)</li>
+<li>Pivot to his second Instagram account on which he is VERY active.</li>
+<li>In story, he talks about his friend, also known as <em>Hijikata Takeshi</em> who happens to be our target =&gt; presence of a flag in last story.</li>
+<li>[BACKUP] Another way is to browse through his front-page stories. The one with the name &ldquo;🚩&rdquo; also contains the flag.</li>
+</ol>
+<h3 id="objectif" class="headerLink">
+    <a href="#objectif" class="header-mark"></a>Objectif</h3><p>The aim of this third challenge is to find the individual. In this 3-stage hunt, the first step is to look at the target&rsquo;s entourage to see if he appears on the posts or stories of potential friends of his. In this case, yes, in the story of a good rapper friend of his&hellip;</p>
+<h3 id="méthodologie" class="headerLink">
+    <a href="#m%c3%a9thodologie" class="header-mark"></a>Méthodologie</h3><p>On the LINE group, we notice that the target has posted a video:</p>
+<p><figure><img
+        
+        loading="lazy"
+        src="/breizh-ctf-2023/3/video-tonikaku.png"
+        srcset="/breizh-ctf-2023/3/video-tonikaku.png, /breizh-ctf-2023/3/video-tonikaku.png 1.5x, /breizh-ctf-2023/3/video-tonikaku.png 2x"
+        sizes="auto"
+        alt="/breizh-ctf-2023/3/video-tonikaku.png"
+        title="/breizh-ctf-2023/3/video-tonikaku.png" height="520"   width="801" ></figure></p>
+<p>It contains a telephone recording of an obviously Japanese-American song. The video features two emoticons, one of which represents an <strong>onigiri</strong> (hint hint). What&rsquo;s more, it seems from the description and comments that this is the music of a good friend of his.</p>
+<p>Using Shazam to find the music, we come across <em>&ldquo;Onigiri &ldquo;</em> by artist <em>Tonikaku Jay</em>. So this is the person who would be part of our target&rsquo;s entourage.</p>
+<p>With a few simple searches, we quickly came across the rapper&rsquo;s social networks, including his instagram.</p>
+<p><figure><img
+        
+        loading="lazy"
+        src="/breizh-ctf-2023/3/tonikakyjay.png"
+        srcset="/breizh-ctf-2023/3/tonikakyjay.png, /breizh-ctf-2023/3/tonikakyjay.png 1.5x, /breizh-ctf-2023/3/tonikakyjay.png 2x"
+        sizes="auto"
+        alt="/breizh-ctf-2023/3/tonikakyjay.png"
+        title="/breizh-ctf-2023/3/tonikakyjay.png" height="810"   width="1469" ></figure></p>
+<p>However, he&rsquo;s not very active there. He&rsquo;s certainly more active on his personal account, as our target on the LINE group shows.</p>
+<p><figure><img
+        
+        loading="lazy"
+        src="/breizh-ctf-2023/3/comment.png"
+        srcset="/breizh-ctf-2023/3/comment.png, /breizh-ctf-2023/3/comment.png 1.5x, /breizh-ctf-2023/3/comment.png 2x"
+        sizes="auto"
+        alt="/breizh-ctf-2023/3/comment.png"
+        title="/breizh-ctf-2023/3/comment.png" height="151"   width="788" ></figure></p>
+<p><em>&ldquo;What I always find strange about him is that he&rsquo;s always much more active on his secondary account&hellip;&rdquo;</em></p>
+<p>Searching his followers and filtering with &ldquo;<em>Jay</em>&rdquo; (deduced from Tonikaku Jay meaning &ldquo;<em>anyway, Jay</em>&rdquo;), we come across the account <em>@jaylaalynvicks</em> which happens to be his main account.</p>
+<p><figure><img
+        
+        loading="lazy"
+        src="/breizh-ctf-2023/3/jaylaalynvicks.png"
+        srcset="/breizh-ctf-2023/3/jaylaalynvicks.png, /breizh-ctf-2023/3/jaylaalynvicks.png 1.5x, /breizh-ctf-2023/3/jaylaalynvicks.png 2x"
+        sizes="auto"
+        alt="/breizh-ctf-2023/3/jaylaalynvicks.png"
+        title="/breizh-ctf-2023/3/jaylaalynvicks.png" height="817"   width="1468" ></figure></p>
+<p>We notice that the account has a story. In one of them, he talks about his friend and gives us the flag to validate the third stage of the challenge.</p>
+<p><figure><img
+        
+        loading="lazy"
+        src="/breizh-ctf-2023/3/flag.png"
+        srcset="/breizh-ctf-2023/3/flag.png, /breizh-ctf-2023/3/flag.png 1.5x, /breizh-ctf-2023/3/flag.png 2x"
+        sizes="auto"
+        alt="/breizh-ctf-2023/3/flag.png"
+        title="/breizh-ctf-2023/3/flag.png" height="1323"   width="1320" ></figure></p>
+<h3 id="flag-2" class="headerLink">
+    <a href="#flag-2" class="header-mark"></a>Flag</h3><p><code>BZHCTF{g0_l1st3n_t0_t0n1k4ku_j4y!}</code></p>
+<hr>
+<h2 id="yakuza-45---is-that-a-supra-" class="headerLink">
+    <a href="#yakuza-45---is-that-a-supra-" class="header-mark"></a>Yakuza (4/5) - IS THAT A SUPRA ???</h2><h3 id="challenge-description-3" class="headerLink">
+    <a href="#challenge-description-3" class="header-mark"></a>Challenge description</h3><p><figure><img
+        
+        loading="lazy"
+        src="/breizh-ctf-2023/gifs/supra-toyota.gif"
+        srcset="/breizh-ctf-2023/gifs/supra-toyota.gif, /breizh-ctf-2023/gifs/supra-toyota.gif 1.5x, /breizh-ctf-2023/gifs/supra-toyota.gif 2x"
+        sizes="auto"
+        alt="/breizh-ctf-2023/gifs/supra-toyota.gif"
+        title="/breizh-ctf-2023/gifs/supra-toyota.gif" height="498"   width="498" ></figure></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Yes, more proof! I managed to make the connection between our suspect and a rapper friend of his. According to him, he&#39;s on his way to a new destination to meet up with an &#34;acquaintance&#34;.
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">I&#39;m lucky that he&#39;s quite talkative about his group of friends, he&#39;s obviously just left me a new clue. With those already present, I should be able to find out his final destination.
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="détails-du-challenge" class="headerLink">
+    <a href="#d%c3%a9tails-du-challenge" class="header-mark"></a>Détails du challenge</h3><table>
+<thead>
+<tr>
+<th>Event</th>
+<th>Serie</th>
+<th>Challenge</th>
+<th>Category</th>
+<th>Points</th>
+<th>Solves</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>BreizhCTF 2023</td>
+<td>Yakuza</td>
+<td>IS THAT A SUPRA ??? (4/5)</td>
+<td>OSINT</td>
+<td>N/C</td>
+<td>N/C</td>
+</tr>
+</tbody>
+</table>
+<h3 id="tldr-3" class="headerLink">
+    <a href="#tldr-3" class="header-mark"></a>TL;DR</h3><ol>
+<li>GEOINT to find your destination: <code>Couvent des Jacobins in Rennes</code> from <code>Rennes train station</code>.</li>
+<li>Thanks to the screenshot of his wallpaper, we can see that he has the <code>Blablacar</code> application.</li>
+<li>Several posts indicate his return date and the fact that it&rsquo;s a round trip with <strong>the same driver</strong>.</li>
+<li>On the Blablacar app: search for a trip on <code>Saturday March 18</code> (end of BreizhCTF) at 08:00 from <em>Couvent</em> to <em>Rennes train station</em>.</li>
+<li>Ewen posts the trip =&gt; a review =&gt; Hijikata&rsquo;s profile =&gt; review =&gt; flag</li>
+</ol>
+<h3 id="goal-2" class="headerLink">
+    <a href="#goal-2" class="header-mark"></a>Goal</h3><p>The aim of this fourth challenge remains the same: to locate our target. This time, it&rsquo;s possible to pinpoint the target&rsquo;s exact location and final destination.</p>
+<h3 id="methodology-2" class="headerLink">
+    <a href="#methodology-2" class="header-mark"></a>Methodology</h3><p>This difficult challenge can be broken down into two parts: on the one hand with <strong>GEOINT</strong> work. On the other, <strong>SOCMINT</strong>.</p>
+<h4 id="1-geoint-part" class="headerLink">
+    <a href="#1-geoint-part" class="header-mark"></a>1. GEOINT Part</h4><p>For this first part, we begin by analyzing Hijikata&rsquo;s post containing a photo that appears to be the front of a religious building. We also note the presence of a banner on the wall.</p>
+<p>The description reads (roughly translated):</p>
+<p>Do you know where the small photo of the destination is? The event is just around the corner.</p>
+<p>He challenges his friends to find the location, knowing that the event he&rsquo;s going to is right next door.</p>
+<p><figure><img
+        
+        loading="lazy"
+        src="/breizh-ctf-2023/4/geoint.png"
+        srcset="/breizh-ctf-2023/4/geoint.png, /breizh-ctf-2023/4/geoint.png 1.5x, /breizh-ctf-2023/4/geoint.png 2x"
+        sizes="auto"
+        alt="/breizh-ctf-2023/4/geoint.png"
+        title="/breizh-ctf-2023/4/geoint.png" height="785"   width="800" ></figure></p>
+<p>By analyzing the photo despite its quality, we can easily extract the following text:</p>
+<p><code>Marcel Callo 1921 2021</code></p>
+<p>A Google search of the text yields initial results indicating that the event took place in Rennes, and would be related to the diocese of that city.</p>
+<p><figure><img
+        
+        loading="lazy"
+        src="/breizh-ctf-2023/4/geoint-2.png"
+        srcset="/breizh-ctf-2023/4/geoint-2.png, /breizh-ctf-2023/4/geoint-2.png 1.5x, /breizh-ctf-2023/4/geoint-2.png 2x"
+        sizes="auto"
+        alt="/breizh-ctf-2023/4/geoint-2.png"
+        title="/breizh-ctf-2023/4/geoint-2.png" height="817"   width="1005" ></figure></p>
+<p>A closer look at this event reveals that most of it took place at the <code>Basilica of Saint-Aubin</code>.</p>
+<p><figure><img
+        
+        loading="lazy"
+        src="/breizh-ctf-2023/4/geoint-3.png"
+        srcset="/breizh-ctf-2023/4/geoint-3.png, /breizh-ctf-2023/4/geoint-3.png 1.5x, /breizh-ctf-2023/4/geoint-3.png 2x"
+        sizes="auto"
+        alt="/breizh-ctf-2023/4/geoint-3.png"
+        title="/breizh-ctf-2023/4/geoint-3.png" height="834"   width="1595" ></figure></p>
+<p>The next logical step is to search for this basilica on Google Maps to find out what it looks like and confirm or deny whether the photo matches.</p>
+<p><figure><img
+        
+        loading="lazy"
+        src="/breizh-ctf-2023/4/geoint-4.png"
+        srcset="/breizh-ctf-2023/4/geoint-4.png, /breizh-ctf-2023/4/geoint-4.png 1.5x, /breizh-ctf-2023/4/geoint-4.png 2x"
+        sizes="auto"
+        alt="/breizh-ctf-2023/4/geoint-4.png"
+        title="/breizh-ctf-2023/4/geoint-4.png" height="804"   width="1759" ></figure></p>
+<p>With the right placement on Street View, you&rsquo;ll immediately notice the identical storefront. The banner still hangs there. This confirms that the event is taking place right next to this basilica, at &lsquo;Place Saint-Anne&rsquo;.</p>
+<p>If you haven&rsquo;t yet made the connection with your current location (wink wink), an interesting search might be</p>
+<p><code>place saint anne events rennes</code></p>
+<p>The results quickly bring up <code>Couvent des Jacobins</code> in Rennes.</p>
+<p><figure><img
+        
+        loading="lazy"
+        src="/breizh-ctf-2023/4/geoint-5.png"
+        srcset="/breizh-ctf-2023/4/geoint-5.png, /breizh-ctf-2023/4/geoint-5.png 1.5x, /breizh-ctf-2023/4/geoint-5.png 2x"
+        sizes="auto"
+        alt="/breizh-ctf-2023/4/geoint-5.png"
+        title="/breizh-ctf-2023/4/geoint-5.png" height="487"   width="1021" ></figure></p>
+<p>As a final check, we can measure the distance between the two points to see if they are right next to each other.</p>
+<p><figure><img
+        
+        loading="lazy"
+        src="/breizh-ctf-2023/4/geoint-6.png"
+        srcset="/breizh-ctf-2023/4/geoint-6.png, /breizh-ctf-2023/4/geoint-6.png 1.5x, /breizh-ctf-2023/4/geoint-6.png 2x"
+        sizes="auto"
+        alt="/breizh-ctf-2023/4/geoint-6.png"
+        title="/breizh-ctf-2023/4/geoint-6.png" height="732"   width="1231" ></figure></p>
+<p>This concludes the GEOINT section. The target goes to the <code>Couvent des Jacobins</code> and will be present at the <code>BreizhCTF</code>.</p>
+<h4 id="2-socmint-part" class="headerLink">
+    <a href="#2-socmint-part" class="header-mark"></a>2. SOCMINT Part</h4><p>Now that we know where the target is going, we can use this information.</p>
+<p>Here, the interesting information is the post in which he talks about his new car. He shows his wallpaper and we get a glimpse of some of the applications he uses. These include Blablacar. It&rsquo;s an application for carpooling in Europe.</p>
+<p><code>Do you like my wallpaper? I bought a new car</code></p>
+<p><figure><img
+        
+        loading="lazy"
+        src="/breizh-ctf-2023/4/bg.png"
+        srcset="/breizh-ctf-2023/4/bg.png, /breizh-ctf-2023/4/bg.png 1.5x, /breizh-ctf-2023/4/bg.png 2x"
+        sizes="auto"
+        alt="/breizh-ctf-2023/4/bg.png"
+        title="/breizh-ctf-2023/4/bg.png" height="875"   width="415" ></figure></p>
+<p>In addition, two other posts give us further information about his whereabouts. Firstly, one in which he says he can&rsquo;t wait to see how <em>they drive</em> (implying foreigners) but also that he&rsquo;ll be making a round trip from the venue to the station.</p>
+<p><code>As a car enthusiast, I can't wait to see how they drive. But it's going to be a short trip... It will be a round trip from the venue to the station</code></p>
+<p><figure><img
+        
+        loading="lazy"
+        src="/breizh-ctf-2023/4/post-2.png"
+        srcset="/breizh-ctf-2023/4/post-2.png, /breizh-ctf-2023/4/post-2.png 1.5x, /breizh-ctf-2023/4/post-2.png 2x"
+        sizes="auto"
+        alt="/breizh-ctf-2023/4/post-2.png"
+        title="/breizh-ctf-2023/4/post-2.png" height="275"   width="501" ></figure></p>
+<p>On the other hand, he mentions in the second that he&rsquo;ll be going home at the end of the event on Saturday morning.</p>
+<p>`In fact, I&rsquo;ll be going home as soon as the event is over. That will be Saturday morning.</p>
+<p><figure><img
+        
+        loading="lazy"
+        src="/breizh-ctf-2023/4/post-3.png"
+        srcset="/breizh-ctf-2023/4/post-3.png, /breizh-ctf-2023/4/post-3.png 1.5x, /breizh-ctf-2023/4/post-3.png 2x"
+        sizes="auto"
+        alt="/breizh-ctf-2023/4/post-3.png"
+        title="/breizh-ctf-2023/4/post-3.png" height="233"   width="501" ></figure></p>
+<p>Also, as a comment, he says it will be with the same driver.</p>
+<p><code>With the same driver</code></p>
+<p><figure><img
+        
+        loading="lazy"
+        src="/breizh-ctf-2023/4/post-4.png"
+        srcset="/breizh-ctf-2023/4/post-4.png, /breizh-ctf-2023/4/post-4.png 1.5x, /breizh-ctf-2023/4/post-4.png 2x"
+        sizes="auto"
+        alt="/breizh-ctf-2023/4/post-4.png"
+        title="/breizh-ctf-2023/4/post-4.png" height="124"   width="487" ></figure></p>
+<p>With all our information, we can now carry out a search on <code>Blablacar</code>. The most important thing is to search for the return journey, since the outward journey is no longer available. The search in question :</p>
+<ul>
+<li>From: <code>Le Couvent des Jacobins - Centre des Congrès de Rennes Métropole, Rennes</code> to: <code>Rennes train station</code>.</li>
+<li>To: <code>Gare de Rennes, Rennes</code> (Rennes train station)</li>
+<li>Date: <code>Saturday March 18</code> (end of BreizhCTF)</li>
+</ul>
+<p>We come across the route of a certain <code>Ewen</code>.</p>
+<p><figure><img
+        
+        loading="lazy"
+        src="/breizh-ctf-2023/4/recherche.png"
+        srcset="/breizh-ctf-2023/4/recherche.png, /breizh-ctf-2023/4/recherche.png 1.5x, /breizh-ctf-2023/4/recherche.png 2x"
+        sizes="auto"
+        alt="/breizh-ctf-2023/4/recherche.png"
+        title="/breizh-ctf-2023/4/recherche.png" height="726"   width="1538" ></figure></p>
+<p>On the route in question, we can obtain information about the driver. You&rsquo;ll notice that he has a review.</p>
+<p><figure><img
+        
+        loading="lazy"
+        src="/breizh-ctf-2023/4/trajet.png"
+        srcset="/breizh-ctf-2023/4/trajet.png, /breizh-ctf-2023/4/trajet.png 1.5x, /breizh-ctf-2023/4/trajet.png 2x"
+        sizes="auto"
+        alt="/breizh-ctf-2023/4/trajet.png"
+        title="/breizh-ctf-2023/4/trajet.png" height="674"   width="1090" ></figure></p>
+<p><figure><img
+        
+        loading="lazy"
+        src="/breizh-ctf-2023/4/trajet-2.png"
+        srcset="/breizh-ctf-2023/4/trajet-2.png, /breizh-ctf-2023/4/trajet-2.png 1.5x, /breizh-ctf-2023/4/trajet-2.png 2x"
+        sizes="auto"
+        alt="/breizh-ctf-2023/4/trajet-2.png"
+        title="/breizh-ctf-2023/4/trajet-2.png" height="506"   width="1026" ></figure></p>
+<p>This review was left by Hijikata. This is a pivotal point for navigating to your Blablacar account.</p>
+<p><figure><img
+        
+        loading="lazy"
+        src="/breizh-ctf-2023/4/avis-1.png"
+        srcset="/breizh-ctf-2023/4/avis-1.png, /breizh-ctf-2023/4/avis-1.png 1.5x, /breizh-ctf-2023/4/avis-1.png 2x"
+        sizes="auto"
+        alt="/breizh-ctf-2023/4/avis-1.png"
+        title="/breizh-ctf-2023/4/avis-1.png" height="374"   width="1025" ></figure></p>
+<p>Repeating the same procedure and going to Hijikata&rsquo;s reviews, we finally find the flag.</p>
+<p><figure><img
+        
+        loading="lazy"
+        src="4/flag.png"
+        srcset="4/flag.png, 4/flag.png 1.5x, 4/flag.png 2x"
+        sizes="auto"
+        alt="4/flag.png"
+        title="4/flag.png" ></figure></p>
+<h3 id="flag-3" class="headerLink">
+    <a href="#flag-3" class="header-mark"></a>Flag</h3><p><code>BZHCTF{w3ll_n0t_4_supr4_just_4_c4rp00l1ng}</code></p>
+<hr>
+<h2 id="yakuza-55---détective-conan" class="headerLink">
+    <a href="#yakuza-55---d%c3%a9tective-conan" class="header-mark"></a>Yakuza (5/5) - Détective Conan</h2><h3 id="challenge-description-4" class="headerLink">
+    <a href="#challenge-description-4" class="header-mark"></a>Challenge description</h3><p><figure><img
+        
+        loading="lazy"
+        src="/breizh-ctf-2023/gifs/detective-conan-case-closed.gif"
+        srcset="/breizh-ctf-2023/gifs/detective-conan-case-closed.gif, /breizh-ctf-2023/gifs/detective-conan-case-closed.gif 1.5x, /breizh-ctf-2023/gifs/detective-conan-case-closed.gif 2x"
+        sizes="auto"
+        alt="/breizh-ctf-2023/gifs/detective-conan-case-closed.gif"
+        title="/breizh-ctf-2023/gifs/detective-conan-case-closed.gif" height="480"   width="640" ></figure></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">What a coincidence! Our suspect happened to be on his way to Rennes. According to his messages, he was meeting another member of his group who was also taking part in the BreizhCTF!
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">According to CCTV footage, he disposed of two phones in two baskets when he arrived at the Couvent des Jacobins. I&#39;m sure there must be some clues on them...
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="challenge-details-3" class="headerLink">
+    <a href="#challenge-details-3" class="header-mark"></a>Challenge details</h3><table>
+<thead>
+<tr>
+<th>Event</th>
+<th>Serie</th>
+<th>Challenge</th>
+<th>Category</th>
+<th>Points</th>
+<th>Solves</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>BreizhCTF 2023</td>
+<td>Yakuza</td>
+<td>Détective Conan (5/5)</td>
+<td>OSINT</td>
+<td>N/C</td>
+<td>N/C</td>
+</tr>
+</tbody>
+</table>
+<h3 id="tldr-4" class="headerLink">
+    <a href="#tldr-4" class="header-mark"></a>TL;DR</h3><ol>
+<li>Find the location of the two baskets</li>
+<li>There is a telephone in each of the garbage cans.</li>
+<li>On phone n°1 =&gt; inbox =&gt; conversation containing the first part of the flag</li>
+<li>On phone n°2 =&gt; files =&gt; photo containing the second part of the flag</li>
+</ol>
+<h3 id="goal-3" class="headerLink">
+    <a href="#goal-3" class="header-mark"></a>Goal</h3><p>The aim of this latest challenge is to find the phones belonging to the attacker.</p>
+<h3 id="methodology-3" class="headerLink">
+    <a href="#methodology-3" class="header-mark"></a>Methodology</h3><p>The first step is to find the location for the two baskets. No special technique is required. Just move around and look for them in the Jacobins Convent.</p>
+<p>Here are the locations of the two baskets:</p>
+<p><strong>Etage 0</strong> : <figure><img
+        
+        loading="lazy"
+        src="/breizh-ctf-2023/5/emplacement-1.jpg"
+        srcset="/breizh-ctf-2023/5/emplacement-1.jpg, /breizh-ctf-2023/5/emplacement-1.jpg 1.5x, /breizh-ctf-2023/5/emplacement-1.jpg 2x"
+        sizes="auto"
+        alt="/breizh-ctf-2023/5/emplacement-1.jpg"
+        title="/breizh-ctf-2023/5/emplacement-1.jpg" height="4000"   width="3000" ></figure></p>
+<p><strong>Etage 2</strong> : <figure><img
+        
+        loading="lazy"
+        src="/breizh-ctf-2023/5/emplacement-2.jpg"
+        srcset="/breizh-ctf-2023/5/emplacement-2.jpg, /breizh-ctf-2023/5/emplacement-2.jpg 1.5x, /breizh-ctf-2023/5/emplacement-2.jpg 2x"
+        sizes="auto"
+        alt="/breizh-ctf-2023/5/emplacement-2.jpg"
+        title="/breizh-ctf-2023/5/emplacement-2.jpg" height="4000"   width="3000" ></figure></p>
+<p>Each contains a telephone.</p>
+<p>Browsing through phone n°1, we find several pieces of evidence, including a conversation with a certain &ldquo;GCC&rdquo;. This first conversation contains the first part of the flag.</p>
+<p><figure><img
+        
+        loading="lazy"
+        src="5/flag-1.jpg"
+        srcset="5/flag-1.jpg, 5/flag-1.jpg 1.5x, 5/flag-1.jpg 2x"
+        sizes="auto"
+        alt="5/flag-1.jpg"
+        title="5/flag-1.jpg" ></figure></p>
+<p><code>BZHCTF{I_h0p3_y0u_l1k3d_</code></p>
+<p>Rummaging around on phone no. 2, we find a photo in the phone&rsquo;s files containing the second part of the flag.</p>
+<p><figure><img
+        
+        loading="lazy"
+        src="5/flag-2.jpg"
+        srcset="5/flag-2.jpg, 5/flag-2.jpg 1.5x, 5/flag-2.jpg 2x"
+        sizes="auto"
+        alt="5/flag-2.jpg"
+        title="5/flag-2.jpg" ></figure></p>
+<p><code>th3_y4kuz4_4dv3ntur3}</code></p>
+<p>This final challenge brings the &ldquo;<em>Yakuza</em>&rdquo; series to a close. I&rsquo;d love to hear your feedback on this challenge series, whether positive or negative. So don&rsquo;t hesitate to contact me on Discord or Twitter. (:</p>
+<h3 id="flag-4" class="headerLink">
+    <a href="#flag-4" class="header-mark"></a>Flag</h3><p><code>BZHCTF{I_h0p3_y0u_l1k3d_th3_y4kuz4_4dv3ntur3}</code></p>
+<hr>
+<h2 id="conclusion" class="headerLink">
+    <a href="#conclusion" class="header-mark"></a>Conclusion</h2><p>I hope you enjoyed this series of challenges. This was my first time on the makers&rsquo; side. As such, I&rsquo;m sure there&rsquo;s still a lot of room for improvement to make these challenges perfect. However, I hope to have taken you on a journey, as I did this summer on my trip to Japan. These challenges are closely linked to my trip (tattooing, meeting the rapper, the HIPPO café&hellip;).</p>
+<p>So I&rsquo;d love to hear your feedback on this series of challenges, whether positive or negative. What you liked or didn&rsquo;t like. Don&rsquo;t hesitate to contact me on Discord or Twitter. (:</p>
+<p>いってらっしゃい 👋 ! (^^)</p>
+</div>
+
+        <div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2023-03-19</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span><a class="link-to-mardown" href=/breizh-ctf-2023/index.md target="_blank" rel="noopener noreferrer">Read markdown</a>
+                    </span></div>
+            <div class="post-info-share"><button title="Share on Twitter" data-sharer="twitter" data-url="https://hashp4.fr/breizh-ctf-2023/" data-title="[BreizhCTF 2023] - Yakuza Serie" data-via="hashp4_" data-hashtags="OSINT,BreizhCTF,SOCMINT,GEOINT,irl"><span class="fab fa-twitter fa-fw"></span></button><button title="Share on Linkedin" data-sharer="linkedin" data-url="https://hashp4.fr/breizh-ctf-2023/"><span class="fab fa-linkedin fa-fw"></span></button></div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/osint/">OSINT</a>,&nbsp;<a href="/tags/breizhctf/">BreizhCTF</a>,&nbsp;<a href="/tags/socmint/">SOCMINT</a>,&nbsp;<a href="/tags/geoint/">GEOINT</a>,&nbsp;<a href="/tags/irl/">irl</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/esaip-ctf-2022/" class="prev" rel="prev" title="[ESAIP CTF 2022] - The Proof of the Malware"><i class="fas fa-angle-left fa-fw"></i>[ESAIP CTF 2022] - The Proof of the Malware</a>
+            <a href="/malware-analysis-sillyputty/" class="next" rel="next" title="Malware Analysis : SillyPutty">Malware Analysis : SillyPutty<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+</article></div>
+        </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">
+                    Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreferrer" title="Hugo 0.121.2">Hugo</a>&nbsp;|&nbsp;Theme - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreferrer" title="DoIt 0.4.0"><i class="far fa-edit fa-fw"></i> DoIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2022 - 2024</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank" rel="noopener noreferrer"></a></span>&nbsp;|&nbsp;<span class="license"><a rel="" href="https://www.gnu.org/licenses/gpl-3.0.en.html" target="_blank">GPL-V3</a></span></div>
+            <div class="footer-line"></div>
+            <div class="footer-line">
+            </div>
+        </div></footer></div>
+
+    <div id="fixed-buttons"><a href="#back-to-top" id="back-to-top-button" class="fixed-button" title="Back to Top">
+            <i class="fas fa-arrow-up fa-fw"></i>
+        </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+            <i class="fas fa-comment fa-fw"></i>
+        </a>
+    </div><div class="assets"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/contrib/copy-tex.min.css">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/contrib/copy-tex.min.css"></noscript><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{},"data":{"desktop-header-typeit":"hashp4 (\u003eᴗ•)","mobile-header-typeit":"hashp4 (\u003eᴗ•)"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":false,"left":"$","right":"$"}],"strict":false},"sharerjs":true,"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"desktop-header-typeit":["desktop-header-typeit"],"mobile-header-typeit":["mobile-header-typeit"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.4.2/sharer.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/typeit@7.0.4/dist/typeit.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js" defer></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/contrib/auto-render.min.js" defer></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/contrib/copy-tex.min.js" defer></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/contrib/mhchem.min.js" defer></script><script type="text/javascript" src="/js/katex.min.js" defer></script><script type="text/javascript" src="/js/theme.min.js" defer></script></div>
+</body>
+
+</html>

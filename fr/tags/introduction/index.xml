@@ -1,0 +1,16 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Introduction - Balise - Blog - hashp4</title>
+        <link>https://hashp4.fr/fr/tags/introduction/</link>
+        <description>Introduction - Balise - Blog - hashp4</description>
+        <generator>Hugo -- gohugo.io</generator><language>fr</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sun, 20 Nov 2022 23:53:53 &#43;0100</lastBuildDate><atom:link href="https://hashp4.fr/fr/tags/introduction/" rel="self" type="application/rss+xml" /><item>
+    <title>Hello World</title>
+    <link>https://hashp4.fr/fr/hello-world/</link>
+    <pubDate>Sun, 20 Nov 2022 23:53:53 &#43;0100</pubDate><author>
+                    <name>hashp4</name>
+                </author><guid>https://hashp4.fr/fr/hello-world/</guid>
+    <description><![CDATA[<div class="featured-image">
+                <img src="/fr/hello-world/feature.png" referrerpolicy="no-referrer">
+            </div>Il s&rsquo;agit d&rsquo;un court billet de blog pour décrire l&rsquo;objectif de ce site et ce que vous y trouverez. Et au cas où vous vous poseriez la question, oui ce titre est une référence à Mr. Robot.]]></description>
+</item></channel>
+</rss>

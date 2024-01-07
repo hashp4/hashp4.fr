@@ -1,0 +1,35 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Categories - Category - Blog - hashp4</title>
+        <link>https://hashp4.fr/categories/</link>
+        <description>Categories - Category - Blog - hashp4</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sat, 09 Dec 2023 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://hashp4.fr/categories/" rel="self" type="application/rss+xml" /><item>
+    <title>Writeup</title>
+    <link>https://hashp4.fr/categories/writeup/</link>
+    <pubDate>Sat, 09 Dec 2023 00:00:00 &#43;0000</pubDate><author>
+        <name>Author</name>
+    </author><guid>https://hashp4.fr/categories/writeup/</guid>
+    <description><![CDATA[]]></description>
+</item><item>
+    <title>Article</title>
+    <link>https://hashp4.fr/categories/article/</link>
+    <pubDate>Sun, 26 Nov 2023 22:00:53 &#43;0100</pubDate><author>
+        <name>Author</name>
+    </author><guid>https://hashp4.fr/categories/article/</guid>
+    <description><![CDATA[]]></description>
+</item><item>
+    <title>projects</title>
+    <link>https://hashp4.fr/categories/projects/</link>
+    <pubDate>Tue, 25 Jan 2022 00:00:00 &#43;0000</pubDate><author>
+        <name>Author</name>
+    </author><guid>https://hashp4.fr/categories/projects/</guid>
+    <description><![CDATA[]]></description>
+</item><item>
+    <title>whoami</title>
+    <link>https://hashp4.fr/categories/whoami/</link>
+    <pubDate>Tue, 25 Jan 2022 00:00:00 &#43;0000</pubDate><author>
+        <name>Author</name>
+    </author><guid>https://hashp4.fr/categories/whoami/</guid>
+    <description><![CDATA[]]></description>
+</item></channel>
+</rss>
