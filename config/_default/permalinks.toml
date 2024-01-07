@@ -1,0 +1,3 @@
+# Permalinks config
+
+posts = ":filename"

@@ -1,0 +1,61 @@
+# DoIt theme version
+version = "0.4.0"
+dateFormat = "02-01-2006"
+description = "Personal blog"
+
+[section]
+	paginate = 20
+	dateFormat = "02-01"
+	rss = 10
+
+[list]
+	paginate = 20
+	dateFormat = "02-01"
+	rss = 10
+
+[app]
+	title = "hashp4"
+	noFavicon = false
+	svgFavicon = "/favicon.ico"
+	themeColor = "#ffffff"
+	iconColor = "#5bbad5"
+	tileColor = "#da532c"
+
+[author]
+	name = "hashp4"
+	email = ""
+	link = "https://hashp4.fr"
+	avatar = "/images/logo.png"
+
+
+[search]
+	enable = false
+	type = "lunr"
+	contentLength = 4000
+	placeholder = ""
+	maxResultLength = 10
+	snippetLength = 30
+	highlightTag = "em"
+	absoluteURL = false
+
+[home]
+	rss = 10
+	[home.profile]
+		enable = true
+		avatarURL = "/images/logo.png"
+		title = "hashp4"
+		subtitle = "Ingénieur cyberdéfense - Capitaine de l'équipe CTF MILF"
+		typeit = true
+		social = true
+		disclaimer = ""
+	[home.posts]
+		enable = true
+		paginate = 5
+
+[social]
+	github = "hashp4"
+	linkedin = "enzo-saez"
+	twitter = "hashp4_"
+	hackthebox = "hashp4"
+	tryhackme = "RB28Z2"
+	milfctf = "."

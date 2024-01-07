@@ -1,0 +1,112 @@
+defaultTheme = "black"
+gitRepo = ""
+fingerprint = "sha256"
+dateFormat = "2006-01-02"
+# website title
+title = "hashp4"
+images = ["/images/logo.png"]
+# enable PWA
+enablePWA = false
+license = '<a rel="" href="https://www.gnu.org/licenses/gpl-3.0.en.html" target="_blank">GPL-V3</a>'
+
+[header]
+	desktopMode = "fixed"
+	mobileMode = "auto"
+	themeChangeMode = "select"
+	[header.title]
+		logo = ""
+		name = "hashp4 (>ᴗ•)"
+		pre = ""
+		post = ""
+		typeit = true
+
+[footer]
+	enable = true
+	custom = ''
+	hugo = true
+	copyright = true
+	author = true
+	since = "2022"
+	license = '<a rel="" href="https://www.gnu.org/licenses/gpl-3.0.en.html" target="_blank">GPL-V3</a>'
+
+[section]
+	paginate = 20
+	dateFormat = "01-02"
+	rss = 10
+
+[list]
+	paginate = 20
+	dateFormat = "01-02"
+	rss = 10
+
+[page]
+	hiddenFromHomePage = false
+	hiddenFromSearch = false
+	twemoji = false
+	lightgallery = false
+	ruby = true
+	fraction = true
+	fontawesome = true
+	linkToMarkdown = true
+	rssFullText = false
+	[page.toc]
+		enable = true
+		keepStatic = false
+		auto = true
+
+	[page.code]
+		copy = true
+		maxShownLines = 50
+
+	[page.math]
+		enable = true
+		inlineLeftDelimiter = "$"
+		inlineRightDelimiter = "$"
+		blockLeftDelimiter = "$$"
+		blockRightDelimiter = "$$"
+		copyTex = true
+		mhchem = true
+
+	[page.share]
+		enable = true
+		Linkedin = true
+		Twitter = true
+
+	[page.comment]
+		enable = false
+
+	[page.seo]
+		image = []
+		[page.seo.publisher]
+			name = "hashp4"
+			logoUrl = "/images/logo.png"
+
+[typeit]
+	speed = 100
+	cursorSpeed = 1000
+	cursorChar = "|"
+	duration = -1
+
+[seo]
+	image = "/images/Apple-Devices-Preview.png"
+	thumbnailUrl = "/images/logo.png"
+
+[analytics]
+	enable = true
+	[analytics.google]
+		id = ""
+		anonymizeIP = true
+
+[cookieconsent]
+	enable = false
+	[cookieconsent.content]
+		message = ""
+		dismiss = ""
+		link = ""
+
+[cdn]
+	data = "jsdelivr.yml"
+
+[compatibility]
+	polyfill = false
+	objectFit = false

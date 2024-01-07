@@ -1,0 +1,29 @@
+# Markup related configuration in Hugo
+
+# Syntax Highlighting (https://gohugo.io/content-management/syntax-highlighting)
+[highlight]
+	codeFences = true
+	guessSyntax = true
+	lineNos = true
+	lineNumbersInTable = true
+	noClasses = false
+
+# Goldmark is from Hugo 0.60 the default library used for Markdown
+[goldmark]
+	[goldmark.extensions]
+		definitionList = true
+		footnote = true
+		linkify = true
+		strikethrough = true
+		table = true
+		taskList = true
+		typographer = true
+
+	[goldmark.renderer]
+		# whether to use HTML tags directly in the document
+		unsafe = true
+
+# Table Of Contents settings
+[tableOfContents]
+	startLevel = 2
+	endLevel = 6

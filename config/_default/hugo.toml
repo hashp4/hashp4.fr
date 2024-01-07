@@ -1,0 +1,16 @@
+baseURL = "https://hashp4.fr/"
+
+# [en, zh-cn, fr, ...] determines default content language
+defaultContentLanguage = "en"
+
+# language code
+languageCode = "en"
+
+# website title
+title = "Blog - hashp4"
+
+# Change the default theme to be use when building the site with Hugo
+theme = "DoIt"
+
+# whether to use emoji code
+enableEmoji = true

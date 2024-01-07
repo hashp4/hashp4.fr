@@ -1,0 +1,41 @@
+[[main]]
+  identifier = "whoami"
+  pre = "🇫🇷"
+  post = ""
+  name = "whoami"
+  url = "/whoami"
+  # title will be shown when you hover on this menu link
+  title = ""
+  weight = 1
+[[main]]
+  identifier = "posts"
+  pre = "✒"
+  post = ""
+  name = "Blog"
+  url = "/categories/article/"
+  title = ""
+  weight = 2
+[[main]]
+  identifier = "projects"
+  pre = "📚"
+  post = ""
+  name = "Projects"
+  url = "/projects/"
+  title = ""
+  weight = 3
+[[main]]
+  identifier = "writeups"
+  pre = "🚩"
+  post = ""
+  name = "Writeups"
+  url = "/categories/writeup/"
+  title = ""
+  weight = 4
+[[main]]
+  identifier = "music"
+  pre = "🎵"
+  post = ""
+  name = "Music"
+  url = "/music/"
+  title = ""
+  weight = 5

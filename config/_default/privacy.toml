@@ -1,0 +1,8 @@
+# Privacy config
+
+[googleAnalytics]
+    # ...
+[twitter]
+    enableDNT = true
+[youtube]
+    privacyEnhanced = true

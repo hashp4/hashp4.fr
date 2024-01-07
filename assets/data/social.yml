@@ -1,0 +1,47 @@
+# 001: Github
+github:
+  Weight: 1
+  Prefix: https://github.com/
+  Title: GitHub
+  Icon:
+    Simpleicons: github
+
+# 002: Twitter
+twitter:
+  Weight: 2
+  Prefix: https://twitter.com/
+  Title: Twitter
+  Icon:
+    Simpleicons: twitter
+
+# 003: LinkedIn
+linkedin:
+  Weight: 3
+  Prefix: https://linkedin.com/
+  Title: LinkedIn
+  Icon:
+    Simpleicons: linkedin
+
+# 004: HackTheBox
+hackthebox:
+  Weight: 4
+  Prefix: https://hackthebox.com/
+  Title: HackTheBox
+  Icon:
+    Simpleicons: hackthebox
+
+# 005: TryHackMe
+tryhackme:
+  Weight: 5
+  Prefix: https://tryhackme.com/
+  Title: TryHackMe
+  Icon:
+    Simpleicons: tryhackme
+
+# 006: MILFCTF
+milfctf:
+  Weight: 6
+  Prefix: https://milfctf.com
+  Title: MILF CTF Website
+  Icon:
+    Simpleicons: metrodeparis
