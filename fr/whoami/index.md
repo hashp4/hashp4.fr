@@ -1,10 +1,6 @@
 # whoami?
 
 
-{{< admonition info >}}
-Je suis actuellement à la recherche d'une nouvelle opportunité d'emploi dans le domaine du DFIR, de l'analyse de malware et du Threat Hunting. Je n'ai pas de restriction géographique. N'hésitez pas à me contacter. :) 
-{{< /admonition >}}
-
 ---
 
 ### ❓ Introduction

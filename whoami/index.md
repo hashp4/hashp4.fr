@@ -1,10 +1,6 @@
 # whoami?
 
 
-{{< admonition info >}}
-I'm currently looking for a new job opportunity in the field of DFIR, Malware analysis and Threat Hunting. I'm willing to relocate anywhere. Feel free to reach me out. :)
-{{< /admonition >}}
-
 ---
 
 ### ❓ Introduction
