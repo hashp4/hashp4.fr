@@ -1,5 +1,4 @@
 ---
-weight: 1
 title: 'Malware Analysis : WannaCry (part 1)'
 date: 2023-11-26T22:00:53+01:00
 lastmod: 2023-11-26T22:00:53+01:00

@@ -15,7 +15,7 @@ lightgallery: true
 ---
 
 ### ❓ Introduction
-Diplomé de l'ENSIBS en tant qu'ingénieur en cyberdéfense et ex-pentester pour AlgoSecure. Mes catégories préférées sont l'**OSINT**, le **pentest**, le **forensic** et l'**analyse de malware**.
+Diplomé de l'ENSIBS en tant qu'ingénieur en cyberdéfense et Threat Hunter pour WithSecure. Mes catégories préférées sont l'**OSINT**, le **pentest**, le **forensic** et l'**analyse de malware**.
 
 ---
 
