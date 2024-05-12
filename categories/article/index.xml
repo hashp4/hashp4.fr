@@ -3,7 +3,16 @@
         <title>Article - Category - Blog - hashp4</title>
         <link>https://hashp4.fr/categories/article/</link>
         <description>Article - Category - Blog - hashp4</description>
-        <generator>Hugo -- gohugo.io</generator><language>en</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sun, 26 Nov 2023 22:00:53 &#43;0100</lastBuildDate><atom:link href="https://hashp4.fr/categories/article/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sun, 12 May 2024 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://hashp4.fr/categories/article/" rel="self" type="application/rss+xml" /><item>
+    <title>Xintra APT Emulation Lab - Waifu University ♡ (＞ω＜)</title>
+    <link>https://hashp4.fr/xintra-lab-waifu-university/</link>
+    <pubDate>Sun, 12 May 2024 00:00:00 &#43;0000</pubDate><author>
+                    <name>hashp4</name>
+                </author><guid>https://hashp4.fr/xintra-lab-waifu-university/</guid>
+    <description><![CDATA[<div class="featured-image">
+                <img src="/xintra-lab-waifu-university/feature.png" referrerpolicy="no-referrer">
+            </div>Complete investigation of the APT Emulation Lab <code>Waifu University</code> by <em>Xintra Labs</em>. This is a deep dive into the threat hunt of the AlphV/BlackCat ransomware group!]]></description>
+</item><item>
     <title>Malware Analysis : WannaCry (part 1)</title>
     <link>https://hashp4.fr/malware-analysis-wannacry-pt1/</link>
     <pubDate>Sun, 26 Nov 2023 22:00:53 &#43;0100</pubDate><author>

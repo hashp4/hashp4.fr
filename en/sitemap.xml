@@ -2,7 +2,6 @@
     xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
     xmlns:xhtml="http://www.w3.org/1999/xhtml"
     ><url>
-            <loc>https://hashp4.fr/malware-analysis-wannacry-pt1/</loc><lastmod>2023-11-26T22:00:53&#43;01:00</lastmod><changefreq>daily</changefreq><priority>0.5</priority></url><url>
             <loc>https://hashp4.fr/music/</loc><lastmod>2023-03-19T00:00:00&#43;00:00</lastmod><changefreq>daily</changefreq><priority>0.5</priority><xhtml:link
                         rel="alternate"
                         hreflang="fr"
@@ -30,16 +29,17 @@
                     hreflang="en"
                     href="https://hashp4.fr/whoami/"
                     /></url><url>
-            <loc>https://hashp4.fr/fcsc-2019-3615-incident-3/</loc><lastmod>2023-12-09T00:00:00&#43;00:00</lastmod><changefreq>daily</changefreq><priority>0.5</priority><xhtml:link
+            <loc>https://hashp4.fr/tags/apt/</loc><lastmod>2024-05-12T00:00:00&#43;00:00</lastmod><changefreq>daily</changefreq><priority>1</priority></url><url>
+            <loc>https://hashp4.fr/categories/article/</loc><lastmod>2024-05-12T00:00:00&#43;00:00</lastmod><changefreq>daily</changefreq><priority>1</priority><xhtml:link
                         rel="alternate"
                         hreflang="fr"
-                        href="https://hashp4.fr/fr/fcsc-2019-3615-incident-3/"
+                        href="https://hashp4.fr/fr/categories/article/"
                         /><xhtml:link
                     rel="alternate"
                     hreflang="en"
-                    href="https://hashp4.fr/fcsc-2019-3615-incident-3/"
+                    href="https://hashp4.fr/categories/article/"
                     /></url><url>
-            <loc>https://hashp4.fr/</loc><lastmod>2023-12-09T00:00:00&#43;00:00</lastmod><changefreq>daily</changefreq><priority>0.5</priority><xhtml:link
+            <loc>https://hashp4.fr/</loc><lastmod>2024-05-12T00:00:00&#43;00:00</lastmod><changefreq>daily</changefreq><priority>1</priority><xhtml:link
                         rel="alternate"
                         hreflang="fr"
                         href="https://hashp4.fr/fr/"
@@ -48,7 +48,7 @@
                     hreflang="en"
                     href="https://hashp4.fr/"
                     /></url><url>
-            <loc>https://hashp4.fr/categories/</loc><lastmod>2023-12-09T00:00:00&#43;00:00</lastmod><changefreq>daily</changefreq><priority>0.5</priority><xhtml:link
+            <loc>https://hashp4.fr/categories/</loc><lastmod>2024-05-12T00:00:00&#43;00:00</lastmod><changefreq>daily</changefreq><priority>1</priority><xhtml:link
                         rel="alternate"
                         hreflang="fr"
                         href="https://hashp4.fr/fr/categories/"
@@ -56,6 +56,47 @@
                     rel="alternate"
                     hreflang="en"
                     href="https://hashp4.fr/categories/"
+                    /></url><url>
+            <loc>https://hashp4.fr/tags/dfir/</loc><lastmod>2024-05-12T00:00:00&#43;00:00</lastmod><changefreq>daily</changefreq><priority>1</priority></url><url>
+            <loc>https://hashp4.fr/tags/lab/</loc><lastmod>2024-05-12T00:00:00&#43;00:00</lastmod><changefreq>daily</changefreq><priority>1</priority></url><url>
+            <loc>https://hashp4.fr/posts/</loc><lastmod>2024-05-12T00:00:00&#43;00:00</lastmod><changefreq>daily</changefreq><priority>1</priority><xhtml:link
+                        rel="alternate"
+                        hreflang="fr"
+                        href="https://hashp4.fr/fr/posts/"
+                        /><xhtml:link
+                    rel="alternate"
+                    hreflang="en"
+                    href="https://hashp4.fr/posts/"
+                    /></url><url>
+            <loc>https://hashp4.fr/tags/ransomware/</loc><lastmod>2024-05-12T00:00:00&#43;00:00</lastmod><changefreq>daily</changefreq><priority>1</priority><xhtml:link
+                        rel="alternate"
+                        hreflang="fr"
+                        href="https://hashp4.fr/fr/tags/ransomware/"
+                        /><xhtml:link
+                    rel="alternate"
+                    hreflang="en"
+                    href="https://hashp4.fr/tags/ransomware/"
+                    /></url><url>
+            <loc>https://hashp4.fr/tags/</loc><lastmod>2024-05-12T00:00:00&#43;00:00</lastmod><changefreq>daily</changefreq><priority>1</priority><xhtml:link
+                        rel="alternate"
+                        hreflang="fr"
+                        href="https://hashp4.fr/fr/tags/"
+                        /><xhtml:link
+                    rel="alternate"
+                    hreflang="en"
+                    href="https://hashp4.fr/tags/"
+                    /></url><url>
+            <loc>https://hashp4.fr/tags/threat-hunting/</loc><lastmod>2024-05-12T00:00:00&#43;00:00</lastmod><changefreq>daily</changefreq><priority>1</priority></url><url>
+            <loc>https://hashp4.fr/tags/xintra/</loc><lastmod>2024-05-12T00:00:00&#43;00:00</lastmod><changefreq>daily</changefreq><priority>1</priority></url><url>
+            <loc>https://hashp4.fr/xintra-lab-waifu-university/</loc><lastmod>2024-05-12T00:00:00&#43;00:00</lastmod><changefreq>daily</changefreq><priority>1</priority></url><url>
+            <loc>https://hashp4.fr/fcsc-2019-3615-incident-3/</loc><lastmod>2023-12-09T00:00:00&#43;00:00</lastmod><changefreq>daily</changefreq><priority>0.5</priority><xhtml:link
+                        rel="alternate"
+                        hreflang="fr"
+                        href="https://hashp4.fr/fr/fcsc-2019-3615-incident-3/"
+                        /><xhtml:link
+                    rel="alternate"
+                    hreflang="en"
+                    href="https://hashp4.fr/fcsc-2019-3615-incident-3/"
                     /></url><url>
             <loc>https://hashp4.fr/tags/fcsc-2019/</loc><lastmod>2023-12-09T00:00:00&#43;00:00</lastmod><changefreq>daily</changefreq><priority>0.5</priority><xhtml:link
                         rel="alternate"
@@ -74,33 +115,6 @@
                     rel="alternate"
                     hreflang="en"
                     href="https://hashp4.fr/tags/forensic/"
-                    /></url><url>
-            <loc>https://hashp4.fr/posts/</loc><lastmod>2023-12-09T00:00:00&#43;00:00</lastmod><changefreq>daily</changefreq><priority>0.5</priority><xhtml:link
-                        rel="alternate"
-                        hreflang="fr"
-                        href="https://hashp4.fr/fr/posts/"
-                        /><xhtml:link
-                    rel="alternate"
-                    hreflang="en"
-                    href="https://hashp4.fr/posts/"
-                    /></url><url>
-            <loc>https://hashp4.fr/tags/ransomware/</loc><lastmod>2023-12-09T00:00:00&#43;00:00</lastmod><changefreq>daily</changefreq><priority>0.5</priority><xhtml:link
-                        rel="alternate"
-                        hreflang="fr"
-                        href="https://hashp4.fr/fr/tags/ransomware/"
-                        /><xhtml:link
-                    rel="alternate"
-                    hreflang="en"
-                    href="https://hashp4.fr/tags/ransomware/"
-                    /></url><url>
-            <loc>https://hashp4.fr/tags/</loc><lastmod>2023-12-09T00:00:00&#43;00:00</lastmod><changefreq>daily</changefreq><priority>0.5</priority><xhtml:link
-                        rel="alternate"
-                        hreflang="fr"
-                        href="https://hashp4.fr/fr/tags/"
-                        /><xhtml:link
-                    rel="alternate"
-                    hreflang="en"
-                    href="https://hashp4.fr/tags/"
                     /></url><url>
             <loc>https://hashp4.fr/tags/volatility/</loc><lastmod>2023-12-09T00:00:00&#43;00:00</lastmod><changefreq>daily</changefreq><priority>0.5</priority><xhtml:link
                         rel="alternate"
@@ -138,17 +152,9 @@
                     hreflang="en"
                     href="https://hashp4.fr/fcsc-2019-3615-incident-1/"
                     /></url><url>
-            <loc>https://hashp4.fr/categories/article/</loc><lastmod>2023-11-26T22:00:53&#43;01:00</lastmod><changefreq>daily</changefreq><priority>0.5</priority><xhtml:link
-                        rel="alternate"
-                        hreflang="fr"
-                        href="https://hashp4.fr/fr/categories/article/"
-                        /><xhtml:link
-                    rel="alternate"
-                    hreflang="en"
-                    href="https://hashp4.fr/categories/article/"
-                    /></url><url>
             <loc>https://hashp4.fr/tags/cutter/</loc><lastmod>2023-11-26T22:00:53&#43;01:00</lastmod><changefreq>daily</changefreq><priority>0.5</priority></url><url>
             <loc>https://hashp4.fr/tags/malware/</loc><lastmod>2023-11-26T22:00:53&#43;01:00</lastmod><changefreq>daily</changefreq><priority>0.5</priority></url><url>
+            <loc>https://hashp4.fr/malware-analysis-wannacry-pt1/</loc><lastmod>2023-11-26T22:00:53&#43;01:00</lastmod><changefreq>daily</changefreq><priority>0.5</priority></url><url>
             <loc>https://hashp4.fr/tags/pmat/</loc><lastmod>2023-11-26T22:00:53&#43;01:00</lastmod><changefreq>daily</changefreq><priority>0.5</priority></url><url>
             <loc>https://hashp4.fr/tags/procmon/</loc><lastmod>2023-11-26T22:00:53&#43;01:00</lastmod><changefreq>daily</changefreq><priority>0.5</priority></url><url>
             <loc>https://hashp4.fr/tags/wannacry/</loc><lastmod>2023-11-26T22:00:53&#43;01:00</lastmod><changefreq>daily</changefreq><priority>0.5</priority></url><url>
@@ -305,6 +311,7 @@
                     hreflang="en"
                     href="https://hashp4.fr/categories/whoami/"
                     /></url><url>
+            <loc>https://hashp4.fr/tags/alphv/blackcat/</loc><changefreq>daily</changefreq><priority>0.5</priority></url><url>
             <loc>https://hashp4.fr/categories/</loc><changefreq>daily</changefreq><priority>0.5</priority><xhtml:link
                         rel="alternate"
                         hreflang="fr"

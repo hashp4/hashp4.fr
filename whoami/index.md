@@ -4,7 +4,7 @@
 ---
 
 ### ❓ Introduction
-I am a former cyberdefense student at ENSIBS and former pentester for AlgoSecure. My favorite categories are **OSINT**, **pentest**, **forensics** and **malware analysis**. 
+I am a former cyberdefense student at ENSIBS and Threat Hunter at WithSecure. My favorite categories are **OSINT**, **pentest**, **forensics** and **malware analysis**. 
 
 ---
 

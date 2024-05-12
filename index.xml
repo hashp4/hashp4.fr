@@ -3,17 +3,17 @@
         <title>Blog - hashp4</title>
         <link>https://hashp4.fr/</link>
         <description>Personal blog</description>
-        <generator>Hugo -- gohugo.io</generator><language>en</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sat, 09 Dec 2023 00:00:00 &#43;0000</lastBuildDate>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sun, 12 May 2024 00:00:00 &#43;0000</lastBuildDate>
             <atom:link href="https://hashp4.fr/index.xml" rel="self" type="application/rss+xml" />
         <item>
-    <title>Malware Analysis : WannaCry (part 1)</title>
-    <link>https://hashp4.fr/malware-analysis-wannacry-pt1/</link>
-    <pubDate>Sun, 26 Nov 2023 22:00:53 &#43;0100</pubDate><author>
+    <title>Xintra APT Emulation Lab - Waifu University ♡ (＞ω＜)</title>
+    <link>https://hashp4.fr/xintra-lab-waifu-university/</link>
+    <pubDate>Sun, 12 May 2024 00:00:00 &#43;0000</pubDate><author>
                     <name>hashp4</name>
-                </author><guid>https://hashp4.fr/malware-analysis-wannacry-pt1/</guid>
+                </author><guid>https://hashp4.fr/xintra-lab-waifu-university/</guid>
     <description><![CDATA[<div class="featured-image">
-                <img src="/malware-analysis-wannacry-pt1/feature.png" referrerpolicy="no-referrer">
-            </div>Walkthrough of my malware analysis for the Bossfight challenge from the <em>Practical Malware Analysis &amp; Triage</em> course created by <strong>@HuskyHacks</strong>. This time, I dive into the infamous WannaCry, a great challenge to apply everything I&rsquo;ve learnt from now on !]]></description>
+                <img src="/xintra-lab-waifu-university/feature.png" referrerpolicy="no-referrer">
+            </div>Complete investigation of the APT Emulation Lab <code>Waifu University</code> by <em>Xintra Labs</em>. This is a deep dive into the threat hunt of the AlphV/BlackCat ransomware group!]]></description>
 </item><item>
     <title>[FCSC 2019] - 3615 Incident (3/3)</title>
     <link>https://hashp4.fr/fcsc-2019-3615-incident-3/</link>
@@ -41,6 +41,15 @@
     <description><![CDATA[<div class="featured-image">
                 <img src="/fcsc-2019-3615-incident-1/feature.png" referrerpolicy="no-referrer">
             </div>Solution to the first challenge in the <code>3615 Incident</code> series, published at FCSC 2019.]]></description>
+</item><item>
+    <title>Malware Analysis : WannaCry (part 1)</title>
+    <link>https://hashp4.fr/malware-analysis-wannacry-pt1/</link>
+    <pubDate>Sun, 26 Nov 2023 22:00:53 &#43;0100</pubDate><author>
+                    <name>hashp4</name>
+                </author><guid>https://hashp4.fr/malware-analysis-wannacry-pt1/</guid>
+    <description><![CDATA[<div class="featured-image">
+                <img src="/malware-analysis-wannacry-pt1/feature.png" referrerpolicy="no-referrer">
+            </div>Walkthrough of my malware analysis for the Bossfight challenge from the <em>Practical Malware Analysis &amp; Triage</em> course created by <strong>@HuskyHacks</strong>. This time, I dive into the infamous WannaCry, a great challenge to apply everything I&rsquo;ve learnt from now on !]]></description>
 </item><item>
     <title>Malware Analysis : SikoMode</title>
     <link>https://hashp4.fr/malware-analysis-sikomode/</link>
