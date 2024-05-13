@@ -35,7 +35,7 @@ Liste non-exhaustive des certifications et des cours que j'ai suivi.
 - Actuellement en train de suivre le cours [Zero2Automated](https://courses.zero2auto.com/) par Vitali Kremez (@VK_Intel), Daniel Bunce (@0verfl0w_) and Jason Reaves (@sysopfb)
 - Actuellement en train de lire le livre ["Practical Malware Analysis"](https://www.amazon.com/Practical-Malware-Analysis-Hands-Dissecting/dp/1593272901) écrit par Michael Sikorski et Andrew Honig
 
-- J'ai prévu de passer la certification **Practical Junior Malware Researcher** (PJMR) courant *Janvier 2024*.
+- J'ai prévu de passer la certification **Practical Junior Malware Researcher** (PJMR) courant *Juin 2024*.
 
 ---
 
