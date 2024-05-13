@@ -4,7 +4,7 @@
 ---
 
 ### ❓ Introduction
-I am a former cyberdefense student at ENSIBS and Threat Hunter at WithSecure. My favorite categories are **OSINT**, **pentest**, **forensics** and **malware analysis**. 
+I am a former cyberdefense student at ENSIBS and Threat Hunter at WithSecure. My favorite infosec fields are **OSINT**, **pentest**, **forensics** and **malware analysis**. 
 
 ---
 
@@ -25,7 +25,7 @@ This is a non-exhaustive list of certifications and courses I have taken.
 - Currently taking the [Zero2Automated](https://courses.zero2auto.com/) course by Vitali Kremez (@VK_Intel), Daniel Bunce (@0verfl0w_) and Jason Reaves (@sysopfb)
 - Currently reading the book ["Practical Malware Analysis"](https://www.amazon.com/Practical-Malware-Analysis-Hands-Dissecting/dp/1593272901) by Michael Sikorski and Andrew Honig
 
--   I'm planning to take the **Practical Junior Malware Researcher** (PJMR) exam in *January 2024*.
+-   I'm planning to take the **Practical Junior Malware Researcher** (PJMR) exam in *June 2024*.
 
 ---
 

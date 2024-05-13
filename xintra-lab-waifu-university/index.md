@@ -607,6 +607,7 @@ Then, a bunch of commands got executed and files were encrypted. You'll find bel
 ![](img/command-executed.png)
 
 <br>
+
 This final analysis conclude the investigation on `AlphV/BlackCat` ransomware group breach on `Waifu University`. For a deep dive into the analysis of the ransomware, you can check [this research article](https://securityscorecard.com/research/deep-dive-into-alphv-blackcat-ransomware/). 
 
 ---
