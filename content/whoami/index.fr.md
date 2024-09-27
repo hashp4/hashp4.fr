@@ -15,41 +15,52 @@ lightgallery: true
 ---
 
 ### ❓ Introduction
-Diplomé de l'ENSIBS en tant qu'ingénieur en cyberdéfense et Threat Hunter pour WithSecure. Mes catégories préférées sont l'**OSINT**, le **pentest**, le **forensic** et l'**analyse de malware**.
+Diplomé de l'ENSIBS en tant qu'ingénieur en cyberdéfense, je travaille actuellement en tant que **Threat Hunter** pour **WithSecure**. Mes catégories préférées sont l'**OSINT**, le **pentest**, le **forensic** et l'**analyse de malware**.
 
 ---
 
 ### 💻 Infosec, ou environs 80% de ma vie
-Passionné par la sécurité informatique, je pratique pendant mon temps libre diverses activités dans ce domaine. Je suis fondateur et membre de l'équipe CTF [MILF](https://milfctf.com/) (*Mother I'd Like to Flag*). Nous participons à plusieurs CTF tout au long de l'année, que ce soit en ligne ou sur site. 
+Passionné par la sécurité informatique, je pratique pendant mon temps libre diverses activités dans ce domaine. Actuellement, j'apprends et pratique *beaucoup* l'analyse de malware car je suis maintenant l'heureux propriétaire d'une licence Binary Ninja 😎.  
 
-En dehors des CTF, j'aime m'entraîner sur diverses plateformes d'apprentissage comme TryHackMe ou HackTheBox.
+Par ailleurs, je suis l'un des fondateurs et membres de l'équipe CTF [MILF](https://milfctf.com/) (*Mother I'd Like to Flag*), aujourd'hui malheureusement inactive. Nous avions l'habitude de participer à divers CTF tout au long de l'année, que ce soit en ligne ou sur le terrain. Aujourd'hui, je participe en solo. Donc si tu es membre d'une équipe CTF active à la recherche de nouveaux membres et que tu lis ce blog, n'hésite pas à m'envoyer un message !
+
+En dehors des CTFs, j'aime m'entraîner sur diverses plateformes d'apprentissage comme TryHackMe, HackTheBox et plus récemment XINTRA Labs (gros coup de coeur 🥰) et Hextree.io. Je participe également à des conférences et événements sur la cybersécurité partout en Europe dès que j'en ai l'occasion. 
 
 ---
 
 ### 🏅 Cours et certifications
 Liste non-exhaustive des certifications et des cours que j'ai suivi.
 
-- Certification OSCP [(badge ici)](https://www.credential.net/a54e0af8-07ca-48bb-96ff-f757913e1bb8#gs.39qnkb)
-- Complétion du cours [Practical Malware Analysis & Triage](https://academy.tcm-sec.com/p/practical-malware-analysis-triage) par **TCM Security** et **HuskyHacks**
+- Certifié [OSCP (Offensive Security Certified Professional, par Offsec)](https://www.offsec.com/courses/pen-200/) -> [(certification ici)](https://www.credential.net/a54e0af8-07ca-48bb-96ff-f757913e1bb8#gs.39qnkb)
+- Certifié [PJMR (Practical Junior Malware Researcher, par TCM)](https://certifications.tcm-sec.com/pjmr/) -> [(certification ici)](https://certified.tcm-sec.com/8b52c3d4-030a-4c47-b4a8-6b1ddd1b30e5?trk=public_profile_see-credential#gs.fthbky)
+- Certifié [Investigating Windows Endpoints par 13Cubed]() -> [(certification ici)](https://credsverse.com/credentials/8cdd5a9e-15c4-476e-b82e-71e6781700a1?trk=public_profile_see-credential)
 
-- Actuellement en train de suivre le cours [Zero2Automated](https://courses.zero2auto.com/) par Vitali Kremez (@VK_Intel), Daniel Bunce (@0verfl0w_) and Jason Reaves (@sysopfb)
-- Actuellement en train de lire le livre ["Practical Malware Analysis"](https://www.amazon.com/Practical-Malware-Analysis-Hands-Dissecting/dp/1593272901) écrit par Michael Sikorski et Andrew Honig
+Une (courte) liste de livres que j'ai lu et que je recommande :
+- ["Practical Malware Analysis"](https://www.amazon.com/Practical-Malware-Analysis-Hands-Dissecting/dp/1593272901) par Michael Sikorski and Andrew Honig
+- [Visual Threat Intelligence: An Illustrated Guide For Threat Researchers](https://store.securitybreak.io/threatintel) par Thomas Roccia.
 
-- J'ai prévu de passer la certification **Practical Junior Malware Researcher** (PJMR) courant *Juin 2024*.
+Objectifs avant la fin de l'année (31/12/2024) :
+- Obtenir la certification [Investigating Windows Memory](https://training.13cubed.com/investigating-windows-memory) par 13Cubed. - EN COURS ⌛
+- Obtenir la certification [Zero2Automated](https://courses.zero2auto.com/) par Vitali Kremez (@VK_Intel), Daniel Bunce (@0verfl0w_) et Jason Reaves (@sysopfb). - EN COURS ⌛
+- Obtenir la certification [IMBT (Introduction to Malware Binary Triage) - Binary Ninja edition]() par Joshua Reynolds. - PAS COMMENCE ❌
+- Lire "Evasive Malware, A Field Guide to Detecting, Analyzing, and Defeating Advanced Threats" par Kyle Cucci - PAS COMMENCE ❌
+
+Ensuite j'en aurai fini avec les certifications pendant un moment... (:
+
 
 ---
 
 ### 🪟 Ma vie en dehors de l'infosec, les derniers 20%
-En dehors de la cybersécurité, je suis également passionné par d'autres choses. Je m'intéresse aux sports mécaniques dans leur ensemble. Je participe d'ailleurs souvent à des balades ou à des rassemblements entre passionnés de cette discipline. 
+En dehors de la cybersécurité, je suis également passionné par d'autres choses. Je m'intéresse aux sports mécaniques dans leur ensemble. Je participe d'ailleurs souvent à des balades ou à des rassemblements entre passionnés de cette discipline. Si t'arrives à deviner le modèle de ma moto, je te paye une pinte. (:
 
 Je suis également passionné par le Japon. J'ai d'ailleurs eu l'occasion d'y voyager et d'y travailler pendant 2 mois durant l'été 2022. En effet, dans le cadre du diplôme d'ingénieur, il est nécessaire de passer au minimum **8 semaines** à l'étranger.
 
-Enfin, l'espace est un domaine qui me fascine. Cela dit, je n'ai jamais été très doué pour résoudre des équations en cours de physique :p.
+Enfin, l'espace est un domaine qui me fascine. Cela dit, je n'ai jamais été très doué pour résoudre les problèmes en cours de physique :p.
 
 ---
 
 ### ✨ Projets futurs
-J'envisage de poursuivre dans le domaine de l'investigation numérique et de la réponse à incidents. Mon objectif, aussi grand soit-il, est de faire avancer la science, et plus particulièrement le domaine de la cyberdéfense, en contribuant à la communauté et en améliorant la sécurité informatique. 
+J'envisage de poursuivre dans le domaine de l'investigation numérique et de la réponse à incidents ou de la CTI (avec un grooos focus sur l'analyse de malware et la recherche). Mon objectif, aussi grand soit-il, est de faire progresser la science, et plus particulièrement le domaine de la cyberdéfense, en contribuant à la communauté et en améliorant la sécurité globale de part mes travaux. 
 
 {{< style "text-align: center;" >}}
 

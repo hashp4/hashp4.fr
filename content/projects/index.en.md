@@ -11,7 +11,7 @@ categories: ["projects"]
 ---
 
 {{< admonition type=info title="Info" open=true >}}
-Projects I had the opportunity to realise during my whole scholarship at IUT d'Aubière (Network and Telecommunications), att the ENSIBS and during my apprenticeship at AlgoSecure.
+Projects I had the opportunity to realise during my whole scholarship at IUT d'Aubière (Network and Telecommunications), at the ENSIBS and during my apprenticeship at AlgoSecure.
 {{< /admonition >}}
 
 ### Phish-U - Automated deployment of a phishing infrastructure
