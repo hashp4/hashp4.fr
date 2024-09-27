@@ -29,8 +29,8 @@
                     hreflang="en"
                     href="https://hashp4.fr/whoami/"
                     /></url><url>
-            <loc>https://hashp4.fr/tags/apt/</loc><lastmod>2024-05-12T00:00:00&#43;00:00</lastmod><changefreq>daily</changefreq><priority>1</priority></url><url>
-            <loc>https://hashp4.fr/categories/article/</loc><lastmod>2024-05-12T00:00:00&#43;00:00</lastmod><changefreq>daily</changefreq><priority>1</priority><xhtml:link
+            <loc>https://hashp4.fr/tags/apt/</loc><lastmod>2024-05-12T00:00:00&#43;00:00</lastmod><changefreq>daily</changefreq><priority>0.5</priority></url><url>
+            <loc>https://hashp4.fr/categories/article/</loc><lastmod>2024-05-12T00:00:00&#43;00:00</lastmod><changefreq>daily</changefreq><priority>0.5</priority><xhtml:link
                         rel="alternate"
                         hreflang="fr"
                         href="https://hashp4.fr/fr/categories/article/"
@@ -39,7 +39,7 @@
                     hreflang="en"
                     href="https://hashp4.fr/categories/article/"
                     /></url><url>
-            <loc>https://hashp4.fr/</loc><lastmod>2024-05-12T00:00:00&#43;00:00</lastmod><changefreq>daily</changefreq><priority>1</priority><xhtml:link
+            <loc>https://hashp4.fr/</loc><lastmod>2024-05-12T00:00:00&#43;00:00</lastmod><changefreq>daily</changefreq><priority>0.5</priority><xhtml:link
                         rel="alternate"
                         hreflang="fr"
                         href="https://hashp4.fr/fr/"
@@ -48,7 +48,7 @@
                     hreflang="en"
                     href="https://hashp4.fr/"
                     /></url><url>
-            <loc>https://hashp4.fr/categories/</loc><lastmod>2024-05-12T00:00:00&#43;00:00</lastmod><changefreq>daily</changefreq><priority>1</priority><xhtml:link
+            <loc>https://hashp4.fr/categories/</loc><lastmod>2024-05-12T00:00:00&#43;00:00</lastmod><changefreq>daily</changefreq><priority>0.5</priority><xhtml:link
                         rel="alternate"
                         hreflang="fr"
                         href="https://hashp4.fr/fr/categories/"
@@ -57,9 +57,9 @@
                     hreflang="en"
                     href="https://hashp4.fr/categories/"
                     /></url><url>
-            <loc>https://hashp4.fr/tags/dfir/</loc><lastmod>2024-05-12T00:00:00&#43;00:00</lastmod><changefreq>daily</changefreq><priority>1</priority></url><url>
-            <loc>https://hashp4.fr/tags/lab/</loc><lastmod>2024-05-12T00:00:00&#43;00:00</lastmod><changefreq>daily</changefreq><priority>1</priority></url><url>
-            <loc>https://hashp4.fr/posts/</loc><lastmod>2024-05-12T00:00:00&#43;00:00</lastmod><changefreq>daily</changefreq><priority>1</priority><xhtml:link
+            <loc>https://hashp4.fr/tags/dfir/</loc><lastmod>2024-05-12T00:00:00&#43;00:00</lastmod><changefreq>daily</changefreq><priority>0.5</priority></url><url>
+            <loc>https://hashp4.fr/tags/lab/</loc><lastmod>2024-05-12T00:00:00&#43;00:00</lastmod><changefreq>daily</changefreq><priority>0.5</priority></url><url>
+            <loc>https://hashp4.fr/posts/</loc><lastmod>2024-05-12T00:00:00&#43;00:00</lastmod><changefreq>daily</changefreq><priority>0.5</priority><xhtml:link
                         rel="alternate"
                         hreflang="fr"
                         href="https://hashp4.fr/fr/posts/"
@@ -68,7 +68,7 @@
                     hreflang="en"
                     href="https://hashp4.fr/posts/"
                     /></url><url>
-            <loc>https://hashp4.fr/tags/ransomware/</loc><lastmod>2024-05-12T00:00:00&#43;00:00</lastmod><changefreq>daily</changefreq><priority>1</priority><xhtml:link
+            <loc>https://hashp4.fr/tags/ransomware/</loc><lastmod>2024-05-12T00:00:00&#43;00:00</lastmod><changefreq>daily</changefreq><priority>0.5</priority><xhtml:link
                         rel="alternate"
                         hreflang="fr"
                         href="https://hashp4.fr/fr/tags/ransomware/"
@@ -77,7 +77,7 @@
                     hreflang="en"
                     href="https://hashp4.fr/tags/ransomware/"
                     /></url><url>
-            <loc>https://hashp4.fr/tags/</loc><lastmod>2024-05-12T00:00:00&#43;00:00</lastmod><changefreq>daily</changefreq><priority>1</priority><xhtml:link
+            <loc>https://hashp4.fr/tags/</loc><lastmod>2024-05-12T00:00:00&#43;00:00</lastmod><changefreq>daily</changefreq><priority>0.5</priority><xhtml:link
                         rel="alternate"
                         hreflang="fr"
                         href="https://hashp4.fr/fr/tags/"
@@ -86,9 +86,9 @@
                     hreflang="en"
                     href="https://hashp4.fr/tags/"
                     /></url><url>
-            <loc>https://hashp4.fr/tags/threat-hunting/</loc><lastmod>2024-05-12T00:00:00&#43;00:00</lastmod><changefreq>daily</changefreq><priority>1</priority></url><url>
-            <loc>https://hashp4.fr/tags/xintra/</loc><lastmod>2024-05-12T00:00:00&#43;00:00</lastmod><changefreq>daily</changefreq><priority>1</priority></url><url>
-            <loc>https://hashp4.fr/xintra-lab-waifu-university/</loc><lastmod>2024-05-12T00:00:00&#43;00:00</lastmod><changefreq>daily</changefreq><priority>1</priority></url><url>
+            <loc>https://hashp4.fr/tags/threat-hunting/</loc><lastmod>2024-05-12T00:00:00&#43;00:00</lastmod><changefreq>daily</changefreq><priority>0.5</priority></url><url>
+            <loc>https://hashp4.fr/tags/xintra/</loc><lastmod>2024-05-12T00:00:00&#43;00:00</lastmod><changefreq>daily</changefreq><priority>0.5</priority></url><url>
+            <loc>https://hashp4.fr/xintra-lab-waifu-university/</loc><lastmod>2024-05-12T00:00:00&#43;00:00</lastmod><changefreq>daily</changefreq><priority>0.5</priority></url><url>
             <loc>https://hashp4.fr/fcsc-2019-3615-incident-3/</loc><lastmod>2023-12-09T00:00:00&#43;00:00</lastmod><changefreq>daily</changefreq><priority>0.5</priority><xhtml:link
                         rel="alternate"
                         hreflang="fr"
