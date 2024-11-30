@@ -33,20 +33,21 @@ Apart from CTF, I like to practice on various infosec learning platforms such as
 This is a non-exhaustive list of certifications and courses I have taken:
 
 - [OSCP (Offensive Security Certified Professional, by Offsec)](https://www.offsec.com/courses/pen-200/) Certified [(certification here)](https://www.credential.net/a54e0af8-07ca-48bb-96ff-f757913e1bb8#gs.39qnkb)
-- [PJMR (Practical Junior Malware Researcher, by TCM)](https://certifications.tcm-sec.com/pjmr/) Certified [(certification here)](https://certified.tcm-sec.com/8b52c3d4-030a-4c47-b4a8-6b1ddd1b30e5?trk=public_profile_see-credential#gs.fthbky)
-- [Investigating Windows Endpoints by 13Cubed]() Certified [(certification here)](https://credsverse.com/credentials/8cdd5a9e-15c4-476e-b82e-71e6781700a1?trk=public_profile_see-credential)
+- [PMRP (Practical Malware Research Professional, by TCM)](https://certifications.tcm-sec.com/pjmr/) Certified [(certification here)](https://certified.tcm-sec.com/8b52c3d4-030a-4c47-b4a8-6b1ddd1b30e5?trk=public_profile_see-credential#gs.fthbky)
+- [Investigating Windows Endpoints by 13Cubed](https://training.13cubed.com/investigating-windows-endpoints) Certified [(certification here)](https://credsverse.com/credentials/8cdd5a9e-15c4-476e-b82e-71e6781700a1?trk=public_profile_see-credential)
+- [Investigating Windows Memory by 13Cubed](https://training.13cubed.com/investigating-windows-memory) Certified [(certification here)](https://credsverse.com/credentials/7d92051a-85f7-4dbb-8459-af1db740e88c)
+- [IMBT (Introduction to Malware Binary Triage, Binary Ninja Edition, by Joshua Reynolds)](https://training.invokere.com/course/imbtbn) Certified
 
 A (short) list of books I've read and recommend:
 - ["Practical Malware Analysis"](https://www.amazon.com/Practical-Malware-Analysis-Hands-Dissecting/dp/1593272901) by Michael Sikorski and Andrew Honig
 - [Visual Threat Intelligence: An Illustrated Guide For Threat Researchers](https://store.securitybreak.io/threatintel) by Thomas Roccia.
 
-Objectives by the end of the year (31/12/2024):
-- Get the [Investigating Windows Memory](https://training.13cubed.com/investigating-windows-memory) certification by 13Cubed. - ON GOING ⌛
+Objectives for 2025:
 - Get the [Zero2Automated](https://courses.zero2auto.com/) certification by Vitali Kremez (@VK_Intel), Daniel Bunce (@0verfl0w_) and Jason Reaves (@sysopfb). - ON GOING ⌛
-- Get the [IMBT (Introduction to Malware Binary Triage) - Binary Ninja edition]() certification by Joshua Reynolds. - NOT STARTED ❌
-- Read "Evasive Malware, A Field Guide to Detecting, Analyzing, and Defeating Advanced Threats" by Kyle Cucci - NOT STARTED ❌
-
-Then, I'll be done with certifications for a while... (:
+- Read "Evasive Malware, A Field Guide to Detecting, Analyzing, and Defeating Advanced Threats" by Kyle Cucci - Waiting for Santa 🎅🏻⌛
+- Get a copy of Windows Internals,
+- Begin [MalDev Academy](https://maldevacademy.com/) in order to increase my understanding of malwares,
+- And two secret projects I'm currently working on... :)
 
 ---
 

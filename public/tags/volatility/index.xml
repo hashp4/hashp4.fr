@@ -1,0 +1,34 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Volatility - Tag - Blog - hashp4</title>
+        <link>https://hashp4.fr/tags/volatility/</link>
+        <description>Volatility - Tag - Blog - hashp4</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sat, 09 Dec 2023 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://hashp4.fr/tags/volatility/" rel="self" type="application/rss+xml" /><item>
+    <title>[FCSC 2019] - 3615 Incident (3/3)</title>
+    <link>https://hashp4.fr/fcsc-2019-3615-incident-3/</link>
+    <pubDate>Sat, 09 Dec 2023 00:00:00 &#43;0000</pubDate><author>
+                    <name>hashp4</name>
+                </author><guid>https://hashp4.fr/fcsc-2019-3615-incident-3/</guid>
+    <description><![CDATA[<div class="featured-image">
+                <img src="/fcsc-2019-3615-incident-3/feature.png" referrerpolicy="no-referrer">
+            </div>Solution to the <strong>last</strong> challenge in the <code>3615 Incident</code> series published at FCSC 2019.]]></description>
+</item><item>
+    <title>[FCSC 2019] - 3615 Incident (2/3)</title>
+    <link>https://hashp4.fr/fcsc-2019-3615-incident-2/</link>
+    <pubDate>Fri, 08 Dec 2023 00:00:00 &#43;0000</pubDate><author>
+                    <name>hashp4</name>
+                </author><guid>https://hashp4.fr/fcsc-2019-3615-incident-2/</guid>
+    <description><![CDATA[<div class="featured-image">
+                <img src="/fcsc-2019-3615-incident-2/feature.png" referrerpolicy="no-referrer">
+            </div>Solution to the <strong>second</strong> challenge in the <code>3615 Incident</code> series published at FCSC 2019.]]></description>
+</item><item>
+    <title>[FCSC 2019] - 3615 Incident (1/3)</title>
+    <link>https://hashp4.fr/fcsc-2019-3615-incident-1/</link>
+    <pubDate>Thu, 07 Dec 2023 00:00:00 &#43;0000</pubDate><author>
+                    <name>hashp4</name>
+                </author><guid>https://hashp4.fr/fcsc-2019-3615-incident-1/</guid>
+    <description><![CDATA[<div class="featured-image">
+                <img src="/fcsc-2019-3615-incident-1/feature.png" referrerpolicy="no-referrer">
+            </div>Solution to the first challenge in the <code>3615 Incident</code> series, published at FCSC 2019.]]></description>
+</item></channel>
+</rss>

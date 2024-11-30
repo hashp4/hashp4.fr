@@ -1,0 +1,16 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>OSINT - Balise - Blog - hashp4</title>
+        <link>https://hashp4.fr/fr/tags/osint/</link>
+        <description>OSINT - Balise - Blog - hashp4</description>
+        <generator>Hugo -- gohugo.io</generator><language>fr</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sun, 19 Mar 2023 22:00:53 &#43;0100</lastBuildDate><atom:link href="https://hashp4.fr/fr/tags/osint/" rel="self" type="application/rss+xml" /><item>
+    <title>[BreizhCTF 2023] - Série Yakuza</title>
+    <link>https://hashp4.fr/fr/breizh-ctf-2023/</link>
+    <pubDate>Sun, 19 Mar 2023 22:00:53 &#43;0100</pubDate><author>
+                    <name>hashp4</name>
+                </author><guid>https://hashp4.fr/fr/breizh-ctf-2023/</guid>
+    <description><![CDATA[<div class="featured-image">
+                <img src="/fr/breizh-ctf-2023/feature.png" referrerpolicy="no-referrer">
+            </div>Solution des challenges d&rsquo;OSINT que j&rsquo;ai eu l&rsquo;occasion de créer pour le BreizhCTF 2023.]]></description>
+</item></channel>
+</rss>

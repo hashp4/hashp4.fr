@@ -1,0 +1,52 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Article - Category - Blog - hashp4</title>
+        <link>https://hashp4.fr/categories/article/</link>
+        <description>Article - Category - Blog - hashp4</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sun, 12 May 2024 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://hashp4.fr/categories/article/" rel="self" type="application/rss+xml" /><item>
+    <title>Xintra APT Emulation Lab - Waifu University ♡ (＞ω＜)</title>
+    <link>https://hashp4.fr/xintra-lab-waifu-university/</link>
+    <pubDate>Sun, 12 May 2024 00:00:00 &#43;0000</pubDate><author>
+                    <name>hashp4</name>
+                </author><guid>https://hashp4.fr/xintra-lab-waifu-university/</guid>
+    <description><![CDATA[<div class="featured-image">
+                <img src="/xintra-lab-waifu-university/feature.png" referrerpolicy="no-referrer">
+            </div>Complete investigation of the APT Emulation Lab <code>Waifu University</code> by <em>Xintra Labs</em>. This is a deep dive into the threat hunt of the AlphV/BlackCat ransomware group!]]></description>
+</item><item>
+    <title>Malware Analysis : WannaCry (part 1)</title>
+    <link>https://hashp4.fr/malware-analysis-wannacry-pt1/</link>
+    <pubDate>Sun, 26 Nov 2023 22:00:53 &#43;0100</pubDate><author>
+                    <name>hashp4</name>
+                </author><guid>https://hashp4.fr/malware-analysis-wannacry-pt1/</guid>
+    <description><![CDATA[<div class="featured-image">
+                <img src="/malware-analysis-wannacry-pt1/feature.png" referrerpolicy="no-referrer">
+            </div>Walkthrough of my malware analysis for the Bossfight challenge from the <em>Practical Malware Analysis &amp; Triage</em> course created by <strong>@HuskyHacks</strong>. This time, I dive into the infamous WannaCry, a great challenge to apply everything I&rsquo;ve learnt from now on !]]></description>
+</item><item>
+    <title>Malware Analysis : SikoMode</title>
+    <link>https://hashp4.fr/malware-analysis-sikomode/</link>
+    <pubDate>Tue, 21 Nov 2023 00:00:00 &#43;0000</pubDate><author>
+                    <name>hashp4</name>
+                </author><guid>https://hashp4.fr/malware-analysis-sikomode/</guid>
+    <description><![CDATA[<div class="featured-image">
+                <img src="/malware-analysis-sikomode/feature.png" referrerpolicy="no-referrer">
+            </div>Walkthrough of my malware analysis for the SikoMode challenge from the <em>Practical Malware Analysis &amp; Triage</em> course created by <strong>@HuskyHacks</strong>. This time, I dive into advanced static and dynamic analysis using <code>Cutter</code> and <code>x64dbg</code>.&quot;]]></description>
+</item><item>
+    <title>Malware Analysis : SillyPutty</title>
+    <link>https://hashp4.fr/malware-analysis-sillyputty/</link>
+    <pubDate>Thu, 09 Nov 2023 00:00:00 &#43;0000</pubDate><author>
+                    <name>hashp4</name>
+                </author><guid>https://hashp4.fr/malware-analysis-sillyputty/</guid>
+    <description><![CDATA[<div class="featured-image">
+                <img src="/malware-analysis-sillyputty/feature.png" referrerpolicy="no-referrer">
+            </div>Walkthrough of my malware analysis for the SillyPutty challenge from the <em>Practical Malware Analysis &amp; Triage</em> course created by <strong>@HuskyHacks</strong>. I only used <strong>basic static</strong> and <strong>dynamic analysis</strong> methods and tools.]]></description>
+</item><item>
+    <title>Hello World</title>
+    <link>https://hashp4.fr/hello-world/</link>
+    <pubDate>Sun, 20 Nov 2022 23:53:53 &#43;0100</pubDate><author>
+                    <name>hashp4</name>
+                </author><guid>https://hashp4.fr/hello-world/</guid>
+    <description><![CDATA[<div class="featured-image">
+                <img src="/hello-world/feature.png" referrerpolicy="no-referrer">
+            </div>This is just a short post to describe the aim of this blog and what you will find on here. And in case you wondered, yes this title is a reference to Mr. Robot.]]></description>
+</item></channel>
+</rss>

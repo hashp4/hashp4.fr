@@ -1,0 +1,16 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>BreizhCTF - Tag - Blog - hashp4</title>
+        <link>https://hashp4.fr/tags/breizhctf/</link>
+        <description>BreizhCTF - Tag - Blog - hashp4</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sun, 19 Mar 2023 22:00:53 &#43;0100</lastBuildDate><atom:link href="https://hashp4.fr/tags/breizhctf/" rel="self" type="application/rss+xml" /><item>
+    <title>[BreizhCTF 2023] - Yakuza Serie</title>
+    <link>https://hashp4.fr/breizh-ctf-2023/</link>
+    <pubDate>Sun, 19 Mar 2023 22:00:53 &#43;0100</pubDate><author>
+                    <name>hashp4</name>
+                </author><guid>https://hashp4.fr/breizh-ctf-2023/</guid>
+    <description><![CDATA[<div class="featured-image">
+                <img src="/breizh-ctf-2023/feature.png" referrerpolicy="no-referrer">
+            </div>Solution to the OSINT challenges I created for BreizhCTF 2023.]]></description>
+</item></channel>
+</rss>

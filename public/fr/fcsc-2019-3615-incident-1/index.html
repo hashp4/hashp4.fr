@@ -1,0 +1,629 @@
+
+
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noodp" />
+    <title>[FCSC 2019] - 3615 Incident (1/3) - Blog - hashp4</title><meta name="Description" content="Solution du premier challenge de la série `3615 Incident` paru lors du FCSC 2019."><meta property="og:title" content="[FCSC 2019] - 3615 Incident (1/3)" />
+<meta property="og:description" content="Solution du premier challenge de la série `3615 Incident` paru lors du FCSC 2019." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://hashp4.fr/fr/fcsc-2019-3615-incident-1/" /><meta property="og:image" content="https://hashp4.fr/fr/fcsc-2019-3615-incident-1/feature.jpg" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-12-07T00:00:00+00:00" />
+<meta property="article:modified_time" content="2023-12-07T00:00:00+00:00" /><meta property="og:site_name" content="hashp4" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://hashp4.fr/fr/fcsc-2019-3615-incident-1/feature.jpg" /><meta name="twitter:title" content="[FCSC 2019] - 3615 Incident (1/3)"/>
+<meta name="twitter:description" content="Solution du premier challenge de la série `3615 Incident` paru lors du FCSC 2019."/>
+<meta name="twitter:site" content="@hashp4_"/>
+<meta name="application-name" content="hashp4">
+<meta name="apple-mobile-web-app-title" content="hashp4">
+
+<meta name="theme-color" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><meta name="twitter:creator" content="@hashp4_" /><link rel="icon" href="/favicon.ico"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="https://hashp4.fr/fr/fcsc-2019-3615-incident-1/" /><link rel="prev" href="https://hashp4.fr/fr/breizh-ctf-2023/" /><link rel="next" href="https://hashp4.fr/fr/fcsc-2019-3615-incident-2/" />
+<link rel="stylesheet" href="/css/main.4cb370884f3eb79df5ec8943416884c6aa730a30ceff5cd62fd0872f24b6b68e.css" integrity="sha256-TLNwiE8&#43;t5317IlDQWiExqpzCjDO/1zWL9CHLyS2to4="><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/css/color.728a2655c4cc249649c041d72af6111f81a1b57cb4f99fc4323550b7f966e960.css" integrity="sha256-coomVcTMJJZJwEHXKvYRH4GhtXy0&#43;Z/EMjVQt/lm6WA="><link rel="stylesheet" href="/css/style.min.aadeb0d1e0db9fd05aaaa62285215f80238b1e906367e8936725dd7de8c1642f.css" integrity="sha256-qt6w0eDbn9BaqqYihSFfgCOLHpBjZ&#43;iTZyXdfejBZC8="><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "[FCSC 2019] - 3615 Incident (1/3)",
+        "inLanguage": "fr",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https://hashp4.fr/fr/fcsc-2019-3615-incident-1/"
+        },"image": ["https://hashp4.fr/images/Apple-Devices-Preview.png"],"genre": "posts","keywords": "Forensic, FCSC 2019, Volatility, Ransomware","wordcount":  1819 ,
+        "url": "https://hashp4.fr/fr/fcsc-2019-3615-incident-1/","datePublished": "2023-12-07T00:00:00+00:00","dateModified": "2023-12-07T00:00:00+00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "hashp4","logo": {
+                    "@type": "ImageObject",
+                    "url": "https://hashp4.fr/images/logo.png",
+                    "width":  288 ,
+                    "height":  288 
+                }},"authors": [{
+                        "@type": "Person",
+                        "name": "hashp4"                    
+                    }],"description": "Solution du premier challenge de la série `3615 Incident` paru lors du FCSC 2019."
+    }
+    </script></head>
+
+<body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">
+        function setTheme(theme) {document.body.setAttribute('theme', theme); document.documentElement.style.setProperty('color-scheme', theme === 'light' ? 'light' : 'dark'); window.theme = theme;   window.isDark = window.theme !== 'light' }
+        function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
+        function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
+        if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('black' === 'light' || 'black' === 'dark' || 'black' === 'black') setTheme('black'), saveTheme('black'); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
+        let metaColors = {'light': '#f8f8f8','dark': '#252627','black': '#000000'}
+        getMeta('theme-color').content = metaColors[document.body.getAttribute('theme')];
+        window.switchThemeEventSet = new Set()
+    </script>
+    <div id="back-to-top"></div>
+    <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/fr/" title="Blog - hashp4"><span id="desktop-header-typeit" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/fr/whoami">🇫🇷 whoami </a><a class="menu-item" href="/fr/categories/article/">✒ Blog </a><a class="menu-item" href="/fr/projects/">📚 Projets </a><a class="menu-item" href="/fr/categories/writeup">🚩 Writeups </a><a class="menu-item" href="/fr/music/">🎵 Musique </a><span class="menu-item delimiter"></span><a href="javascript:void(0);" class="menu-item language" title="Choisir la langue">Français<i class="fas fa-chevron-right fa-fw"></i>
+                        <select class="language-select" title="Choisir la langue" id="language-select-desktop" onchange="location = this.value;"><option value="/fcsc-2019-3615-incident-1/">English</option><option value="/fr/fcsc-2019-3615-incident-1/" selected>Français</option></select>
+                    </a><a href="javascript:void(0);" class="menu-item theme-select" title="Changer de thème">
+                    <i class="fas fa-adjust fa-fw"></i>
+                    <select class="color-theme-select" id="theme-select-desktop" title="Changer de thème">
+                        <option value="light">Clair</option>
+                        <option value="dark">Sombre</option>
+                        <option value="black">Noir</option>
+                        <option value="auto">Auto</option>
+                    </select>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/fr/" title="Blog - hashp4"><span id="mobile-header-typeit" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><a class="menu-item" href="/fr/whoami" title="">🇫🇷whoami</a><a class="menu-item" href="/fr/categories/article/" title="">✒Blog</a><a class="menu-item" href="/fr/projects/" title="">📚Projets</a><a class="menu-item" href="/fr/categories/writeup" title="">🚩Writeups</a><a class="menu-item" href="/fr/music/" title="">🎵Musique</a><a href="javascript:void(0);" class="menu-item theme-select" title="Changer de thème">
+                <i class="fas fa-adjust fa-fw"></i>
+                <select class="color-theme-select" id="theme-select-mobile" title="Changer de thème">
+                    <option value="light">Clair</option>
+                    <option value="dark">Sombre</option>
+                    <option value="black">Noir</option>
+                    <option value="auto">Auto</option>
+                </select>
+            </a><a href="javascript:void(0);" class="menu-item" title="Choisir la langue">Français<i class="fas fa-chevron-right fa-fw"></i>
+                    <select class="language-select" title="Choisir la langue" onchange="location = this.value;"><option value="/fcsc-2019-3615-incident-1/">English</option><option value="/fr/fcsc-2019-3615-incident-1/" selected>Français</option></select>
+                </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+            <div class="container"><div class="toc" id="toc-auto">
+        <h2 class="toc-title">Contenu</h2>
+        <div class="toc-content" id="toc-content-auto"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#introduction-pushpin">Introduction </a></li>
+    <li><a href="#1-à-la-recherche-du-rançongiciel-mag_right">1. À la recherche du rançongiciel </a>
+      <ul>
+        <li><a href="#volatility3">Volatility3</a></li>
+        <li><a href="#identification-du-système-dexploitation">Identification du système d&rsquo;exploitation</a></li>
+        <li><a href="#analyse-des-processus">Analyse des processus</a></li>
+        <li><a href="#analyse-de-lexécutable-assistanceexe">Analyse de l&rsquo;exécutable <code>assistance.exe</code></a></li>
+      </ul>
+    </li>
+    <li><a href="#2-recherche-de-flagdocx-">2. Recherche de <code>flag.docx</code> 🧭</a>
+      <ul>
+        <li><a href="#rapide-analyse-du-code-source">Rapide analyse du code source</a></li>
+        <li><a href="#localisation-du-fichier-chiffré-dans-le-dump-mémoire">Localisation du fichier chiffré dans le dump mémoire</a></li>
+      </ul>
+    </li>
+    <li><a href="#3-flag-">3. Flag 🚩</a></li>
+  </ul>
+</nav></div>
+    </div><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">[FCSC 2019] - 3615 Incident (1/3)</h1><div class="post-meta">
+            <div class="post-meta-line">
+                <span class="post-author"><span class='author'><span class="author fas fa-user-circle fa-fw"></span><span class='screen-reader-text'>  </span><a href='https://hashp4.fr/fr/authors/hashp4'>hashp4</a></span>
+                </span>&nbsp;<span class="post-category">inclus dans </span>&nbsp;<span class="post-category">catégorie <a href="/fr/categories/writeup/"><i class="far fa-folder fa-fw"></i>Writeup</a></span>&nbsp;<span class="post-category">et</span>&nbsp;<span class="post-series">séries <a href=""><i class="far fa-list-alt fa-fw"></i></a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="07-12-2023">07-12-2023</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="07-12-2023">07-12-2023</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;1819 mots&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;9 minutes&nbsp;</div>
+        </div><div class="featured-image"><img
+        
+        loading="eager"
+        src="/fr/fcsc-2019-3615-incident-1/feature.png"
+        srcset="/fr/fcsc-2019-3615-incident-1/feature.png, /fr/fcsc-2019-3615-incident-1/feature.png 1.5x, /fr/fcsc-2019-3615-incident-1/feature.png 2x"
+        sizes="auto"
+        alt="Solution du premier challenge de la série `3615 Incident` paru lors du FCSC 2019."
+        title="Solution du premier challenge de la série `3615 Incident` paru lors du FCSC 2019." height="360"   width="1200" ></div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>Contenu</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#introduction-pushpin">Introduction </a></li>
+    <li><a href="#1-à-la-recherche-du-rançongiciel-mag_right">1. À la recherche du rançongiciel </a>
+      <ul>
+        <li><a href="#volatility3">Volatility3</a></li>
+        <li><a href="#identification-du-système-dexploitation">Identification du système d&rsquo;exploitation</a></li>
+        <li><a href="#analyse-des-processus">Analyse des processus</a></li>
+        <li><a href="#analyse-de-lexécutable-assistanceexe">Analyse de l&rsquo;exécutable <code>assistance.exe</code></a></li>
+      </ul>
+    </li>
+    <li><a href="#2-recherche-de-flagdocx-">2. Recherche de <code>flag.docx</code> 🧭</a>
+      <ul>
+        <li><a href="#rapide-analyse-du-code-source">Rapide analyse du code source</a></li>
+        <li><a href="#localisation-du-fichier-chiffré-dans-le-dump-mémoire">Localisation du fichier chiffré dans le dump mémoire</a></li>
+      </ul>
+    </li>
+    <li><a href="#3-flag-">3. Flag 🚩</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h2 id="introduction-pushpin" class="headerLink">
+    <a href="#introduction-pushpin" class="header-mark"></a>Introduction &#x1f4cc;</h2><p>Une victime de plus tombée sous le coup d’un rançongiciel. Le paiement de la rançon n’est pas envisagée vu le montant demandé. Nous sommes appelés pour essayer de restaurer les fichiers chiffrés. La première partie de ce challenge requiert de trouver :</p>
+<ul>
+<li>le <strong>nom du fichier exécutable de ce rançongiciel</strong>,</li>
+<li>son <strong>identifiant de processus</strong> (PID),</li>
+<li>le <strong>SHA1 du nom du fichier</strong> <code>flag.docx</code> une fois chiffré.</li>
+</ul>
+<p>La réponse attendue au format : <code>ECSC{nom_du_rançongiciel.exe:pid:sha1}</code>.</p>
+<p>Le fichier <code>mem.dmp.tar.xz</code> nous est fourni. Il s&rsquo;agit d&rsquo;une image mémoire de l&rsquo;ordinateur de la victime. Concrètement, celle-ci correspond au contenu de la mémoire volatile (autrement dit la <strong>RAM</strong>) au moment de l&rsquo;acquisition et nous allons voir que cela se révèle être une excellente source d&rsquo;informations pour de l&rsquo;investigation numérique.</p>
+<h2 id="1-à-la-recherche-du-rançongiciel-mag_right" class="headerLink">
+    <a href="#1-%c3%a0-la-recherche-du-ran%c3%a7ongiciel-mag_right" class="header-mark"></a>1. À la recherche du rançongiciel &#x1f50e;</h2><h3 id="volatility3" class="headerLink">
+    <a href="#volatility3" class="header-mark"></a>Volatility3</h3><p>Pour analyser une image mémoire, plusieurs outils s&rsquo;offrent à nous. Dans le cadre de ce challenge, nous utiliserons <code>Volatility3</code> et <code>grep</code> (plus utile qu&rsquo;il n&rsquo;y paraît :p).</p>
+<p><a href="https://github.com/volatilityfoundation/volatility3" target="_blank" rel="noopener noreferrer">Volatility3</a> est un outil open-source permettant d&rsquo;extraire des informations d&rsquo;un dump mémoire en provenance d&rsquo;un système sous Windows, MacOS ou Linux par le biais de plugins.</p>
+<p>L&rsquo;installation est très rapide :</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git clone https://github.com/volatilityfoundation/volatility3.git
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> volatility3
+</span></span><span class="line"><span class="cl">pip3 install -r requirements.txt
+</span></span><span class="line"><span class="cl">python3 setup.py build 
+</span></span><span class="line"><span class="cl">python3 setup.py install
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Et voilà, l&rsquo;outil est prêt à être utilisé. &#x1f604;</p>
+<h3 id="identification-du-système-dexploitation" class="headerLink">
+    <a href="#identification-du-syst%c3%a8me-dexploitation" class="header-mark"></a>Identification du système d&rsquo;exploitation</h3><p>En premier lieu, il est nécessaire de connaître de quel système d&rsquo;exploitation provient le dump. Pour ce faire, nous pouvons utiliser <code>grep</code> dans un premier temps en filtrant sur des termes comme <code>Windows</code>, <code>Linux version</code>, etc.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">┌──<span class="o">(</span>hashp4㉿kali<span class="o">)</span>-<span class="o">[</span>~/Bureau<span class="o">]</span>
+</span></span><span class="line"><span class="cl">└─$ strings mem.dmp <span class="p">|</span> grep <span class="s2">&#34;Windows&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="o">[</span>...<span class="o">]</span>
+</span></span><span class="line"><span class="cl">WindowsDirectory
+</span></span><span class="line"><span class="cl">Win32API<span class="p">|</span>System Information Functions<span class="p">|</span>GetWindowsDirectory
+</span></span><span class="line"><span class="cl">Microsoft Windows <span class="m">10</span> Famille<span class="p">|</span>C:<span class="se">\W</span>indows<span class="p">|</span><span class="se">\D</span>evice<span class="se">\H</span>arddisk0<span class="se">\P</span>artition3
+</span></span><span class="line"><span class="cl">Microsoft Windows <span class="m">10</span> Famille
+</span></span><span class="line"><span class="cl">icrosoft Windows <span class="m">10</span> Famille
+</span></span><span class="line"><span class="cl">C:<span class="se">\W</span>indows<span class="se">\s</span>ystem32
+</span></span><span class="line"><span class="cl">C:<span class="se">\W</span>indows
+</span></span><span class="line"><span class="cl">Utilisateur Windows
+</span></span><span class="line"><span class="cl"><span class="o">[</span>...<span class="o">]</span>
+</span></span><span class="line"><span class="cl">Windows Korean <span class="o">(</span>CP 949<span class="o">)</span>
+</span></span><span class="line"><span class="cl">Windows Chinese Traditional <span class="o">(</span>CP 950<span class="o">)</span> or Big-5
+</span></span><span class="line"><span class="cl">Windows Central European <span class="o">(</span>CP 1250<span class="o">)</span>
+</span></span><span class="line"><span class="cl">Windows Cyrillic <span class="o">(</span>CP 1251<span class="o">)</span>
+</span></span><span class="line"><span class="cl">Windows Western European <span class="o">(</span>CP 1252<span class="o">)</span>
+</span></span><span class="line"><span class="cl">Windows Greek <span class="o">(</span>CP 1253<span class="o">)</span>
+</span></span><span class="line"><span class="cl">Windows Turkish <span class="o">(</span>CP 1254<span class="o">)</span>
+</span></span><span class="line"><span class="cl">Windows Hebrew <span class="o">(</span>CP 1255<span class="o">)</span>
+</span></span><span class="line"><span class="cl">Windows Arabic <span class="o">(</span>CP 1256<span class="o">)</span>
+</span></span><span class="line"><span class="cl">Windows Baltic <span class="o">(</span>CP 1257<span class="o">)</span>
+</span></span><span class="line"><span class="cl">Windows Vietnamese <span class="o">(</span>CP 1258<span class="o">)</span>
+</span></span><span class="line"><span class="cl">Windows Johab <span class="o">(</span>CP 1361<span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="o">[</span>...<span class="o">]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Compte-tenu du résultat, il semblerait que l&rsquo;image mémoire provienne d&rsquo;un système sous <code>Windows</code>. Pour s&rsquo;en assurer, nous pouvons utiliser le plugin <code>windows.info</code> :</p>
+<p><em>(<code>-f</code> est l&rsquo;option permetant de spécifier le chemin du dump mémoire.)</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">┌──<span class="o">(</span>hashp4㉿kali<span class="o">)</span>-<span class="o">[</span>~/Bureau<span class="o">]</span>
+</span></span><span class="line"><span class="cl">└─$ python3 ~/Tools/volatility3/vol.py -f ~/Bureau/mem.dmp windows.info
+</span></span><span class="line"><span class="cl">Volatility <span class="m">3</span> Framework 2.5.2
+</span></span><span class="line"><span class="cl">Progress:  100.00               PDB scanning finished                                
+</span></span><span class="line"><span class="cl">Variable        Value
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Kernel Base     0xf801f4077000
+</span></span><span class="line"><span class="cl">DTB     0x1ab000
+</span></span><span class="line"><span class="cl">Symbols file:///home/hashp4/Tools/volatility3/volatility3/symbols/windows/ntkrnlmp.pdb/D03C5CF7862E48FE84A06333F1CFA598-1.json.xz
+</span></span><span class="line"><span class="cl">Is64Bit True
+</span></span><span class="line"><span class="cl">IsPAE   False
+</span></span><span class="line"><span class="cl">layer_name      <span class="m">0</span> WindowsIntel32e
+</span></span><span class="line"><span class="cl">memory_layer    <span class="m">1</span> WindowsCrashDump64Layer
+</span></span><span class="line"><span class="cl">base_layer      <span class="m">2</span> FileLayer
+</span></span><span class="line"><span class="cl">KdVersionBlock  0xf801f433bdc0
+</span></span><span class="line"><span class="cl">Major/Minor     15.10586
+</span></span><span class="line"><span class="cl">MachineType     <span class="m">34404</span>
+</span></span><span class="line"><span class="cl">KeNumberProcessors      <span class="m">2</span>
+</span></span><span class="line"><span class="cl">SystemTime      2019-05-08 20:04:11
+</span></span><span class="line"><span class="cl">NtSystemRoot    C:<span class="se">\W</span>indows
+</span></span><span class="line"><span class="cl">NtProductType   NtProductWinNt
+</span></span><span class="line"><span class="cl">NtMajorVersion  <span class="m">10</span>
+</span></span><span class="line"><span class="cl">NtMinorVersion  <span class="m">0</span>
+</span></span><span class="line"><span class="cl">PE MajorOperatingSystemVersion  <span class="m">10</span>
+</span></span><span class="line"><span class="cl">PE MinorOperatingSystemVersion  <span class="m">0</span>
+</span></span><span class="line"><span class="cl">PE Machine      <span class="m">34404</span>
+</span></span><span class="line"><span class="cl">PE TimeDateStamp        Wed Jan <span class="m">27</span> 04:38:01 <span class="m">2016</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Il semblerait donc que le système d&rsquo;exploitation soit :</p>
+<ul>
+<li>un <strong>Windows 10</strong> (champ <code>NtMajorVersion</code>),</li>
+<li>architecture <strong>64 bits</strong> (champ <code>Is64Bit</code> à <code>true</code>),</li>
+<li>build <strong>10586</strong> (champ <code>Major/Minor</code>).</li>
+</ul>
+<p>Maintenant que nous détenons ces informations, nous allons pouvoir utiliser les bons plugins.</p>
+<h3 id="analyse-des-processus" class="headerLink">
+    <a href="#analyse-des-processus" class="header-mark"></a>Analyse des processus</h3><p>Pour pouvoir trouver le nom du fichier exécutable du rançongiciel, nous pouvons commencer par lister les processus en cours d&rsquo;exécution à l&rsquo;aide du plugin <code>windows.pstree</code>. Il permet d&rsquo;en dresser une arborescence, montrant <strong>les processus</strong> et <strong>leur parent</strong>, leur <strong>identifiant de processus</strong> (PID), leur <strong>date de création</strong>, etc.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">┌──<span class="o">(</span>hashp4㉿kali<span class="o">)</span>-<span class="o">[</span>~/Bureau<span class="o">]</span>
+</span></span><span class="line"><span class="cl">└─$ python3 ~/Tools/volatility3/vol.py -f ~/Bureau/mem.dmp windows.pstree
+</span></span><span class="line"><span class="cl">Volatility <span class="m">3</span> Framework 2.5.2
+</span></span><span class="line"><span class="cl">Progress:  100.00               PDB scanning finished                                
+</span></span><span class="line"><span class="cl">PID     PPID    ImageFileName   Offset<span class="o">(</span>V<span class="o">)</span>       Threads Handles SessionId       Wow64   CreateTime      ExitTime
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="m">4</span>       <span class="m">0</span>       System  0xe0000f65a040  <span class="m">136</span>     -       N/A     False   2019-05-08 19:57:03.000000      N/A
+</span></span><span class="line"><span class="cl">* <span class="m">256</span>   <span class="m">4</span>       smss.exe        0xe00010e4b040  <span class="m">3</span>       -       N/A     False   2019-05-08 19:57:03.000000      N/A
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">[</span>...<span class="o">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">* <span class="m">3120</span>  <span class="m">544</span>     userinit.exe    0xe00012034080  <span class="m">0</span>       -       <span class="m">1</span>       False   2019-05-08 19:57:14.000000      2019-05-08 19:57:38.000000 
+</span></span><span class="line"><span class="cl">** <span class="m">3184</span> <span class="m">3120</span>    explorer.exe    0xe000116e3080  <span class="m">86</span>      -       <span class="m">1</span>       False   2019-05-08 19:57:14.000000      N/A
+</span></span><span class="line"><span class="cl">*** <span class="m">5444</span>        <span class="m">3184</span>    notepad.exe     0xe00012268100  <span class="m">1</span>       -       <span class="m">1</span>       False   2019-05-08 20:00:29.000000      N/A
+</span></span><span class="line"><span class="cl">*** <span class="m">5496</span>        <span class="m">3184</span>    notepad++.exe   0xe0001214e080  <span class="m">0</span>       -       <span class="m">1</span>       True    2019-05-08 20:00:33.000000      2019-05-08 20:00:41.000000 
+</span></span><span class="line"><span class="cl">*** <span class="m">3080</span>        <span class="m">3184</span>    OneDrive.exe    0xe00012774080  <span class="m">17</span>      -       <span class="m">1</span>       True    2019-05-08 19:57:29.000000      N/A
+</span></span><span class="line"><span class="cl">*** <span class="m">4040</span>        <span class="m">3184</span>    firefox.exe     0xe000125a7840  <span class="m">59</span>      -       <span class="m">1</span>       True    2019-05-08 19:59:06.000000      N/A
+</span></span><span class="line"><span class="cl">**** <span class="m">4896</span>       <span class="m">4040</span>    firefox.exe     0xe000125f7840  <span class="m">9</span>       -       <span class="m">1</span>       True    2019-05-08 19:59:07.000000      N/A
+</span></span><span class="line"><span class="cl">**** <span class="m">4736</span>       <span class="m">4040</span>    firefox.exe     0xe00010385080  <span class="m">20</span>      -       <span class="m">1</span>       True    2019-05-08 19:59:08.000000      N/A
+</span></span><span class="line"><span class="cl">**** <span class="m">3744</span>       <span class="m">4040</span>    firefox.exe     0xe00010347080  <span class="m">19</span>      -       <span class="m">1</span>       True    2019-05-08 19:59:09.000000      N/A
+</span></span><span class="line"><span class="cl">**** <span class="m">1360</span>       <span class="m">4040</span>    firefox.exe     0xe00012155200  <span class="m">19</span>      -       <span class="m">1</span>       True    2019-05-08 19:59:42.000000      N/A
+</span></span><span class="line"><span class="cl">**** <span class="m">3256</span>       <span class="m">4040</span>    firefox.exe     0xe00011196080  <span class="m">22</span>      -       <span class="m">1</span>       True    2019-05-08 19:59:11.000000      N/A
+</span></span><span class="line"><span class="cl">**** <span class="m">5084</span>       <span class="m">4040</span>    firefox.exe     0xe000127446c0  <span class="m">0</span>       -       <span class="m">1</span>       True    2019-05-08 19:59:33.000000      2019-05-08 20:01:04.000000 
+</span></span><span class="line"><span class="cl">*** <span class="m">4812</span>        <span class="m">3184</span>    vmtoolsd.exe    0xe00012620080  <span class="m">10</span>      -       <span class="m">1</span>       False   2019-05-08 19:57:27.000000      N/A
+</span></span><span class="line"><span class="cl">*** <span class="m">5840</span>        <span class="m">3184</span>    MSASCui.exe     0xe00012854840  <span class="m">6</span>       -       <span class="m">1</span>       False   2019-05-08 20:01:01.000000      N/A
+</span></span><span class="line"><span class="cl">*** <span class="m">5208</span>        <span class="m">3184</span>    assistance.exe  0xe000106bb840  <span class="m">9</span>       -       <span class="m">1</span>       True    2019-05-08 20:00:16.000000      N/A
+</span></span><span class="line"><span class="cl">**** <span class="m">5224</span>       <span class="m">5208</span>    conhost.exe     0xe00010335080  <span class="m">2</span>       -       <span class="m">1</span>       False   2019-05-08 20:00:16.000000      N/A
+</span></span><span class="line"><span class="cl">*** <span class="m">5176</span>        <span class="m">3184</span>    notepad++.exe   0xe0001287a840  <span class="m">11</span>      -       <span class="m">1</span>       True    2019-05-08 20:01:49.000000      N/A
+</span></span><span class="line"><span class="cl">*** <span class="m">5596</span>        <span class="m">3184</span>    DumpIt.exe      0xe0001051c840  <span class="m">6</span>       -       <span class="m">1</span>       False   2019-05-08 20:04:09.000000      N/A
+</span></span><span class="line"><span class="cl">**** <span class="m">5364</span>       <span class="m">5596</span>    conhost.exe     0xe0001051b080  <span class="m">4</span>       -       <span class="m">1</span>       False   2019-05-08 20:04:09.000000      N/A
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><em>(Ici, j&rsquo;ai volontairement enlevé la plupart des résultats à des fins de lisibilité)</em></p>
+<p>Après analyse, nous constatons plusieurs processus qui semblent légitimes (<code>firefox.exe</code>, <code>notepad.exe</code>, <code>OneDrive.exe</code>, &hellip;). Cependant, l&rsquo;un d&rsquo;entre eux semble suspect. Il s&rsquo;agit d&rsquo;<code>assistance.exe</code> ayant pour PID <code>5208</code>.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">PID     PPID    ImageFileName   Offset<span class="o">(</span>V<span class="o">)</span>       Threads Handles SessionId       Wow64   CreateTime      ExitTime
+</span></span><span class="line"><span class="cl">*** <span class="m">5208</span>        <span class="m">3184</span>    assistance.exe  0xe000106bb840  <span class="m">9</span>       -       <span class="m">1</span>       True    2019-05-08 20:00:16.000000      N/A
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>En effet, ce n&rsquo;est pas un processus que nous observons habituellement. Pour en avoir le coeur net, analysons-le plus en profondeur.</p>
+<h3 id="analyse-de-lexécutable-assistanceexe" class="headerLink">
+    <a href="#analyse-de-lex%c3%a9cutable-assistanceexe" class="header-mark"></a>Analyse de l&rsquo;exécutable <code>assistance.exe</code></h3><p>Afin d&rsquo;en apprendre plus sur <code>assistance.exe</code>, nous devons d&rsquo;abord l&rsquo;extraire du dump mémoire. Pour ce faire, nous pouvons utiliser différentes méthodes :</p>
+<ol>
+<li>L&rsquo;extraire à l&rsquo;aide de son <code>PID</code>. Il suffit ensuite d&rsquo;utiliser le plugin <code>windows.dumpfiles</code> avec l&rsquo;option <code>--pid &lt;PID&gt;</code>.</li>
+<li>Trouver l&rsquo;emplacement de l&rsquo;exécutable sur l&rsquo;OS et l&rsquo;extraire par le biais de l&rsquo;adresse virtuelle associée.</li>
+</ol>
+<p>La première méthode étant plus commune (<em>et pratique</em>), nous allons donc utiliser la deuxième. :)</p>
+<p>Pour scanner les fichiers de l&rsquo;image mémoire, nous pouvons utiliser le plugin <code>windows.filescan</code>. De plus, comme nous connaissons le nom de l&rsquo;exécutable, nous pouvons filtrer à l&rsquo;aide de <code>grep</code>.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">┌──<span class="o">(</span>hashp4㉿kali<span class="o">)</span>-<span class="o">[</span>~/Bureau<span class="o">]</span>
+</span></span><span class="line"><span class="cl">└─$ python3 ~/Tools/volatility3/vol.py -f ~/Bureau/mem.dmp windows.filescan <span class="p">|</span> grep <span class="s2">&#34;assistance.exe&#34;</span>
+</span></span><span class="line"><span class="cl">0xe00011360090.0<span class="se">\U</span>sers<span class="se">\T</span>NKLSAI3TGT7O9<span class="se">\D</span>ownloads<span class="se">\a</span>ssistance.exe  <span class="m">216</span>
+</span></span><span class="line"><span class="cl">0xe00011483b40  <span class="se">\U</span>sers<span class="se">\T</span>NKLSAI3TGT7O9<span class="se">\D</span>ownloads<span class="se">\a</span>ssistance.exe  <span class="m">216</span>
+</span></span><span class="line"><span class="cl">0xe000121df450  <span class="se">\U</span>sers<span class="se">\T</span>NKLSAI3TGT7O9<span class="se">\D</span>ownloads<span class="se">\a</span>ssistance.exe  <span class="m">216</span>
+</span></span><span class="line"><span class="cl">0xe0001256bde0  <span class="se">\;</span>Z:000000000002acd3<span class="se">\v</span>mware-host<span class="se">\S</span>hared Folders<span class="se">\e\a</span>ssistance.exe        <span class="m">216</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Nous constatons qu&rsquo;il possède plusieurs adresses différentes. Nous pouvons prendre l&rsquo;une de celles-ci. Ensuite, nous devons dump l&rsquo;exécutable. Ici, c&rsquo;est le plugin <code>windows.dumpfiles</code> que nous utilisons. Il est accompagné de l&rsquo;option <code>--virtaddr &lt;ADDR&gt;</code> qui permet de spécifier l&rsquo;adresse virtuelle précécemment trouvée.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">┌──<span class="o">(</span>hashp4㉿kali<span class="o">)</span>-<span class="o">[</span>~/Bureau<span class="o">]</span>
+</span></span><span class="line"><span class="cl">└─$ python3 ~/Tools/volatility3/vol.py -f ~/Bureau/mem.dmp -o /tmp/fcsc/dump windows.dumpfiles --virtaddr 0xe00011483b40
+</span></span><span class="line"><span class="cl">Volatility <span class="m">3</span> Framework 2.5.2
+</span></span><span class="line"><span class="cl">Progress:  100.00               PDB scanning finished                                
+</span></span><span class="line"><span class="cl">Cache   FileObject      FileName        Result
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">DataSectionObject       0xe00011483b40  assistance.exe  file.0xe00011483b40.0xe000121e98b0.DataSectionObject.assistance.exe.dat
+</span></span><span class="line"><span class="cl">ImageSectionObject      0xe00011483b40  assistance.exe  file.0xe00011483b40.0xe0001219c830.ImageSectionObject.assistance.exe.img
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><em>(l&rsquo;option <code>-o</code> permet de spécifier le répertoire de destination pour l&rsquo;exécutable)</em></p>
+<p>Maintenant que nous disposons de l&rsquo;exécutable, vérifions rapidement qu&rsquo;il en soit bien un à l&rsquo;aide de la commande <code>file</code>.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">┌──<span class="o">(</span>hashp4㉿kali<span class="o">)</span>-<span class="o">[</span>~/Bureau<span class="o">]</span>
+</span></span><span class="line"><span class="cl">└─$ file /tmp/fcsc/dump/file.0xe00011483b40.0xe000121e98b0.DataSectionObject.assistance.exe.dat 
+</span></span><span class="line"><span class="cl"><span class="o">[</span>...<span class="o">]</span> PE32 executable <span class="o">(</span>console<span class="o">)</span> Intel <span class="m">80386</span> <span class="o">(</span>stripped to external PDB<span class="o">)</span>, <span class="k">for</span> MS Windows, <span class="m">6</span> sections                 
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Tout semble correct ! A présent, vérifions si c&rsquo;est malware. Si tel est le cas, il est probable qu&rsquo;il soit reconnu par <a href="https://www.virustotal.com/" target="_blank" rel="noopener noreferrer">VirusTotal</a>. Nous pouvons donc y télécharger l&rsquo;exécutable.</p>
+<img width="652" alt="vt-analysis" src="https://gist.github.com/assets/92587864/cf19a7ba-8be8-405c-86f1-58d22fa9cd8f">
+<p>Visiblement, il s&rsquo;agirait bien d&rsquo;un malware appartenant à la famille des rançongiciels. Approfondissons légèrement l&rsquo;analyse en l&rsquo;ouvrant dans <code>PEStudio</code>. C&rsquo;est un outil qui permet de rapidement trouver des <strong>artifacts</strong> (<em>informations de valeur pour l&rsquo;investigation</em>) au sein d&rsquo;un exécutable.</p>
+<img width="1028" alt="pestudio-output" src="https://gist.github.com/assets/92587864/3ee40255-cfcb-414b-9210-2e85a148186e">
+<p>En naviguant dans la section <code>strings</code>, nous remarquons la présence d&rsquo;un repo Github : <a href="https://github.com/mauri870/ransomware" target="_blank" rel="noopener noreferrer">https://github.com/mauri870/ransomware</a>. Il contient vraisemblablement le code source du rançongiciel. Quelle aubaine !</p>
+<p>À ce stade du challenge, nous avons donc les 2/3 du flag : <code>ECSC{assistance.exe:5208</code>.</p>
+<ul>
+<li><i class="far fa-check-square fa-fw"></i> le <strong>nom du fichier exécutable de ce rançongiciel</strong>,</li>
+<li><i class="far fa-check-square fa-fw"></i> son <strong>identifiant de processus</strong> (PID),</li>
+<li><i class="far fa-square fa-fw"></i> le <strong>SHA1 du nom du fichier</strong> <code>flag.docx</code> une fois chiffré.</li>
+</ul>
+<p>Il ne manque plus qu&rsquo;à trouver le dernier élément de cette liste. Nous allons pouvoir utiliser le code source qui est à présent à notre disposition.</p>
+<h2 id="2-recherche-de-flagdocx-" class="headerLink">
+    <a href="#2-recherche-de-flagdocx-" class="header-mark"></a>2. Recherche de <code>flag.docx</code> 🧭</h2><h3 id="rapide-analyse-du-code-source" class="headerLink">
+    <a href="#rapide-analyse-du-code-source" class="header-mark"></a>Rapide analyse du code source</h3><p>Pour comprendre comment le chiffrement fonctionne, nous devons analyser le fichier <a href="https://github.com/mauri870/ransomware/blob/master/cmd/ransomware/ransomware.go" target="_blank" rel="noopener noreferrer">ransomware.go</a> situé dans <code>/cmd/ransomware</code>. À l&rsquo;intérieur, nous retrouvons la fonction <code>encryptFiles()</code> qui, comme son nom l&rsquo;indique, est en charge du chiffrement des fichiers.</p>
+<p><em>(Celle-ci étant de taille conséquente, je l&rsquo;ai raccourci à la partie intéressante (de la ligne 256 à 268)).</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">encryptFiles</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="o">...</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// Rename the files after all have been encrypted
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nx">cmd</span><span class="p">.</span><span class="nx">Logger</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;Renaming files...&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="k">for</span> <span class="nx">_</span><span class="p">,</span> <span class="nx">file</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">FilesToRename</span><span class="p">.</span><span class="nx">Files</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="c1">// Replace the file name by the base64 equivalent
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="nx">newpath</span> <span class="o">:=</span> <span class="nx">strings</span><span class="p">.</span><span class="nf">Replace</span><span class="p">(</span><span class="nx">file</span><span class="p">.</span><span class="nx">Path</span><span class="p">,</span> <span class="nx">file</span><span class="p">.</span><span class="nf">Name</span><span class="p">(),</span> <span class="nx">base64</span><span class="p">.</span><span class="nx">StdEncoding</span><span class="p">.</span><span class="nf">EncodeToString</span><span class="p">([]</span><span class="nb">byte</span><span class="p">(</span><span class="nx">file</span><span class="p">.</span><span class="nf">Name</span><span class="p">())),</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">		<span class="nx">cmd</span><span class="p">.</span><span class="nx">Logger</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;Renaming %s to %s\n&#34;</span><span class="p">,</span> <span class="nx">file</span><span class="p">.</span><span class="nx">Path</span><span class="p">,</span> <span class="nx">newpath</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="c1">// Rename the original file to the base64 equivalent
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="nx">err</span> <span class="o">:=</span> <span class="nx">utils</span><span class="p">.</span><span class="nf">RenameFile</span><span class="p">(</span><span class="nx">file</span><span class="p">.</span><span class="nx">Path</span><span class="p">,</span> <span class="nx">newpath</span><span class="o">+</span><span class="nx">cmd</span><span class="p">.</span><span class="nx">EncryptionExtension</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">			<span class="nx">cmd</span><span class="p">.</span><span class="nx">Logger</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">			<span class="k">continue</span>
+</span></span><span class="line"><span class="cl">		<span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="o">...</span><span class="p">]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Nous pouvons constater que cette fonction renomme les fichiers après les avoir chiffrés. Le nom de substitution est le nom du fichier original encodé en <code>base64</code> auquel on y ajoute une extension définie par l&rsquo;attaquant dans le fichier <a href="https://github.com/mauri870/ransomware/blob/master/cmd/common.go#L99" target="_blank" rel="noopener noreferrer">common.go</a> (<code>ligne 99</code>).</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">// Extension appended to files after encryption
+</span></span><span class="line"><span class="cl">EncryptionExtension = &#34;.encrypted&#34;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="localisation-du-fichier-chiffré-dans-le-dump-mémoire" class="headerLink">
+    <a href="#localisation-du-fichier-chiffr%c3%a9-dans-le-dump-m%c3%a9moire" class="header-mark"></a>Localisation du fichier chiffré dans le dump mémoire</h3><p>Nous savons à présent que le nom hypothétique de <code>flag.docx</code> après chiffrement est celui-ci encodé en <code>base64</code>. Nous pouvons obtenir la chaîne de caractère de la manière suivante :</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">┌──<span class="o">(</span>hashp4㉿kali<span class="o">)</span>-<span class="o">[</span>~/Bureau<span class="o">]</span>
+</span></span><span class="line"><span class="cl">└─$ <span class="nb">echo</span> -n <span class="s2">&#34;flag.docx&#34;</span> <span class="p">|</span> base64                                                                           
+</span></span><span class="line"><span class="cl">ZmxhZy5kb2N4
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Nous pouvons désormais chercher s&rsquo;il existe un fichier ayant le nom <code>ZmxhZy5kb2N4</code> dans le dump mémoire. Pour ce faire, nous allons utiliser le plugin <code>windows.filescan</code> et filtrant sur le nom de fichier à l&rsquo;aide de <code>grep</code>.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">┌──<span class="o">(</span>hashp4㉿kali<span class="o">)</span>-<span class="o">[</span>~/Bureau<span class="o">]</span>
+</span></span><span class="line"><span class="cl">└─$ python3 ~/Tools/volatility3/vol.py -f ~/Bureau/mem.dmp  windows.filescan <span class="p">|</span> grep <span class="s2">&#34;ZmxhZy5kb2N4&#34;</span> 
+</span></span><span class="line"><span class="cl">0xe000123988d0.0<span class="se">\Z</span>mxhZy5kb2N4.chiffré   <span class="m">216</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Effectivement, le fichier existe bel et bien. Par ailleurs, nous remarquons que l&rsquo;extension de fichier n&rsquo;est plus <code>.encrypted</code> mais <code>.chiffré</code>. Nous n&rsquo;avons plus qu&rsquo;à calculer le <code>SHA1</code> du nom de fichier complet à l&rsquo;aide de <code>sha1sum</code> :</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">┌──<span class="o">(</span>hashp4㉿kali<span class="o">)</span>-<span class="o">[</span>~/Bureau<span class="o">]</span>
+</span></span><span class="line"><span class="cl">└─$ <span class="nb">echo</span> -n <span class="s2">&#34;ZmxhZy5kb2N4.chiffré&#34;</span> <span class="p">|</span> sha1sum 
+</span></span><span class="line"><span class="cl">c9a12b109a58361ff1381fceccdcdcade3ec595a
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Nous obtenons ainsi le dernier morceau du flag : <code>:c9a12b109a58361ff1381fceccdcdcade3ec595a}</code> et pouvons ainsi cocher le dernier élément de notre liste.</p>
+<ul>
+<li><i class="far fa-check-square fa-fw"></i> le <strong>SHA1 du nom du fichier</strong> <code>flag.docx</code> une fois chiffré.</li>
+</ul>
+<h2 id="3-flag-" class="headerLink">
+    <a href="#3-flag-" class="header-mark"></a>3. Flag 🚩</h2><p>Grâce à notre analyse, nous obtenons le flag suivant : <code>ECSC{assistance.exe:5208:c9a12b109a58361ff1381fceccdcdcade3ec595a}</code></p>
+<p>Cela marque la conclusion de cette première partie du challenge <code>3615 Incident</code>. J&rsquo;espère que ce writeup vous aura permis de comprendre les tenants et les aboutissants de cette épreuve. Bon courage pour la deuxième partie ! :)</p>
+</div>
+
+        <div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Mis à jour le 07-12-2023</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span><a class="link-to-mardown" href=/fr/fcsc-2019-3615-incident-1/index.md target="_blank" rel="noopener noreferrer">Lire en Markdown</a>
+                    </span></div>
+            <div class="post-info-share"><button title="Partager sur Twitter" data-sharer="twitter" data-url="https://hashp4.fr/fr/fcsc-2019-3615-incident-1/" data-title="[FCSC 2019] - 3615 Incident (1/3)" data-via="hashp4_" data-hashtags="Forensic,FCSC 2019,Volatility,Ransomware"><span class="fab fa-twitter fa-fw"></span></button><button title="Partager sur Linkedin" data-sharer="linkedin" data-url="https://hashp4.fr/fr/fcsc-2019-3615-incident-1/"><span class="fab fa-linkedin fa-fw"></span></button></div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/fr/tags/forensic/">Forensic</a>,&nbsp;<a href="/fr/tags/fcsc-2019/">FCSC 2019</a>,&nbsp;<a href="/fr/tags/volatility/">Volatility</a>,&nbsp;<a href="/fr/tags/ransomware/">Ransomware</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Retour</a></span>&nbsp;|&nbsp;<span><a href="/fr/">Accueil</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/fr/breizh-ctf-2023/" class="prev" rel="prev" title="[BreizhCTF 2023] - Série Yakuza"><i class="fas fa-angle-left fa-fw"></i>[BreizhCTF 2023] - Série Yakuza</a>
+            <a href="/fr/fcsc-2019-3615-incident-2/" class="next" rel="next" title="[FCSC 2019] - 3615 Incident (2/3)">[FCSC 2019] - 3615 Incident (2/3)<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+</article></div>
+        </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">
+                    Propulsé par <a href="https://gohugo.io/" target="_blank" rel="noopener noreferrer" title="Hugo 0.121.1">Hugo</a>&nbsp;|&nbsp;Thème - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreferrer" title="DoIt 0.4.0"><i class="far fa-edit fa-fw"></i> DoIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2022 - 2024</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/fr/" target="_blank" rel="noopener noreferrer"></a></span>&nbsp;|&nbsp;<span class="license"><a rel="" href="https://www.gnu.org/licenses/gpl-3.0.en.html" target="_blank">GPL-V3</a></span></div>
+            <div class="footer-line"></div>
+            <div class="footer-line">
+            </div>
+        </div></footer></div>
+
+    <div id="fixed-buttons"><a href="#back-to-top" id="back-to-top-button" class="fixed-button" title="Retour en haut">
+            <i class="fas fa-arrow-up fa-fw"></i>
+        </a><a href="#" id="view-comments" class="fixed-button" title="Afficher les commentaires">
+            <i class="fas fa-comment fa-fw"></i>
+        </a>
+    </div><div class="assets"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/contrib/copy-tex.min.css">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/contrib/copy-tex.min.css"></noscript><script type="text/javascript">window.config={"code":{"copyTitle":"Copier dans le presse-papiers","maxShownLines":50},"comment":{},"data":{"desktop-header-typeit":"hashp4 (\u003eᴗ•)","mobile-header-typeit":"hashp4 (\u003eᴗ•)"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":false,"left":"$","right":"$"}],"strict":false},"sharerjs":true,"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"desktop-header-typeit":["desktop-header-typeit"],"mobile-header-typeit":["mobile-header-typeit"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.4.2/sharer.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/typeit@7.0.4/dist/typeit.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js" defer></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/contrib/auto-render.min.js" defer></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/contrib/copy-tex.min.js" defer></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/contrib/mhchem.min.js" defer></script><script type="text/javascript" src="/js/katex.min.js" defer></script><script type="text/javascript" src="/js/theme.min.js" defer></script></div>
+</body>
+
+</html>

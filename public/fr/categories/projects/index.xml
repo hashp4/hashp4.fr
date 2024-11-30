@@ -1,0 +1,14 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>projects - Catégorie - Blog - hashp4</title>
+        <link>https://hashp4.fr/fr/categories/projects/</link>
+        <description>projects - Catégorie - Blog - hashp4</description>
+        <generator>Hugo -- gohugo.io</generator><language>fr</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Tue, 25 Jan 2022 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://hashp4.fr/fr/categories/projects/" rel="self" type="application/rss+xml" /><item>
+    <title>Projets</title>
+    <link>https://hashp4.fr/fr/projects/</link>
+    <pubDate>Tue, 25 Jan 2022 00:00:00 &#43;0000</pubDate><author>
+                    <name>hashp4</name>
+                </author><guid>https://hashp4.fr/fr/projects/</guid>
+    <description><![CDATA[InfoProjets que j&rsquo;ai eu l&rsquo;occasion de réaliser tout au long de mon cursus à l&rsquo;IUT d&rsquo;Aubière (Réseau et Télécommunications), à l&rsquo;ENSIBS et lors de mon apprentissage chez AlgoSecure.Phish-U - Déploiement automatisé d&rsquo;une infrastructure de phishing(Fev. 2023 à Août 2023)Dans le cadre de mon projet de fin d&rsquo;étude, j&rsquo;ai été amené à développer Phish-U, un outil permettant d&rsquo;automatiser le déploiement de campagne de phishing pour accompagner les consultants d&rsquo;AlgoSecure dans leurs missions.]]></description>
+</item></channel>
+</rss>

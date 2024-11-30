@@ -1,0 +1,15 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>whoami - Catégorie - Blog - hashp4</title>
+        <link>https://hashp4.fr/fr/categories/whoami/</link>
+        <description>whoami - Catégorie - Blog - hashp4</description>
+        <generator>Hugo -- gohugo.io</generator><language>fr</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Tue, 25 Jan 2022 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://hashp4.fr/fr/categories/whoami/" rel="self" type="application/rss+xml" /><item>
+    <title>whoami?</title>
+    <link>https://hashp4.fr/fr/whoami/</link>
+    <pubDate>Tue, 25 Jan 2022 00:00:00 &#43;0000</pubDate><author>
+                    <name>hashp4</name>
+                </author><guid>https://hashp4.fr/fr/whoami/</guid>
+    <description><![CDATA[❓ IntroductionDiplomé de l&rsquo;ENSIBS en tant qu&rsquo;ingénieur en cyberdéfense, je travaille actuellement en tant que Threat Hunter pour WithSecure. Mes catégories préférées sont l&rsquo;OSINT, le pentest, le forensic et l&rsquo;analyse de malware.
+💻 Infosec, ou environs 80% de ma viePassionné par la sécurité informatique, je pratique pendant mon temps libre diverses activités dans ce domaine. Actuellement, j&rsquo;apprends et pratique beaucoup l&rsquo;analyse de malware car je suis maintenant l&rsquo;heureux propriétaire d&rsquo;une licence Binary Ninja 😎.]]></description>
+</item></channel>
+</rss>

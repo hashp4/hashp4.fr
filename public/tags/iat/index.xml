@@ -1,0 +1,16 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>IAT - Tag - Blog - hashp4</title>
+        <link>https://hashp4.fr/tags/iat/</link>
+        <description>IAT - Tag - Blog - hashp4</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Thu, 09 Nov 2023 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://hashp4.fr/tags/iat/" rel="self" type="application/rss+xml" /><item>
+    <title>Malware Analysis : SillyPutty</title>
+    <link>https://hashp4.fr/malware-analysis-sillyputty/</link>
+    <pubDate>Thu, 09 Nov 2023 00:00:00 &#43;0000</pubDate><author>
+                    <name>hashp4</name>
+                </author><guid>https://hashp4.fr/malware-analysis-sillyputty/</guid>
+    <description><![CDATA[<div class="featured-image">
+                <img src="/malware-analysis-sillyputty/feature.png" referrerpolicy="no-referrer">
+            </div>Walkthrough of my malware analysis for the SillyPutty challenge from the <em>Practical Malware Analysis &amp; Triage</em> course created by <strong>@HuskyHacks</strong>. I only used <strong>basic static</strong> and <strong>dynamic analysis</strong> methods and tools.]]></description>
+</item></channel>
+</rss>

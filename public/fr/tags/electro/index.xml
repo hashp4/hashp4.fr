@@ -1,0 +1,16 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Electro - Balise - Blog - hashp4</title>
+        <link>https://hashp4.fr/fr/tags/electro/</link>
+        <description>Electro - Balise - Blog - hashp4</description>
+        <generator>Hugo -- gohugo.io</generator><language>fr</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sun, 19 Mar 2023 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://hashp4.fr/fr/tags/electro/" rel="self" type="application/rss+xml" /><item>
+    <title>Musique</title>
+    <link>https://hashp4.fr/fr/music/</link>
+    <pubDate>Sun, 19 Mar 2023 00:00:00 &#43;0000</pubDate><author>
+                    <name>hashp4</name>
+                </author><guid>https://hashp4.fr/fr/music/</guid>
+    <description><![CDATA[<div class="featured-image">
+                <img src="feature.png" referrerpolicy="no-referrer">
+            </div>Breizh CTF 2023Playlist jouée pendant le BreizhCTF 2023. Réalisée en collaboration avec Zeecka :)En savoir plusInsomni&#39;Hack 2022Playlist jouée pendant l&#39;Insomni&#39;Hack 2022En savoir plusInsomni&#39;Hack 2023Playlist jouée pendant l&#39;Insomni&#39;Hack 2023En savoir plus]]></description>
+</item></channel>
+</rss>

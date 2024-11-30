@@ -1,0 +1,1067 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noodp" />
+    <title>Xintra APT Emulation Lab - Waifu University ♡ (＞ω＜) - Blog - hashp4</title><meta name="Description" content="Personal blog"><meta property="og:title" content="Xintra APT Emulation Lab - Waifu University ♡ (＞ω＜)" />
+<meta property="og:description" content="Complete investigation of the APT Emulation Lab Waifu University by Xintra Labs. This is a deep dive into the threat hunt of the AlphV/BlackCat ransomware group!" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://hashp4.fr/xintra-lab-waifu-university/" /><meta property="og:image" content="https://hashp4.fr/xintra-lab-waifu-university/feature.png" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2024-05-12T00:00:00+00:00" />
+<meta property="article:modified_time" content="2024-05-12T00:00:00+00:00" /><meta property="og:site_name" content="hashp4" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://hashp4.fr/xintra-lab-waifu-university/feature.png" /><meta name="twitter:title" content="Xintra APT Emulation Lab - Waifu University ♡ (＞ω＜)"/>
+<meta name="twitter:description" content="Complete investigation of the APT Emulation Lab Waifu University by Xintra Labs. This is a deep dive into the threat hunt of the AlphV/BlackCat ransomware group!"/>
+<meta name="twitter:site" content="@hashp4_"/>
+<meta name="application-name" content="hashp4">
+<meta name="apple-mobile-web-app-title" content="hashp4">
+
+<meta name="theme-color" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><meta name="twitter:creator" content="@hashp4_" /><link rel="icon" href="/favicon.ico"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="https://hashp4.fr/xintra-lab-waifu-university/" /><link rel="prev" href="https://hashp4.fr/fcsc-2019-3615-incident-3/" />
+<link rel="stylesheet" href="/css/main.4cb370884f3eb79df5ec8943416884c6aa730a30ceff5cd62fd0872f24b6b68e.css" integrity="sha256-TLNwiE8&#43;t5317IlDQWiExqpzCjDO/1zWL9CHLyS2to4="><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/css/color.728a2655c4cc249649c041d72af6111f81a1b57cb4f99fc4323550b7f966e960.css" integrity="sha256-coomVcTMJJZJwEHXKvYRH4GhtXy0&#43;Z/EMjVQt/lm6WA="><link rel="stylesheet" href="/css/style.min.aadeb0d1e0db9fd05aaaa62285215f80238b1e906367e8936725dd7de8c1642f.css" integrity="sha256-qt6w0eDbn9BaqqYihSFfgCOLHpBjZ&#43;iTZyXdfejBZC8="><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Xintra APT Emulation Lab - Waifu University ♡ (＞ω＜)",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https://hashp4.fr/xintra-lab-waifu-university/"
+        },"image": ["https://hashp4.fr/images/Apple-Devices-Preview.png"],"genre": "posts","keywords": "APT, AlphV\/BlackCat, Ransomware, DFIR, Threat Hunting, Xintra, Lab","wordcount":  3397 ,
+        "url": "https://hashp4.fr/xintra-lab-waifu-university/","datePublished": "2024-05-12T00:00:00+00:00","dateModified": "2024-05-12T00:00:00+00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "hashp4","logo": {
+                    "@type": "ImageObject",
+                    "url": "https://hashp4.fr/images/logo.png",
+                    "width":  288 ,
+                    "height":  288 
+                }},"authors": [{
+                        "@type": "Person",
+                        "name": "hashp4"                    
+                    }],"description": ""
+    }
+    </script></head>
+
+<body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">
+        function setTheme(theme) {document.body.setAttribute('theme', theme); document.documentElement.style.setProperty('color-scheme', theme === 'light' ? 'light' : 'dark'); window.theme = theme;   window.isDark = window.theme !== 'light' }
+        function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
+        function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
+        if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('black' === 'light' || 'black' === 'dark' || 'black' === 'black') setTheme('black'), saveTheme('black'); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
+        let metaColors = {'light': '#f8f8f8','dark': '#252627','black': '#000000'}
+        getMeta('theme-color').content = metaColors[document.body.getAttribute('theme')];
+        window.switchThemeEventSet = new Set()
+    </script>
+    <div id="back-to-top"></div>
+    <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Blog - hashp4"><span id="desktop-header-typeit" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/whoami">🇫🇷 whoami </a><a class="menu-item" href="/categories/article/">✒ Blog </a><a class="menu-item" href="/projects/">📚 Projects </a><a class="menu-item" href="/categories/writeup/">🚩 Writeups </a><a class="menu-item" href="/music/">🎵 Music </a><span class="menu-item delimiter"></span><a href="javascript:void(0);" class="menu-item language" title="Select Language">English<i class="fas fa-chevron-right fa-fw"></i>
+                        <select class="language-select" title="Select Language" id="language-select-desktop" onchange="location = this.value;"><option value="/xintra-lab-waifu-university/" selected>English</option></select>
+                    </a><a href="javascript:void(0);" class="menu-item theme-select" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw"></i>
+                    <select class="color-theme-select" id="theme-select-desktop" title="Switch Theme">
+                        <option value="light">Light</option>
+                        <option value="dark">Dark</option>
+                        <option value="black">Black</option>
+                        <option value="auto">Auto</option>
+                    </select>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Blog - hashp4"><span id="mobile-header-typeit" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><a class="menu-item" href="/whoami" title="">🇫🇷whoami</a><a class="menu-item" href="/categories/article/" title="">✒Blog</a><a class="menu-item" href="/projects/" title="">📚Projects</a><a class="menu-item" href="/categories/writeup/" title="">🚩Writeups</a><a class="menu-item" href="/music/" title="">🎵Music</a><a href="javascript:void(0);" class="menu-item theme-select" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw"></i>
+                <select class="color-theme-select" id="theme-select-mobile" title="Switch Theme">
+                    <option value="light">Light</option>
+                    <option value="dark">Dark</option>
+                    <option value="black">Black</option>
+                    <option value="auto">Auto</option>
+                </select>
+            </a><a href="javascript:void(0);" class="menu-item" title="Select Language">English<i class="fas fa-chevron-right fa-fw"></i>
+                    <select class="language-select" title="Select Language" onchange="location = this.value;"><option value="/xintra-lab-waifu-university/" selected>English</option></select>
+                </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+            <div class="container"><div class="toc" id="toc-auto">
+        <h2 class="toc-title">Contents</h2>
+        <div class="toc-content" id="toc-content-auto"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#context">Context</a></li>
+    <li><a href="#chain-of-events">Chain of Events</a></li>
+    <li><a href="#phase-1-initial-access-and-foothold-03032024">Phase 1: Initial Access and Foothold (03/03/2024)</a>
+      <ul>
+        <li><a href="#11-scoping-the-incident">1.1. Scoping the incident</a></li>
+        <li><a href="#12-initial-access-via-entraid">1.2. Initial access via EntraID</a></li>
+        <li><a href="#13-breaching-the-university">1.3. Breaching the university</a></li>
+        <li><a href="#14-privilege-escalation">1.4. Privilege Escalation</a></li>
+      </ul>
+    </li>
+    <li><a href="#phase-2-lateral-movement-03032024">Phase 2: Lateral Movement (03/03/2024)</a>
+      <ul>
+        <li><a href="#21-remote-access">2.1. Remote Access</a></li>
+      </ul>
+    </li>
+    <li><a href="#phase-3-data-exfiltration-and-additional-lateral-movement-05032024---07032024">Phase 3: Data Exfiltration and Additional Lateral Movement (05/03/2024 - 07/03/2024)</a>
+      <ul>
+        <li><a href="#31-accessing-volume-shadow-copies">3.1. Accessing Volume Shadow Copies</a></li>
+        <li><a href="#32-looking-around-the-network">3.2. Looking around the network</a></li>
+        <li><a href="#33-domain-dominance">3.3. Domain dominance</a></li>
+        <li><a href="#34-accessing-the-good-stuff">3.4 Accessing the good stuff</a></li>
+      </ul>
+    </li>
+    <li><a href="#phase-4-extortion-attempts-07032024">Phase 4: Extortion Attempts (07/03/2024)</a>
+      <ul>
+        <li><a href="#41-release-the-ransomware-uwu">4.1 Release the ransomware UwU</a></li>
+      </ul>
+    </li>
+    <li><a href="#ω--conclusion--ω">(＞ω＜) ♡ Conclusion ♡ (＞ω＜)</a></li>
+    <li><a href="#summary-attack-diagram">Summary attack diagram</a></li>
+    <li><a href="#resources">Resources</a></li>
+  </ul>
+</nav></div>
+    </div><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Xintra APT Emulation Lab - Waifu University ♡ (＞ω＜)</h1><div class="post-meta">
+            <div class="post-meta-line">
+                <span class="post-author"><span class='author'><span class="author fas fa-user-circle fa-fw"></span><span class='screen-reader-text'>  </span><a href='https://hashp4.fr/authors/hashp4'>hashp4</a></span>
+                </span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">category <a href="/categories/article/"><i class="far fa-folder fa-fw"></i>Article</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2024-05-12">2024-05-12</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2024-05-12">2024-05-12</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;3397 words&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;16 minutes&nbsp;</div>
+        </div><div class="featured-image"><img
+        
+        loading="eager"
+        src="/xintra-lab-waifu-university/feature.png"
+        srcset="/xintra-lab-waifu-university/feature.png, /xintra-lab-waifu-university/feature.png 1.5x, /xintra-lab-waifu-university/feature.png 2x"
+        sizes="auto"
+        alt="/xintra-lab-waifu-university/feature.png"
+        title="/xintra-lab-waifu-university/feature.png" height="1558"   width="1341" ></div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#context">Context</a></li>
+    <li><a href="#chain-of-events">Chain of Events</a></li>
+    <li><a href="#phase-1-initial-access-and-foothold-03032024">Phase 1: Initial Access and Foothold (03/03/2024)</a>
+      <ul>
+        <li><a href="#11-scoping-the-incident">1.1. Scoping the incident</a></li>
+        <li><a href="#12-initial-access-via-entraid">1.2. Initial access via EntraID</a></li>
+        <li><a href="#13-breaching-the-university">1.3. Breaching the university</a></li>
+        <li><a href="#14-privilege-escalation">1.4. Privilege Escalation</a></li>
+      </ul>
+    </li>
+    <li><a href="#phase-2-lateral-movement-03032024">Phase 2: Lateral Movement (03/03/2024)</a>
+      <ul>
+        <li><a href="#21-remote-access">2.1. Remote Access</a></li>
+      </ul>
+    </li>
+    <li><a href="#phase-3-data-exfiltration-and-additional-lateral-movement-05032024---07032024">Phase 3: Data Exfiltration and Additional Lateral Movement (05/03/2024 - 07/03/2024)</a>
+      <ul>
+        <li><a href="#31-accessing-volume-shadow-copies">3.1. Accessing Volume Shadow Copies</a></li>
+        <li><a href="#32-looking-around-the-network">3.2. Looking around the network</a></li>
+        <li><a href="#33-domain-dominance">3.3. Domain dominance</a></li>
+        <li><a href="#34-accessing-the-good-stuff">3.4 Accessing the good stuff</a></li>
+      </ul>
+    </li>
+    <li><a href="#phase-4-extortion-attempts-07032024">Phase 4: Extortion Attempts (07/03/2024)</a>
+      <ul>
+        <li><a href="#41-release-the-ransomware-uwu">4.1 Release the ransomware UwU</a></li>
+      </ul>
+    </li>
+    <li><a href="#ω--conclusion--ω">(＞ω＜) ♡ Conclusion ♡ (＞ω＜)</a></li>
+    <li><a href="#summary-attack-diagram">Summary attack diagram</a></li>
+    <li><a href="#resources">Resources</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h2 id="context" class="headerLink">
+    <a href="#context" class="header-mark"></a>Context</h2><p>Waifu University&rsquo;s cyber team has called us after their IT teams reported a number of servers with files that aren&rsquo;t opening and have a strange extension.</p>
+<p>On the scoping call, the victim also said they had identified a ransom note stating their data has been stolen. When asked about any earlier signs, the victim mentioned some strange, failed login activity early in March 2024 in their Entra ID, but wasn&rsquo;t of concern at the time&hellip;</p>
+<p>Ransomware will typically avoid system files to not cause crashes in the system, which also happens to be where a lot of forensic evidence is! We have been provided triage images of the hosts and log exports from the relevant systems.</p>
+<p>We are also given the network diagram of the infected part of the Waifu University network that the client is concerned with.</p>
+<br>
+<p><figure><img
+        
+        loading="lazy"
+        src="/xintra-lab-waifu-university/img/Waifu.png"
+        srcset="/xintra-lab-waifu-university/img/Waifu.png, /xintra-lab-waifu-university/img/Waifu.png 1.5x, /xintra-lab-waifu-university/img/Waifu.png 2x"
+        sizes="auto"
+        alt="/xintra-lab-waifu-university/img/Waifu.png"
+        title="/xintra-lab-waifu-university/img/Waifu.png" height="1080"   width="1789" ></figure></p>
+<br>
+<hr>
+<h2 id="chain-of-events" class="headerLink">
+    <a href="#chain-of-events" class="header-mark"></a>Chain of Events</h2><p>The attack on <code>Waifu University</code> by <code>AlphV/BlackCat</code> consisted of <strong>four</strong> main phases: </p>
+<br>
+<p><strong>Phase 1: Initial Access and Foothold</strong> (<em>03/03/2024</em>).</p>
+<p>The threat actor initiated the attack by first compromising the Azure account of an internal employee through bruteforce and MFA push fatigue attacks, gaining access to the VPN and being able to breach into a jumpbox server in <code>Waifu University</code>’s network as a pivot point from which to launch the attack.</p>
+<br>
+<p><strong>Phase 2: Lateral Movement</strong> (<em>03/03/2024</em>).</p>
+<p>The threat actor used several privilege escalations techniques and the Cobalt Strike platform to move laterally between the victim’s on-premises hosts and Azure environment through VPN and RDP connections.</p>
+<br>
+<p><strong>Phase 3: Data Exfiltration</strong> <strong>and Additional Lateral Movement</strong> (<em>05/03/2024 - 07/03/2024</em>).</p>
+<p>The threat actor managed to gain access to both the Domain Controller and the SQL server, allowing the exfiltration of a sensitive informations.</p>
+<br>
+<p><strong>Phase 4: Extortion Attempts</strong> (<em>07/03/2024</em>).</p>
+<p>The threat actor detonated their ransomware and probably threatened <code>Waifu University</code> to publish sensitive information if the ransom was not paid. They might have exaggerated about the volume and sensitivity of the stolen information.</p>
+<br>
+<p><em>(this formatting of the chain of events was greatly inspired by Sygnia during their own analysis of <a href="https://www.sygnia.co/blog/blackcat-ransomware/" target="_blank" rel="noopener noreferrer">the anatomy of a BlackCat (ALPHV) attack</a> which is awesome and worth checking :D)</em></p>
+<hr>
+<h2 id="phase-1-initial-access-and-foothold-03032024" class="headerLink">
+    <a href="#phase-1-initial-access-and-foothold-03032024" class="header-mark"></a>Phase 1: Initial Access and Foothold (03/03/2024)</h2><h3 id="11-scoping-the-incident" class="headerLink">
+    <a href="#11-scoping-the-incident" class="header-mark"></a>1.1. Scoping the incident</h3><p>This investigation started by having a look at the current state of the different machines in order to scope the incident. We quickly notice that every encrypted file has the extension <code>.kh1ftzx</code> appended to them. Moreover, we could also see the ransom note called <code>RECOVER-kh1ftzx-FILES.txt</code> in several directories.</p>
+<br>
+<p><figure><img
+        
+        loading="lazy"
+        src="/xintra-lab-waifu-university/img/ransom-note&#43;extension.png"
+        srcset="/xintra-lab-waifu-university/img/ransom-note&#43;extension.png, /xintra-lab-waifu-university/img/ransom-note&#43;extension.png 1.5x, /xintra-lab-waifu-university/img/ransom-note&#43;extension.png 2x"
+        sizes="auto"
+        alt="/xintra-lab-waifu-university/img/ransom-note&#43;extension.png"
+        title="/xintra-lab-waifu-university/img/ransom-note&#43;extension.png" height="318"   width="1572" ></figure></p>
+<br>
+<p>Inside this ransomware note, there&rsquo;s a bunch of informations on what happened, what was supposedly stolen from Waifu University and the instructions on how to pay the ransom. For further communication, we&rsquo;re left with the following TOR URL: <code>rfosusl6qdm4zhoqbqnjxaloprld2qz35u77h4aap46rhwkouejsooqd.onion</code></p>
+<br>
+<p><figure><img
+        
+        loading="lazy"
+        src="/xintra-lab-waifu-university/img/ransom-note.png"
+        srcset="/xintra-lab-waifu-university/img/ransom-note.png, /xintra-lab-waifu-university/img/ransom-note.png 1.5x, /xintra-lab-waifu-university/img/ransom-note.png 2x"
+        sizes="auto"
+        alt="/xintra-lab-waifu-university/img/ransom-note.png"
+        title="/xintra-lab-waifu-university/img/ransom-note.png" height="1118"   width="1744" ></figure></p>
+<br>
+<h3 id="12-initial-access-via-entraid" class="headerLink">
+    <a href="#12-initial-access-via-entraid" class="header-mark"></a>1.2. Initial access via EntraID</h3><p>There was several failed login attempts on the <code>identity provider</code> of <strong>Waifu&rsquo;s university</strong>, which is <code>Microsoft EntraID</code> (the new name for <em>Microsoft Azure Active Directory</em>). This is something we can notice by filtering for the <code>azure.activitylogs.result_type</code> field with the value of <code>50126</code>.</p>
+<br>
+<p><figure><img
+        
+        loading="lazy"
+        src="/xintra-lab-waifu-university/img/resultDesc-event50126.png"
+        srcset="/xintra-lab-waifu-university/img/resultDesc-event50126.png, /xintra-lab-waifu-university/img/resultDesc-event50126.png 1.5x, /xintra-lab-waifu-university/img/resultDesc-event50126.png 2x"
+        sizes="auto"
+        alt="/xintra-lab-waifu-university/img/resultDesc-event50126.png"
+        title="/xintra-lab-waifu-university/img/resultDesc-event50126.png" height="230"   width="1360" ></figure></p>
+<br>
+<p>This &ldquo;event ID&rdquo; is related to <strong>Azure AD sign-in logs</strong> which capture informations about user sign-in activities within the Azure AD environment. In this case, the description displayed shows some kind of bruteforce activity.</p>
+<br>
+<p><figure><img
+        
+        loading="lazy"
+        src="/xintra-lab-waifu-university/img/better-timeline.png"
+        srcset="/xintra-lab-waifu-university/img/better-timeline.png, /xintra-lab-waifu-university/img/better-timeline.png 1.5x, /xintra-lab-waifu-university/img/better-timeline.png 2x"
+        sizes="auto"
+        alt="/xintra-lab-waifu-university/img/better-timeline.png"
+        title="/xintra-lab-waifu-university/img/better-timeline.png" height="560"   width="2692" ></figure></p>
+<br>
+<p>As the we can see on the timeline, those failed login attempts started on the <code>3rd of March 2024</code> at around <code>11:01:11 AM</code> and finished at <code>11:54:58 AM</code>.</p>
+<br>
+<p><figure><img
+        
+        loading="lazy"
+        src="/xintra-lab-waifu-university/img/unique-users-auth-attempt.png"
+        srcset="/xintra-lab-waifu-university/img/unique-users-auth-attempt.png, /xintra-lab-waifu-university/img/unique-users-auth-attempt.png 1.5x, /xintra-lab-waifu-university/img/unique-users-auth-attempt.png 2x"
+        sizes="auto"
+        alt="/xintra-lab-waifu-university/img/unique-users-auth-attempt.png"
+        title="/xintra-lab-waifu-university/img/unique-users-auth-attempt.png" height="772"   width="2134" ></figure></p>
+<br>
+<p>By adding the field <code>azure.activitylogs.identity_name</code> as a column, we can see the number of unique users that were targeted by the login attempts. The <code>Field statistics</code> tab show that the attacker attempted to authenticate with a total of <code>8</code> users.</p>
+<br>
+<p><figure><img
+        
+        loading="lazy"
+        src="/xintra-lab-waifu-university/img/log-info-useragent.png"
+        srcset="/xintra-lab-waifu-university/img/log-info-useragent.png, /xintra-lab-waifu-university/img/log-info-useragent.png 1.5x, /xintra-lab-waifu-university/img/log-info-useragent.png 2x"
+        sizes="auto"
+        alt="/xintra-lab-waifu-university/img/log-info-useragent.png"
+        title="/xintra-lab-waifu-university/img/log-info-useragent.png" height="684"   width="886" ></figure></p>
+<br>
+<p>In the event details, we have some interesting informations such as the user agent used by the threat actor.</p>
+<br>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.0.0 Safari/537.36
+</span></span></code></pre></td></tr></table>
+</div>
+</div><br>
+<p>We also notice from which IP the threat actor was conducting his attack.</p>
+<br>
+<p><figure><img
+        
+        loading="lazy"
+        src="/xintra-lab-waifu-university/img/ip-cloud-proxy.png"
+        srcset="/xintra-lab-waifu-university/img/ip-cloud-proxy.png, /xintra-lab-waifu-university/img/ip-cloud-proxy.png 1.5x, /xintra-lab-waifu-university/img/ip-cloud-proxy.png 2x"
+        sizes="auto"
+        alt="/xintra-lab-waifu-university/img/ip-cloud-proxy.png"
+        title="/xintra-lab-waifu-university/img/ip-cloud-proxy.png" height="780"   width="988" ></figure></p>
+<br>
+<p>It appears he used a cloud provider (<code>AWS</code>) to proxy his requests. Although the information was available in the event details, it is not a bad idea to double check on VirusTotal.</p>
+<br>
+<p><figure><img
+        
+        loading="lazy"
+        src="/xintra-lab-waifu-university/img/vt-ip-check.png"
+        srcset="/xintra-lab-waifu-university/img/vt-ip-check.png, /xintra-lab-waifu-university/img/vt-ip-check.png 1.5x, /xintra-lab-waifu-university/img/vt-ip-check.png 2x"
+        sizes="auto"
+        alt="/xintra-lab-waifu-university/img/vt-ip-check.png"
+        title="/xintra-lab-waifu-university/img/vt-ip-check.png" height="1520"   width="3042" ></figure></p>
+<br>
+<p>That said, the information held in this event was limited and it&rsquo;s hard to see if the threat actor managed to succesfully login. What can be done is temporary disabling the <code>azure.activitylogs.result_type</code> filter while adding the field <code>azure.activitylogs.identity_name</code> equal to <code>exists</code> to remove noisy events that are not related to this activity. Also, something useful is adding the field <code>azure.activitylogs.resultDescription</code> as a column to quickly notice a different behavior</p>
+<br>
+<p><figure><img
+        
+        loading="lazy"
+        src="/xintra-lab-waifu-university/img/filter-by-description.png"
+        srcset="/xintra-lab-waifu-university/img/filter-by-description.png, /xintra-lab-waifu-university/img/filter-by-description.png 1.5x, /xintra-lab-waifu-university/img/filter-by-description.png 2x"
+        sizes="auto"
+        alt="/xintra-lab-waifu-university/img/filter-by-description.png"
+        title="/xintra-lab-waifu-university/img/filter-by-description.png" height="550"   width="2572" ></figure></p>
+<br>
+<p>As you may see, for the same number of user, we have a few more events. By looking at the distinct descriptions, one that caught my eye: <code>Strong Authentication is required</code>. For me, it meant the primary authentication was successful (<code>username:password</code> couple), but that additional authentication was required (such as <code>MFA</code>). Adding this value as a filter is a good idea to see for which user those events occured.</p>
+<br>
+<p><figure><img
+        
+        loading="lazy"
+        src="/xintra-lab-waifu-university/img/unique-username.png"
+        srcset="/xintra-lab-waifu-university/img/unique-username.png, /xintra-lab-waifu-university/img/unique-username.png 1.5x, /xintra-lab-waifu-university/img/unique-username.png 2x"
+        sizes="auto"
+        alt="/xintra-lab-waifu-university/img/unique-username.png"
+        title="/xintra-lab-waifu-university/img/unique-username.png" height="606"   width="994" ></figure></p>
+<br>
+<p>The only user concerned was <code>Ignazio Vanderplas</code>.
+Furthermore, we can see more interesting informations in the event details related to the user and the authentication.</p>
+<br>
+<p><figure><img
+        
+        loading="lazy"
+        src="/xintra-lab-waifu-university/img/upn.png"
+        srcset="/xintra-lab-waifu-university/img/upn.png, /xintra-lab-waifu-university/img/upn.png 1.5x, /xintra-lab-waifu-university/img/upn.png 2x"
+        sizes="auto"
+        alt="/xintra-lab-waifu-university/img/upn.png"
+        title="/xintra-lab-waifu-university/img/upn.png" height="156"   width="718" ></figure></p>
+<br>
+<p>For example, the <code>userPrincipalName</code> (UPN) is available. Here, the value for the user is <code>ivanderplas1@waifu.phd</code>.</p>
+<br>
+<p><figure><img
+        
+        loading="lazy"
+        src="/xintra-lab-waifu-university/img/auth-success.png"
+        srcset="/xintra-lab-waifu-university/img/auth-success.png, /xintra-lab-waifu-university/img/auth-success.png 1.5x, /xintra-lab-waifu-university/img/auth-success.png 2x"
+        sizes="auto"
+        alt="/xintra-lab-waifu-university/img/auth-success.png"
+        title="/xintra-lab-waifu-university/img/auth-success.png" height="264"   width="858" ></figure></p>
+<br>
+<p>Also, it appears the <code>&quot;authenticationMethod&quot;: &quot;Password&quot;</code> succeeded, demonstrating the threat actor successfully logged into the account but was locked by the MFA. But he still  managed to authenticate, even if MFA was setup. Indeed, he used a technique called <code>MFA push fatigue</code>.</p>
+<br>
+<blockquote>
+<p><em>A multi-factor authentication (MFA) fatigue attack – also known as MFA Bombing or MFA Spamming – is a social engineering cyberattack strategy where attackers repeatedly push second-factor authentication requests to the target victim’s email, phone, or registered devices. The goal is to coerce the victim into confirming their identity via notification, thus authenticating the attackers attempt at entering their account or device.</em>
+Source: <a href="https://www.beyondtrust.com/resources/glossary/mfa-fatigue-attack" target="_blank" rel="noopener noreferrer">BeyondTrust</a></p>
+</blockquote>
+<br>
+<p>To find this information, increasing the timespan by 2 hours and filtering with the <code>azure.activitylogs.identity_name</code> of <code>Ignazio Vanderplas</code> is a great way. Then, same method as before, by looking at the distinct <code>resultDescription</code> messages to see if there was any interesting one. One was more present than the others:</p>
+<br>
+<p><figure><img
+        
+        loading="lazy"
+        src="/xintra-lab-waifu-university/img/auth-failed-strong-auth-req.png"
+        srcset="/xintra-lab-waifu-university/img/auth-failed-strong-auth-req.png, /xintra-lab-waifu-university/img/auth-failed-strong-auth-req.png 1.5x, /xintra-lab-waifu-university/img/auth-failed-strong-auth-req.png 2x"
+        sizes="auto"
+        alt="/xintra-lab-waifu-university/img/auth-failed-strong-auth-req.png"
+        title="/xintra-lab-waifu-university/img/auth-failed-strong-auth-req.png" height="596"   width="2736" ></figure></p>
+<br>
+<p>The message <code>Authentication failed during strong authentication request</code> is way more present than the others for this particular user. Having a look at the event details:</p>
+<br>
+<p><figure><img
+        
+        loading="lazy"
+        src="/xintra-lab-waifu-university/img/denied-mfa.png"
+        srcset="/xintra-lab-waifu-university/img/denied-mfa.png, /xintra-lab-waifu-university/img/denied-mfa.png 1.5x, /xintra-lab-waifu-university/img/denied-mfa.png 2x"
+        sizes="auto"
+        alt="/xintra-lab-waifu-university/img/denied-mfa.png"
+        title="/xintra-lab-waifu-university/img/denied-mfa.png" height="198"   width="848" ></figure></p>
+<br>
+<p>It shows the MFA was denied by the user, meaning that each of this event sent a MFA push notification to the user. In total, he received atleast 29 of them, and in a very short timespan, matching the definition of the MFA push fatigue.</p>
+<br>
+<p><figure><img
+        
+        loading="lazy"
+        src="/xintra-lab-waifu-university/img/auth-succesful.png"
+        srcset="/xintra-lab-waifu-university/img/auth-succesful.png, /xintra-lab-waifu-university/img/auth-succesful.png 1.5x, /xintra-lab-waifu-university/img/auth-succesful.png 2x"
+        sizes="auto"
+        alt="/xintra-lab-waifu-university/img/auth-succesful.png"
+        title="/xintra-lab-waifu-university/img/auth-succesful.png" height="1520"   width="2860" ></figure></p>
+<br>
+<p><figure><img
+        
+        loading="lazy"
+        src="/xintra-lab-waifu-university/img/auth-success-proof.png"
+        srcset="/xintra-lab-waifu-university/img/auth-success-proof.png, /xintra-lab-waifu-university/img/auth-success-proof.png 1.5x, /xintra-lab-waifu-university/img/auth-success-proof.png 2x"
+        sizes="auto"
+        alt="/xintra-lab-waifu-university/img/auth-success-proof.png"
+        title="/xintra-lab-waifu-university/img/auth-success-proof.png" height="646"   width="2912" ></figure></p>
+<br>
+<p>Inside this same event, we also have a field displaying the IP that was used to successfully logging into the environment:</p>
+<br>
+<p><figure><img
+        
+        loading="lazy"
+        src="/xintra-lab-waifu-university/img/succesful-login-IP.png"
+        srcset="/xintra-lab-waifu-university/img/succesful-login-IP.png, /xintra-lab-waifu-university/img/succesful-login-IP.png 1.5x, /xintra-lab-waifu-university/img/succesful-login-IP.png 2x"
+        sizes="auto"
+        alt="/xintra-lab-waifu-university/img/succesful-login-IP.png"
+        title="/xintra-lab-waifu-university/img/succesful-login-IP.png" height="74"   width="760" ></figure></p>
+<br>
+<p><figure><img
+        
+        loading="lazy"
+        src="/xintra-lab-waifu-university/img/fingerprint-ip-info-correlation.png"
+        srcset="/xintra-lab-waifu-university/img/fingerprint-ip-info-correlation.png, /xintra-lab-waifu-university/img/fingerprint-ip-info-correlation.png 1.5x, /xintra-lab-waifu-university/img/fingerprint-ip-info-correlation.png 2x"
+        sizes="auto"
+        alt="/xintra-lab-waifu-university/img/fingerprint-ip-info-correlation.png"
+        title="/xintra-lab-waifu-university/img/fingerprint-ip-info-correlation.png" height="1344"   width="1540" ></figure></p>
+<br>
+<p>We have also have more details about it. The IP corresponds to a server located in Miami in the United States and belongs to AS-CHOOPA. Investigating this IP with Shodan gave us more details. <a href="https://beta.shodan.io/host/207.246.70.192#22" target="_blank" rel="noopener noreferrer">Shodan Result</a></p>
+<br>
+<p><figure><img
+        
+        loading="lazy"
+        src="/xintra-lab-waifu-university/img/shodan-result-fingerprint.png"
+        srcset="/xintra-lab-waifu-university/img/shodan-result-fingerprint.png, /xintra-lab-waifu-university/img/shodan-result-fingerprint.png 1.5x, /xintra-lab-waifu-university/img/shodan-result-fingerprint.png 2x"
+        sizes="auto"
+        alt="/xintra-lab-waifu-university/img/shodan-result-fingerprint.png"
+        title="/xintra-lab-waifu-university/img/shodan-result-fingerprint.png" height="1366"   width="2932" ></figure></p>
+<br>
+<p>We can see the server has different open ports</p>
+<ul>
+<li>SSH (22)</li>
+<li>HTTP &amp; HTTPS (80, 443)</li>
+</ul>
+<p>Thanks to the SSH information grabbed by Shodan, we even managed to retrieve the SSH fingerprint for the IP address.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">97:2e:5d:5e:ca:d1:15:a9:51:ed:8b:0e:55:f1:6a:ee
+</span></span></code></pre></td></tr></table>
+</div>
+</div><br>
+<h3 id="13-breaching-the-university" class="headerLink">
+    <a href="#13-breaching-the-university" class="header-mark"></a>1.3. Breaching the university</h3><p>After knowing the threat actor successfully managed to connect to the VPN through the account <code>ivanderplas1@waifu.phd</code>, the next step was to find the breached host, which is the hostname the attacker was able to first access once in the network.</p>
+<p>Since the threat actor logged into <code>OpenVPN</code>, it is interesting to look for logins from the DMZ. Here are the filters that can be used to find the information:</p>
+<ul>
+<li>Windows Event Log ID <code>4624</code> corresponding to <code>An account was succesfully logged on</code>,</li>
+<li>the username of the breached account <code>Ignazio Vanderplas</code>with the filter <code>winlog.event_data.TargetUserName</code> equal to <code>ivanderplas1</code>,</li>
+<li>the <code>CC-VDG-01</code> host&rsquo;s IP address (<code>10.0.0.12</code>) which is the Virtual Desktop Gateway.</li>
+</ul>
+<br>
+<p><figure><img
+        
+        loading="lazy"
+        src="/xintra-lab-waifu-university/img/first-host-breached.png"
+        srcset="/xintra-lab-waifu-university/img/first-host-breached.png, /xintra-lab-waifu-university/img/first-host-breached.png 1.5x, /xintra-lab-waifu-university/img/first-host-breached.png 2x"
+        sizes="auto"
+        alt="/xintra-lab-waifu-university/img/first-host-breached.png"
+        title="/xintra-lab-waifu-university/img/first-host-breached.png" height="1306"   width="2632" ></figure></p>
+<br>
+<p>We can notice the first successfull connection was made at <code>13:37:32 PM</code> the <code>3rd of March 2024</code> on the host called <code>CC-JMP-01</code> corresponding to the jumpbox host.</p>
+<br>
+<p><figure><img
+        
+        loading="lazy"
+        src="/xintra-lab-waifu-university/img/workstation-name.png"
+        srcset="/xintra-lab-waifu-university/img/workstation-name.png, /xintra-lab-waifu-university/img/workstation-name.png 1.5x, /xintra-lab-waifu-university/img/workstation-name.png 2x"
+        sizes="auto"
+        alt="/xintra-lab-waifu-university/img/workstation-name.png"
+        title="/xintra-lab-waifu-university/img/workstation-name.png" height="694"   width="1904" ></figure></p>
+<br>
+<p>Another interesting information is the field <code>winlog.event_data.WorkstationName</code> which is related to the hostname of the threat actor&rsquo;s device used to get into the network.</p>
+<p>After knowing the attacker accessed the <code>CC-JMP-01</code> host, we investigated its dump. An interesting thing to look out for is the browser history which is located in <code>C:\Users\ivanderplas1\AppData\Local\Microsoft\Edge\User Data\Default\History</code></p>
+<br>
+<p><figure><img
+        
+        loading="lazy"
+        src="/xintra-lab-waifu-university/img/first-browser-search.png"
+        srcset="/xintra-lab-waifu-university/img/first-browser-search.png, /xintra-lab-waifu-university/img/first-browser-search.png 1.5x, /xintra-lab-waifu-university/img/first-browser-search.png 2x"
+        sizes="auto"
+        alt="/xintra-lab-waifu-university/img/first-browser-search.png"
+        title="/xintra-lab-waifu-university/img/first-browser-search.png" height="1100"   width="2320" ></figure></p>
+<br>
+<p>We can see he searched for <code>what is my ip</code>. anf that&rsquo;s pretty much it. But another interesting thing to look out for is which commands has been executed by the attacker. It&rsquo;s worth investigating the Powershell command line history file located at <code>C\Users\ivanderplas1\AppData\Roaming\Microsoft\Windows\PowerShell\PSReadline</code></p>
+<br>
+<p><figure><img
+        
+        loading="lazy"
+        src="/xintra-lab-waifu-university/img/ps-history-github-url.png"
+        srcset="/xintra-lab-waifu-university/img/ps-history-github-url.png, /xintra-lab-waifu-university/img/ps-history-github-url.png 1.5x, /xintra-lab-waifu-university/img/ps-history-github-url.png 2x"
+        sizes="auto"
+        alt="/xintra-lab-waifu-university/img/ps-history-github-url.png"
+        title="/xintra-lab-waifu-university/img/ps-history-github-url.png" height="496"   width="1772" ></figure></p>
+<br>
+<p>The attacker downloaded <code>SharpHound.exe</code> as <code>s.exe</code> on the host directly from Github, in the following repo: <code>https://github.com/Flangvik/SharpCollection</code> and executed it with the command <code>.\s.exe</code>.  Surely, this allowed him to enumerate the network in order to find privilege escalation and lateral movements vectors.</p>
+<br>
+<p><figure><img
+        
+        loading="lazy"
+        src="/xintra-lab-waifu-university/img/powershell-process-dns-query.png"
+        srcset="/xintra-lab-waifu-university/img/powershell-process-dns-query.png, /xintra-lab-waifu-university/img/powershell-process-dns-query.png 1.5x, /xintra-lab-waifu-university/img/powershell-process-dns-query.png 2x"
+        sizes="auto"
+        alt="/xintra-lab-waifu-university/img/powershell-process-dns-query.png"
+        title="/xintra-lab-waifu-university/img/powershell-process-dns-query.png" height="286"   width="2612" ></figure></p>
+<br>
+<p>Additionally, we can see that in Windows Event with an <code>event.code</code>of <code>22</code> corresponding to <code>DNS query</code>. Here&rsquo;s the proof that a Powershell process has been spawned to make a DNS query to <code>github.com</code> at <code>17:09:24 PM</code> on the same day.</p>
+<br>
+<h3 id="14-privilege-escalation" class="headerLink">
+    <a href="#14-privilege-escalation" class="header-mark"></a>1.4. Privilege Escalation</h3><p>After thorough analysis, we were able to identify the threat actor was querying service information on the beachhead host about an hour after the previous event. Shortly after they seemed to have administrator access.</p>
+<br>
+<p><figure><img
+        
+        loading="lazy"
+        src="/xintra-lab-waifu-university/img/unquoted-service-path-commands.png"
+        srcset="/xintra-lab-waifu-university/img/unquoted-service-path-commands.png, /xintra-lab-waifu-university/img/unquoted-service-path-commands.png 1.5x, /xintra-lab-waifu-university/img/unquoted-service-path-commands.png 2x"
+        sizes="auto"
+        alt="/xintra-lab-waifu-university/img/unquoted-service-path-commands.png"
+        title="/xintra-lab-waifu-university/img/unquoted-service-path-commands.png" height="552"   width="2530" ></figure></p>
+<br>
+<p>At <code>17:53:50 PM</code>, the attacker executed several commands for enumeration purposes in order to find a privilege escalation vector.</p>
+<br>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">wmic service get name,displayname,pathname,startmode
+</span></span><span class="line"><span class="cl">findstr /i &#34;auto&#34;
+</span></span><span class="line"><span class="cl">findstr /i /v &#34;c:\windows\\&#34;
+</span></span><span class="line"><span class="cl">findstr /i /v &#34;&#34;&#34;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><br>
+<p>Those commands are used to find <code>Unquoted Service Paths</code>. On the <code>MITRE ATT&amp;CK</code> website, we can find it is corresponding to the sub-technique <a href="https://attack.mitre.org/techniques/T1574/009/" target="_blank" rel="noopener noreferrer">&ldquo;T1574.009 - Path Interception by Unquoted Path&rdquo;</a> which is commonly used for privilege escalation.</p>
+<p>By doing some research, we can find the exact same commands in this <a href="https://github.com/pha5matis/Pentesting-Guide/blob/master/privilege_escalation_windows.md" target="_blank" rel="noopener noreferrer">pentest cheatsheet</a> on Github.</p>
+<br>
+<p><figure><img
+        
+        loading="lazy"
+        src="/xintra-lab-waifu-university/img/command-pentest-cheatsheet.png"
+        srcset="/xintra-lab-waifu-university/img/command-pentest-cheatsheet.png, /xintra-lab-waifu-university/img/command-pentest-cheatsheet.png 1.5x, /xintra-lab-waifu-university/img/command-pentest-cheatsheet.png 2x"
+        sizes="auto"
+        alt="/xintra-lab-waifu-university/img/command-pentest-cheatsheet.png"
+        title="/xintra-lab-waifu-university/img/command-pentest-cheatsheet.png" height="334"   width="2036" ></figure></p>
+<br>
+<p>A few minutes after, at <code>18:15:18 PM</code>, the attacker created a file called <code>waifu.exe</code>
+(<code>SHA1: dc202a87712c20412ab292fb0b868cff97b68db3</code> ).</p>
+<br>
+<p><figure><img
+        
+        loading="lazy"
+        src="/xintra-lab-waifu-university/img/creation-waifu-exe.png"
+        srcset="/xintra-lab-waifu-university/img/creation-waifu-exe.png, /xintra-lab-waifu-university/img/creation-waifu-exe.png 1.5x, /xintra-lab-waifu-university/img/creation-waifu-exe.png 2x"
+        sizes="auto"
+        alt="/xintra-lab-waifu-university/img/creation-waifu-exe.png"
+        title="/xintra-lab-waifu-university/img/creation-waifu-exe.png" height="996"   width="3358" ></figure></p>
+<br>
+<br>
+<p><figure><img
+        
+        loading="lazy"
+        src="/xintra-lab-waifu-university/img/sha1-waifu.png"
+        srcset="/xintra-lab-waifu-university/img/sha1-waifu.png, /xintra-lab-waifu-university/img/sha1-waifu.png 1.5x, /xintra-lab-waifu-university/img/sha1-waifu.png 2x"
+        sizes="auto"
+        alt="/xintra-lab-waifu-university/img/sha1-waifu.png"
+        title="/xintra-lab-waifu-university/img/sha1-waifu.png" height="258"   width="1442" ></figure></p>
+<br>
+<p>Then, one minute later at <code>18:16:21 PM</code>, the threat actor started the service <code>Waifu Service</code>.</p>
+<br>
+<p><figure><img
+        
+        loading="lazy"
+        src="/xintra-lab-waifu-university/img/start-service-waifu.png"
+        srcset="/xintra-lab-waifu-university/img/start-service-waifu.png, /xintra-lab-waifu-university/img/start-service-waifu.png 1.5x, /xintra-lab-waifu-university/img/start-service-waifu.png 2x"
+        sizes="auto"
+        alt="/xintra-lab-waifu-university/img/start-service-waifu.png"
+        title="/xintra-lab-waifu-university/img/start-service-waifu.png" height="1120"   width="3380" ></figure></p>
+<br>
+<p>The <code>Waifu Service</code> is directly linked to the <code>waifu.exe</code> binary created previously. Searching for the hash of the binary had no results on VirusTotal.</p>
+<br>
+<hr>
+<h2 id="phase-2-lateral-movement-03032024" class="headerLink">
+    <a href="#phase-2-lateral-movement-03032024" class="header-mark"></a>Phase 2: Lateral Movement (03/03/2024)</h2><h3 id="21-remote-access" class="headerLink">
+    <a href="#21-remote-access" class="header-mark"></a>2.1. Remote Access</h3><p>Once the threat actor managed to escalate his privileges as <code>NT AUTHORITY\SYSTEM</code>, he installed <code>ScreenConnect</code> at <code>18:21:26 PM</code>. We can see that by keeping the same timeline and filtering with <code>winlog.event_data.User</code> equal to <code>NT AUTHORITY\SYSTEM</code>.</p>
+<br>
+<p><figure><img
+        
+        loading="lazy"
+        src="/xintra-lab-waifu-university/img/screenconnect-install-1.png"
+        srcset="/xintra-lab-waifu-university/img/screenconnect-install-1.png, /xintra-lab-waifu-university/img/screenconnect-install-1.png 1.5x, /xintra-lab-waifu-university/img/screenconnect-install-1.png 2x"
+        sizes="auto"
+        alt="/xintra-lab-waifu-university/img/screenconnect-install-1.png"
+        title="/xintra-lab-waifu-university/img/screenconnect-install-1.png" height="108"   width="2612" ></figure></p>
+<br>
+<p>When we take a closer look at the command that has been executed, we can see that <code>ScreenConnect</code> will communicate with the host <code>instance-i77ws2-relay.screenconnect.com</code></p>
+<br>
+<p><figure><img
+        
+        loading="lazy"
+        src="/xintra-lab-waifu-university/img/screenconnect-run.png"
+        srcset="/xintra-lab-waifu-university/img/screenconnect-run.png, /xintra-lab-waifu-university/img/screenconnect-run.png 1.5x, /xintra-lab-waifu-university/img/screenconnect-run.png 2x"
+        sizes="auto"
+        alt="/xintra-lab-waifu-university/img/screenconnect-run.png"
+        title="/xintra-lab-waifu-university/img/screenconnect-run.png" height="1036"   width="2608" ></figure></p>
+<br>
+<p>The threat actor then ran an interesting payload. He replaced the legitimate <code>C\Program Files\Python312\python.exe</code> with some kind of malware with the help of the <code>ScreenConnect File Manager</code>. As far as we know from the events we have, the binary was still legitimate on the 4th of March 2024 at <code>13:09:17 PM</code>. The next day, 5th of March 2024 at <code>23:25:24 PM</code>, the malicious <code>python.exe</code> was there. We confirmed that with the hash of <code>python.exe</code> that changed.</p>
+<br>
+<p><figure><img
+        
+        loading="lazy"
+        src="/xintra-lab-waifu-university/img/hash-change-python-1.png"
+        srcset="/xintra-lab-waifu-university/img/hash-change-python-1.png, /xintra-lab-waifu-university/img/hash-change-python-1.png 1.5x, /xintra-lab-waifu-university/img/hash-change-python-1.png 2x"
+        sizes="auto"
+        alt="/xintra-lab-waifu-university/img/hash-change-python-1.png"
+        title="/xintra-lab-waifu-university/img/hash-change-python-1.png" height="536"   width="2950" ></figure></p>
+<br>
+<p>Sadly, the sysmon event logs didn&rsquo;t record any network activity due to the limitation of the configuration setup by <code>Waifu University</code>. Still, we managed to get the process dump from them for further analysis.</p>
+<p>By looking at the process dump, we find it was a Cobalt Strike beacon. By using the tool <code>Cobalt Strike Configuration Extractor and Parser</code>, we manage to extract the IP the beacon talks to.</p>
+<br>
+<p><figure><img
+        
+        loading="lazy"
+        src="/xintra-lab-waifu-university/img/csce-python-exe.png"
+        srcset="/xintra-lab-waifu-university/img/csce-python-exe.png, /xintra-lab-waifu-university/img/csce-python-exe.png 1.5x, /xintra-lab-waifu-university/img/csce-python-exe.png 2x"
+        sizes="auto"
+        alt="/xintra-lab-waifu-university/img/csce-python-exe.png"
+        title="/xintra-lab-waifu-university/img/csce-python-exe.png" height="738"   width="2426" ></figure></p>
+<br>
+<p>As you can see on the above, the hostname IP address is <code>207.246.70.192</code>. Another interesting information we retrieve is the domain in the <code>host_header</code> which is <code>screenconnect.dev</code>.</p>
+<br>
+<hr>
+<h2 id="phase-3-data-exfiltration-and-additional-lateral-movement-05032024---07032024" class="headerLink">
+    <a href="#phase-3-data-exfiltration-and-additional-lateral-movement-05032024---07032024" class="header-mark"></a>Phase 3: Data Exfiltration and Additional Lateral Movement (05/03/2024 - 07/03/2024)</h2><h3 id="31-accessing-volume-shadow-copies" class="headerLink">
+    <a href="#31-accessing-volume-shadow-copies" class="header-mark"></a>3.1. Accessing Volume Shadow Copies</h3><p>In the meantime, the threat actor managed to access a volume shadow copy of the beachhead host. Indeed, at <code>21:23:17 PM</code> on the 5th of March, they ran the command <code>vssadmin create shadow /for=C:</code> to create a new volume shadow copy of the C drive of <code>CC-JMP-01</code>. They did this in order to pull local password hashes.</p>
+<blockquote>
+<p><em>There are a few ways to dump Active Directory and local password hashes. Until recently, the techniques I had seen used to get the hashes either relied on injecting code in to LSASS or using the Volume Shadow Copy service to obtain copies of the files which contain the hashes.</em>
+Source : <a href="https://web.archive.org/web/20131126032842/http://blog.spiderlabs.com/2013/11/tutorial-for-ntds-goodness-vssadmin-wmis-ntdsdit-system-.html" target="_blank" rel="noopener noreferrer">SpiderLabs Blog</a></p>
+</blockquote>
+<br>
+<p><figure><img
+        
+        loading="lazy"
+        src="/xintra-lab-waifu-university/img/volume-shadow-copy-cmd.png"
+        srcset="/xintra-lab-waifu-university/img/volume-shadow-copy-cmd.png, /xintra-lab-waifu-university/img/volume-shadow-copy-cmd.png 1.5x, /xintra-lab-waifu-university/img/volume-shadow-copy-cmd.png 2x"
+        sizes="auto"
+        alt="/xintra-lab-waifu-university/img/volume-shadow-copy-cmd.png"
+        title="/xintra-lab-waifu-university/img/volume-shadow-copy-cmd.png" height="1190"   width="2806" ></figure></p>
+<br>
+<p>We can also notice the file <code>663bc8c1-f975-4a03-ad75-02145ad1b7c4run.cmd</code> which was responsible for running the volume shadow copy command.</p>
+<h3 id="32-looking-around-the-network" class="headerLink">
+    <a href="#32-looking-around-the-network" class="header-mark"></a>3.2. Looking around the network</h3><p>A few minutes later at <code>21:39:40 PM</code>, the threat actor managed to open a file that was supposed to be in a hidden share from the beachhead host. We managed to saw that by filtering for <code>event.code</code> equal to <code>5140</code> corresponding to <code>A network share object was accessed</code>. Then checking unique distinct entries, we noticed the following share: <code>SuperSecretSecureShare</code>.</p>
+<br>
+<p><figure><img
+        
+        loading="lazy"
+        src="/xintra-lab-waifu-university/img/supersecretsecureshare.png"
+        srcset="/xintra-lab-waifu-university/img/supersecretsecureshare.png, /xintra-lab-waifu-university/img/supersecretsecureshare.png 1.5x, /xintra-lab-waifu-university/img/supersecretsecureshare.png 2x"
+        sizes="auto"
+        alt="/xintra-lab-waifu-university/img/supersecretsecureshare.png"
+        title="/xintra-lab-waifu-university/img/supersecretsecureshare.png" height="608"   width="1502" ></figure></p>
+<br>
+<p>At this point, we then just filtered for <code>winlog.event_Data.ShareName</code> equal to <code>\\*\SuperSecretSecureShare</code> and added the field <code>winlog.event_data.RelativeTargetName</code> as a column to find any file accessed. The attacker first accessed the file <code>you-cant-see-this-cause-I-am-good-at-NTFS-permissions.txt</code>, still at <code>21:39:40 PM</code>.</p>
+<br>
+<p><figure><img
+        
+        loading="lazy"
+        src="/xintra-lab-waifu-university/img/targetname-filter.png"
+        srcset="/xintra-lab-waifu-university/img/targetname-filter.png, /xintra-lab-waifu-university/img/targetname-filter.png 1.5x, /xintra-lab-waifu-university/img/targetname-filter.png 2x"
+        sizes="auto"
+        alt="/xintra-lab-waifu-university/img/targetname-filter.png"
+        title="/xintra-lab-waifu-university/img/targetname-filter.png" height="201"   width="1942" ></figure></p>
+<br>
+<p>This information could also be found in the output CSV file of the LECmd tool from Eric Zimmerman which is a LNK Explorer.</p>
+<br>
+<p><figure><img
+        
+        loading="lazy"
+        src="/xintra-lab-waifu-university/img/secret-share-and-file.png"
+        srcset="/xintra-lab-waifu-university/img/secret-share-and-file.png, /xintra-lab-waifu-university/img/secret-share-and-file.png 1.5x, /xintra-lab-waifu-university/img/secret-share-and-file.png 2x"
+        sizes="auto"
+        alt="/xintra-lab-waifu-university/img/secret-share-and-file.png"
+        title="/xintra-lab-waifu-university/img/secret-share-and-file.png" height="428"   width="2138" ></figure></p>
+<br>
+<p>Back to the Cobalt Strike beacon, we wanted to take a closer look at what has been initiated by it. To do so, a good option was to make an OR syntax filtering for <code>C:\Prgram Files\Python321\python.exe</code> as a <code>ProcessName</code> or as an <code>Image</code> from the creation of the beacon. There was around 15 events found with this method.</p>
+<br>
+<p><figure><img
+        
+        loading="lazy"
+        src="/xintra-lab-waifu-university/img/good-filters-for-beacon-enum.png"
+        srcset="/xintra-lab-waifu-university/img/good-filters-for-beacon-enum.png, /xintra-lab-waifu-university/img/good-filters-for-beacon-enum.png 1.5x, /xintra-lab-waifu-university/img/good-filters-for-beacon-enum.png 2x"
+        sizes="auto"
+        alt="/xintra-lab-waifu-university/img/good-filters-for-beacon-enum.png"
+        title="/xintra-lab-waifu-university/img/good-filters-for-beacon-enum.png" height="560"   width="2440" ></figure></p>
+<br>
+<p>At <code>02:05:13 AM</code> on the 6th of March 2024, the threat actor enumerated the <code>Builtin\Administrators</code> group.</p>
+<br>
+<p><figure><img
+        
+        loading="lazy"
+        src="/xintra-lab-waifu-university/img/security-group-enum-1.png"
+        srcset="/xintra-lab-waifu-university/img/security-group-enum-1.png, /xintra-lab-waifu-university/img/security-group-enum-1.png 1.5x, /xintra-lab-waifu-university/img/security-group-enum-1.png 2x"
+        sizes="auto"
+        alt="/xintra-lab-waifu-university/img/security-group-enum-1.png"
+        title="/xintra-lab-waifu-university/img/security-group-enum-1.png" height="120"   width="2820" ></figure></p>
+<br>
+<p>Then, they managed to create the file <code>SharpHound.exe</code> at <code>02:18:41 AM</code>.</p>
+<br>
+<p><figure><img
+        
+        loading="lazy"
+        src="/xintra-lab-waifu-university/img/SharpHound-creation-through-beacon.png"
+        srcset="/xintra-lab-waifu-university/img/SharpHound-creation-through-beacon.png, /xintra-lab-waifu-university/img/SharpHound-creation-through-beacon.png 1.5x, /xintra-lab-waifu-university/img/SharpHound-creation-through-beacon.png 2x"
+        sizes="auto"
+        alt="/xintra-lab-waifu-university/img/SharpHound-creation-through-beacon.png"
+        title="/xintra-lab-waifu-university/img/SharpHound-creation-through-beacon.png" height="148"   width="2020" ></figure></p>
+<br>
+<p>The same information could be found in the parsed <code>$MFT</code> with a little bit more of efforts.</p>
+<br>
+<p><figure><img
+        
+        loading="lazy"
+        src="/xintra-lab-waifu-university/img/mft-sharphound.png"
+        srcset="/xintra-lab-waifu-university/img/mft-sharphound.png, /xintra-lab-waifu-university/img/mft-sharphound.png 1.5x, /xintra-lab-waifu-university/img/mft-sharphound.png 2x"
+        sizes="auto"
+        alt="/xintra-lab-waifu-university/img/mft-sharphound.png"
+        title="/xintra-lab-waifu-university/img/mft-sharphound.png" height="738"   width="2612" ></figure></p>
+<br>
+<p>That said, they didn&rsquo;t manage to execute this tool. Indeed, after filtering for <code>event.code</code> equal to <code>4688</code> to find <code>created processes</code>, there was no result for the <code>SharpHound.exe</code>binary. As there was no evidence of execution, we can assume the threat actor didn&rsquo;t execute the tool succesfully.</p>
+<h3 id="33-domain-dominance" class="headerLink">
+    <a href="#33-domain-dominance" class="header-mark"></a>3.3. Domain dominance</h3><p>A few minutes later at <code>02:13:16 AM</code> on the 6th of March 2024, the threat actor attempted to install a service called <code>8628f7b</code> on the Domain Controller, linked to the <code>8628f7b.exe</code> binary.</p>
+<br>
+<p><figure><img
+        
+        loading="lazy"
+        src="/xintra-lab-waifu-university/img/service-installation.png"
+        srcset="/xintra-lab-waifu-university/img/service-installation.png, /xintra-lab-waifu-university/img/service-installation.png 1.5x, /xintra-lab-waifu-university/img/service-installation.png 2x"
+        sizes="auto"
+        alt="/xintra-lab-waifu-university/img/service-installation.png"
+        title="/xintra-lab-waifu-university/img/service-installation.png" height="782"   width="2696" ></figure></p>
+<br>
+<p>Then at <code>02:22:02 AM</code> and <code>02:22:51 AM</code>, the attacker logged in with the account <code>CC-Admin</code> on the Domain Controller <code>CC-DC-01</code>. An interesting information we could find investigating those logs was the operating system distribution the threat actor is using: <a href="https://parrotsec.org/" target="_blank" rel="noopener noreferrer">Parrot</a>, a famous OS for security professionnals like <code>Kali Linux</code>. The information was found in 2 different events IDs :</p>
+<ul>
+<li>4776 -&gt; The computer attempted to validate the credentials for an account</li>
+<li>4624 -&gt; An account was successfully logged on.</li>
+</ul>
+<br>
+<p><figure><img
+        
+        loading="lazy"
+        src="/xintra-lab-waifu-university/img/parrot-workstation.png"
+        srcset="/xintra-lab-waifu-university/img/parrot-workstation.png, /xintra-lab-waifu-university/img/parrot-workstation.png 1.5x, /xintra-lab-waifu-university/img/parrot-workstation.png 2x"
+        sizes="auto"
+        alt="/xintra-lab-waifu-university/img/parrot-workstation.png"
+        title="/xintra-lab-waifu-university/img/parrot-workstation.png" height="258"   width="3040" ></figure></p>
+<br>
+<p><figure><img
+        
+        loading="lazy"
+        src="/xintra-lab-waifu-university/img/workstation-name-2.png"
+        srcset="/xintra-lab-waifu-university/img/workstation-name-2.png, /xintra-lab-waifu-university/img/workstation-name-2.png 1.5x, /xintra-lab-waifu-university/img/workstation-name-2.png 2x"
+        sizes="auto"
+        alt="/xintra-lab-waifu-university/img/workstation-name-2.png"
+        title="/xintra-lab-waifu-university/img/workstation-name-2.png" height="630"   width="858" ></figure></p>
+<br>
+<p>Around 30 minutes later at<code>02:53:15 AM</code>, the user <code>CC-Admin</code> ran the <code>InjectDLL.exe</code> binary from the <code>AADInternals</code> toolkit in order to inject the dll <code>PTASpy.dll</code>into a process with a PID of <code>3616</code>.</p>
+<br>
+<p><figure><img
+        
+        loading="lazy"
+        src="/xintra-lab-waifu-university/img/dll-injection.png"
+        srcset="/xintra-lab-waifu-university/img/dll-injection.png, /xintra-lab-waifu-university/img/dll-injection.png 1.5x, /xintra-lab-waifu-university/img/dll-injection.png 2x"
+        sizes="auto"
+        alt="/xintra-lab-waifu-university/img/dll-injection.png"
+        title="/xintra-lab-waifu-university/img/dll-injection.png" height="352"   width="2224" ></figure></p>
+<br>
+<p>Having the PID of the process injected into, we pivoted with that information to see which process had this PID before the injection. Something worth noting is we had to also filter for the hexadecimal equivalent of the PID (<code>3616</code> in <em>base 10</em> is equal to <code>0xe20</code> in <em>base 16</em>). It appeared the file name of that process was <code>AzureADConnectAuthenticationAgentService.exe</code></p>
+<br>
+<p><figure><img
+        
+        loading="lazy"
+        src="/xintra-lab-waifu-university/img/dll-process-name-injection.png"
+        srcset="/xintra-lab-waifu-university/img/dll-process-name-injection.png, /xintra-lab-waifu-university/img/dll-process-name-injection.png 1.5x, /xintra-lab-waifu-university/img/dll-process-name-injection.png 2x"
+        sizes="auto"
+        alt="/xintra-lab-waifu-university/img/dll-process-name-injection.png"
+        title="/xintra-lab-waifu-university/img/dll-process-name-injection.png" height="1084"   width="3382" ></figure></p>
+<br>
+<p>And it makes sense because while investigating for <code>PTASpy</code>, I stumbled across the <a href="https://github.com/Gerenios/AADInternals/blob/master/PTASpy.ps1" target="_blank" rel="noopener noreferrer">PTASpy.ps1</a>script on Github. By looking at it, we quickly noticed that PTASpy <strong>collects credentials</strong> and <strong>needs to be run on a computer with Azure AD Authentication Agent running</strong>, hence why it was injected in this process.</p>
+<br>
+<p><figure><img
+        
+        loading="lazy"
+        src="/xintra-lab-waifu-university/img/ptaspy-ps1-script.png"
+        srcset="/xintra-lab-waifu-university/img/ptaspy-ps1-script.png, /xintra-lab-waifu-university/img/ptaspy-ps1-script.png 1.5x, /xintra-lab-waifu-university/img/ptaspy-ps1-script.png 2x"
+        sizes="auto"
+        alt="/xintra-lab-waifu-university/img/ptaspy-ps1-script.png"
+        title="/xintra-lab-waifu-university/img/ptaspy-ps1-script.png" height="626"   width="2280" ></figure></p>
+<br>
+<p>Looking at the users present on <code>CC-DC-01</code>, we can assume that the credentials of the user <code>cpecht7</code> could have get their credentials stolen by the DLL.</p>
+<br>
+<p><figure><img
+        
+        loading="lazy"
+        src="/xintra-lab-waifu-university/img/user-creds-stolen.png"
+        srcset="/xintra-lab-waifu-university/img/user-creds-stolen.png, /xintra-lab-waifu-university/img/user-creds-stolen.png 1.5x, /xintra-lab-waifu-university/img/user-creds-stolen.png 2x"
+        sizes="auto"
+        alt="/xintra-lab-waifu-university/img/user-creds-stolen.png"
+        title="/xintra-lab-waifu-university/img/user-creds-stolen.png" height="530"   width="1212" ></figure></p>
+<br>
+<h3 id="34-accessing-the-good-stuff" class="headerLink">
+    <a href="#34-accessing-the-good-stuff" class="header-mark"></a>3.4 Accessing the good stuff</h3><p>Looking at the RDP connections that succeeded through the event code <code>1149</code>, we noticed the threat actor moved on the  SQL server<code>CC-SQL-01</code> at <code>02:59:30 AM</code> on the 6th of March 2024 with the user <code>cc-admin</code>.</p>
+<br>
+<p><figure><img
+        
+        loading="lazy"
+        src="/xintra-lab-waifu-university/img/sql-server-rdp-account.png"
+        srcset="/xintra-lab-waifu-university/img/sql-server-rdp-account.png, /xintra-lab-waifu-university/img/sql-server-rdp-account.png 1.5x, /xintra-lab-waifu-university/img/sql-server-rdp-account.png 2x"
+        sizes="auto"
+        alt="/xintra-lab-waifu-university/img/sql-server-rdp-account.png"
+        title="/xintra-lab-waifu-university/img/sql-server-rdp-account.png" height="846"   width="2944" ></figure></p>
+<br>
+<p>We had the information that the University admins noticed a strange file in the documents folder of the admin user for the SQL server which was created during the intrusion. So we started by searching for a suspicious file in the <code>Documents</code> folder of the <code>CC-Admin</code> user in the parsed <code>$MFT</code> CSV file and noticed a file called <code>database.bak.rpt.kh1ftzx</code>.</p>
+<br>
+<p><figure><img
+        
+        loading="lazy"
+        src="/xintra-lab-waifu-university/img/mft-sus-file.png"
+        srcset="/xintra-lab-waifu-university/img/mft-sus-file.png, /xintra-lab-waifu-university/img/mft-sus-file.png 1.5x, /xintra-lab-waifu-university/img/mft-sus-file.png 2x"
+        sizes="auto"
+        alt="/xintra-lab-waifu-university/img/mft-sus-file.png"
+        title="/xintra-lab-waifu-university/img/mft-sus-file.png" height="848"   width="3036" ></figure></p>
+<br>
+<p>To see the earliest MFT Entry of this file and track any change made to it, we then used the <code>USNJrnl</code>.  So, we opened <code>$J</code> (a parse file) and noticed its first MFT Entry ID was at <code>03:09:24 AM</code> on the 7th of March 2023. Also, it&rsquo;s worth mentioning that <code>.rpt</code> is one of the export types you can choose from Microsoft SQL Server.</p>
+<br>
+<p><figure><img
+        
+        loading="lazy"
+        src="/xintra-lab-waifu-university/img/earliest-mft-entry-id.png"
+        srcset="/xintra-lab-waifu-university/img/earliest-mft-entry-id.png, /xintra-lab-waifu-university/img/earliest-mft-entry-id.png 1.5x, /xintra-lab-waifu-university/img/earliest-mft-entry-id.png 2x"
+        sizes="auto"
+        alt="/xintra-lab-waifu-university/img/earliest-mft-entry-id.png"
+        title="/xintra-lab-waifu-university/img/earliest-mft-entry-id.png" height="604"   width="1858" ></figure></p>
+<br>
+<p>We can assume the threat actor probably exfiltrated the data from the SQL server before releasing the ransomware.</p>
+<br>
+<hr>
+<h2 id="phase-4-extortion-attempts-07032024" class="headerLink">
+    <a href="#phase-4-extortion-attempts-07032024" class="header-mark"></a>Phase 4: Extortion Attempts (07/03/2024)</h2><h3 id="41-release-the-ransomware-uwu" class="headerLink">
+    <a href="#41-release-the-ransomware-uwu" class="header-mark"></a>4.1 Release the ransomware UwU</h3><p>Finally, at <code>03:33:36 AM</code> on the 7th of March 2024, we observed the execution of the ransomware named <code>print64.exe</code>. First, <code>print64.bat</code> get executed and will run the malware with the access token as an argument.</p>
+<br>
+<p><figure><img
+        
+        loading="lazy"
+        src="/xintra-lab-waifu-university/img/access-token-decrypt-payload.png"
+        srcset="/xintra-lab-waifu-university/img/access-token-decrypt-payload.png, /xintra-lab-waifu-university/img/access-token-decrypt-payload.png 1.5x, /xintra-lab-waifu-university/img/access-token-decrypt-payload.png 2x"
+        sizes="auto"
+        alt="/xintra-lab-waifu-university/img/access-token-decrypt-payload.png"
+        title="/xintra-lab-waifu-university/img/access-token-decrypt-payload.png" height="584"   width="1442" ></figure></p>
+<br>
+<br>
+<p><figure><img
+        
+        loading="lazy"
+        src="/xintra-lab-waifu-university/img/print64-execution.png"
+        srcset="/xintra-lab-waifu-university/img/print64-execution.png, /xintra-lab-waifu-university/img/print64-execution.png 1.5x, /xintra-lab-waifu-university/img/print64-execution.png 2x"
+        sizes="auto"
+        alt="/xintra-lab-waifu-university/img/print64-execution.png"
+        title="/xintra-lab-waifu-university/img/print64-execution.png" height="712"   width="2360" ></figure></p>
+<br>
+<p>Then, a bunch of commands got executed and files were encrypted. You&rsquo;ll find below the command executed and their description, also reported by <a href="https://www.microsoft.com/en-us/security/blog/2022/06/13/the-many-lives-of-blackcat-ransomware/" target="_blank" rel="noopener noreferrer">Microsoft</a></p>
+<br>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>wmic csproduct get UUID</code></td>
+<td>Gets the Universally Unique Identifier (UUID) of the target device</td>
+</tr>
+<tr>
+<td><code>wmic.exe Shadowcopy Delete</code></td>
+<td>Deletes shadow copies</td>
+</tr>
+<tr>
+<td><code>fsutil behavior set SymlinkEvaluation R2L:1</code></td>
+<td>Allows remote-to-local symbolic links; a <a href="https://docs.microsoft.com/windows/win32/fileio/symbolic-links" target="_blank" rel="noopener noreferrer">symbolic link</a> is a file-system object (for example, a file or folder) that points to another file system object, like a shortcut in many ways but more powerful</td>
+</tr>
+<tr>
+<td><code>fsutil behavior set SymlinkEvaluation R2R:1</code></td>
+<td>Allows remote-to-remote symbolic links</td>
+</tr>
+<tr>
+<td><code>iisreset.exe /stop</code></td>
+<td>Stops running services to allow encryption of data</td>
+</tr>
+<tr>
+<td><code>reg add HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\LanManServer\Parameters /v MaxMpxCt /d 65536 /t REG_DWORD /f</code></td>
+<td>Modifies the registry to change MaxMpxCt settings; BlackCat does this to increase the number of outstanding requests allowed (for example, SMB requests when distributing ransomware via its PsExec methodology)</td>
+</tr>
+<tr>
+<td><code>vssadmin.exe Delete Shadows /all /quiet</code></td>
+<td>Deletes backups to prevent recovery</td>
+</tr>
+<tr>
+<td><code>arp -a</code></td>
+<td>View the ARP table</td>
+</tr>
+<tr>
+<td><code>bcdedit /set {default}</code></td>
+<td>Disabling <em>Automatic Repair</em></td>
+</tr>
+<tr>
+<td><code>bcdedit /set {default} recoveryenabled No</code></td>
+<td>Disabling <em>Automatic Repair</em></td>
+</tr>
+<tr>
+<td><code>cmd.exe /c for /F \&quot;tokens=*\&quot; %1 in ('wevutil.exe el') DO wevutil.exe cl \%1\</code></td>
+<td>Clears event logs</td>
+</tr>
+</tbody>
+</table>
+<br>
+<p><figure><img
+        
+        loading="lazy"
+        src="/xintra-lab-waifu-university/img/command-executed.png"
+        srcset="/xintra-lab-waifu-university/img/command-executed.png, /xintra-lab-waifu-university/img/command-executed.png 1.5x, /xintra-lab-waifu-university/img/command-executed.png 2x"
+        sizes="auto"
+        alt="/xintra-lab-waifu-university/img/command-executed.png"
+        title="/xintra-lab-waifu-university/img/command-executed.png" height="1238"   width="1982" ></figure></p>
+<br>
+<p>This final analysis conclude the investigation on <code>AlphV/BlackCat</code> ransomware group breach on <code>Waifu University</code>. For a deep dive into the analysis of the ransomware, you can check <a href="https://securityscorecard.com/research/deep-dive-into-alphv-blackcat-ransomware/" target="_blank" rel="noopener noreferrer">this research article</a>.</p>
+<hr>
+<h2 id="ω--conclusion--ω" class="headerLink">
+    <a href="#%cf%89--conclusion--%cf%89" class="header-mark"></a>(＞ω＜) ♡ Conclusion ♡ (＞ω＜)</h2><p>This APT emulation lab was the first one I had the opportunity to take on the platform and the first thing I can tell is that I was really surprised by the realism of the scenario. It actually covers real analysis and will definitely teach you skills that will be useful in your daily job.
+After going through the lab, it almost feels like a senior threat hunter just taught me what he learnt and how we managed to investigate an AlphV/BlackCat incident response case. 🤓</p>
+<br>
+<p>I can tell <strong>a LOOOT of work</strong> was put into the creation of such a lab. I can only recommend it to anybody who is interested to the world of threat hunting or DFIR in general. It will be a great experience to actually practice on a real case scenario. And honestly, it&rsquo;s <strong>really really</strong> cheap for the amount of education you will get. Kudos to Xintra for making it this affordable, especially in this industry where most of the educational content (especially for infosec certification) prices are getting higher and higher.</p>
+<br>
+<p>Big thanks to the team at Xintra &amp; to the lab contributors ❤️ :</p>
+<ul>
+<li><a href="https://ippsec.rocks/?#" target="_blank" rel="noopener noreferrer">@ippsec</a> for the adversary emulation,</li>
+<li><a href="https://twitter.com/DebugPrivilege" target="_blank" rel="noopener noreferrer">@DebugPrivilege</a> for the lab design,</li>
+<li><a href="https://twitter.com/svch0st" target="_blank" rel="noopener noreferrer">@svch0st</a> - Incident responder,</li>
+<li><a href="https://twitter.com/inversecos" target="_blank" rel="noopener noreferrer">@InverseCos</a> - Founder of Xintra.</li>
+</ul>
+<br>
+<p>If you have any feedback on my analysis, my methodology and my approach to this lab, please feel free to contact me Discord (@hashp4) or Twitter (<a href="https://twitter.com/hashp4_" target="_blank" rel="noopener noreferrer">@hashp4_</a>). I would be happy to know how I could have done it differently / more efficiently! :)</p>
+<br>
+<p><figure><img
+        
+        loading="lazy"
+        src="/xintra-lab-waifu-university/img/certificate-hashp4.png"
+        srcset="/xintra-lab-waifu-university/img/certificate-hashp4.png, /xintra-lab-waifu-university/img/certificate-hashp4.png 1.5x, /xintra-lab-waifu-university/img/certificate-hashp4.png 2x"
+        sizes="auto"
+        alt="/xintra-lab-waifu-university/img/certificate-hashp4.png"
+        title="/xintra-lab-waifu-university/img/certificate-hashp4.png" height="816"   width="1056" ></figure></p>
+<br>
+<p>(Yes, I took some hints :P)</p>
+<hr>
+<h2 id="summary-attack-diagram" class="headerLink">
+    <a href="#summary-attack-diagram" class="header-mark"></a>Summary attack diagram</h2><p>As a summary (and for fun), I made a diagram of what happened during the attack perpetrated by AlphV/BlackCat on Waifu University. I hope it may help you understand better the major events of this incident.</p>
+<br>
+<p><figure><img
+        
+        loading="lazy"
+        src="/xintra-lab-waifu-university/img/diagram-alphv-blackcat-summary.png"
+        srcset="/xintra-lab-waifu-university/img/diagram-alphv-blackcat-summary.png, /xintra-lab-waifu-university/img/diagram-alphv-blackcat-summary.png 1.5x, /xintra-lab-waifu-university/img/diagram-alphv-blackcat-summary.png 2x"
+        sizes="auto"
+        alt="/xintra-lab-waifu-university/img/diagram-alphv-blackcat-summary.png"
+        title="/xintra-lab-waifu-university/img/diagram-alphv-blackcat-summary.png" height="1943"   width="2931" ></figure></p>
+<br>
+<hr>
+<h2 id="resources" class="headerLink">
+    <a href="#resources" class="header-mark"></a>Resources</h2><p>Here are the interesting resources I found during the resolution of this lab.</p>
+<ul>
+<li><a href="https://www.rezonate.io/blog/defending-azure-active-directory/" target="_blank" rel="noopener noreferrer">Azure Event Log IDs bruteforce - Rezonate</a></li>
+<li><a href="https://www.microsoft.com/en-us/security/blog/2022/06/13/the-many-lives-of-blackcat-ransomware/" target="_blank" rel="noopener noreferrer">Blackcat Ransomware article- Microsoft</a></li>
+<li><a href="https://securityscorecard.com/research/deep-dive-into-alphv-blackcat-ransomware/" target="_blank" rel="noopener noreferrer">Malware analysis of the Blackcat ransomware - SecurityScoreCard</a></li>
+<li><a href="https://github.com/nixawk/pentest-wiki/blob/master/4.Post-Exploitation/Windows_ActiveDirectory/How-to-use-vssadmin.md" target="_blank" rel="noopener noreferrer">Pentest Cheatsheet for VSSAdmin - Github</a></li>
+<li><a href="https://superuser.com/questions/421997/what-is-a-ssh-key-fingerprint-and-how-is-it-generated" target="_blank" rel="noopener noreferrer">SSH IP Fingerpint - SuperUser</a></li>
+<li><a href="https://forensafe.com/blogs/usnjournal.html" target="_blank" rel="noopener noreferrer">UsnJournal explanation - Forensafe</a></li>
+<li><a href="https://adsecurity.org/?p=451" target="_blank" rel="noopener noreferrer">Volume Shadow Copy explanation - ADSecurity</a></li>
+</ul>
+</div>
+
+        <div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2024-05-12</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span><a class="link-to-mardown" href=/xintra-lab-waifu-university/index.md target="_blank" rel="noopener noreferrer">Read markdown</a>
+                    </span></div>
+            <div class="post-info-share"><button title="Share on Twitter" data-sharer="twitter" data-url="https://hashp4.fr/xintra-lab-waifu-university/" data-title="Xintra APT Emulation Lab - Waifu University ♡ (＞ω＜)" data-via="hashp4_" data-hashtags="APT,AlphV/BlackCat,Ransomware,DFIR,Threat Hunting,Xintra,Lab"><span class="fab fa-twitter fa-fw"></span></button><button title="Share on Linkedin" data-sharer="linkedin" data-url="https://hashp4.fr/xintra-lab-waifu-university/"><span class="fab fa-linkedin fa-fw"></span></button></div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/apt/">APT</a>,&nbsp;<a href="/tags/alphv/blackcat/">AlphV/BlackCat</a>,&nbsp;<a href="/tags/ransomware/">Ransomware</a>,&nbsp;<a href="/tags/dfir/">DFIR</a>,&nbsp;<a href="/tags/threat-hunting/">Threat Hunting</a>,&nbsp;<a href="/tags/xintra/">Xintra</a>,&nbsp;<a href="/tags/lab/">Lab</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/fcsc-2019-3615-incident-3/" class="prev" rel="prev" title="[FCSC 2019] - 3615 Incident (3/3)"><i class="fas fa-angle-left fa-fw"></i>[FCSC 2019] - 3615 Incident (3/3)</a></div>
+</div>
+</article></div>
+        </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">
+                    Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreferrer" title="Hugo 0.121.1">Hugo</a>&nbsp;|&nbsp;Theme - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreferrer" title="DoIt 0.4.0"><i class="far fa-edit fa-fw"></i> DoIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2022 - 2024</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank" rel="noopener noreferrer"></a></span>&nbsp;|&nbsp;<span class="license"><a rel="" href="https://www.gnu.org/licenses/gpl-3.0.en.html" target="_blank">GPL-V3</a></span></div>
+            <div class="footer-line"></div>
+            <div class="footer-line">
+            </div>
+        </div></footer></div>
+
+    <div id="fixed-buttons"><a href="#back-to-top" id="back-to-top-button" class="fixed-button" title="Back to Top">
+            <i class="fas fa-arrow-up fa-fw"></i>
+        </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+            <i class="fas fa-comment fa-fw"></i>
+        </a>
+    </div><div class="assets"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/contrib/copy-tex.min.css">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/contrib/copy-tex.min.css"></noscript><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{},"data":{"desktop-header-typeit":"hashp4 (\u003eᴗ•)","mobile-header-typeit":"hashp4 (\u003eᴗ•)"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":false,"left":"$","right":"$"}],"strict":false},"sharerjs":true,"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"desktop-header-typeit":["desktop-header-typeit"],"mobile-header-typeit":["mobile-header-typeit"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.4.2/sharer.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/typeit@7.0.4/dist/typeit.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js" defer></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/contrib/auto-render.min.js" defer></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/contrib/copy-tex.min.js" defer></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/contrib/mhchem.min.js" defer></script><script type="text/javascript" src="/js/katex.min.js" defer></script><script type="text/javascript" src="/js/theme.min.js" defer></script></div>
+</body>
+
+</html>

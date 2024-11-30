@@ -1,0 +1,420 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noodp" />
+    <title>[FCSC 2019] - 3615 Incident (2/3) - Blog - hashp4</title><meta name="Description" content="Solution to the **second** challenge in the `3615 Incident` series published at FCSC 2019."><meta property="og:title" content="[FCSC 2019] - 3615 Incident (2/3)" />
+<meta property="og:description" content="Solution to the **second** challenge in the `3615 Incident` series published at FCSC 2019." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://hashp4.fr/fcsc-2019-3615-incident-2/" /><meta property="og:image" content="https://hashp4.fr/fcsc-2019-3615-incident-2/feature.jpg" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-12-08T00:00:00+00:00" />
+<meta property="article:modified_time" content="2023-12-08T00:00:00+00:00" /><meta property="og:site_name" content="hashp4" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://hashp4.fr/fcsc-2019-3615-incident-2/feature.jpg" /><meta name="twitter:title" content="[FCSC 2019] - 3615 Incident (2/3)"/>
+<meta name="twitter:description" content="Solution to the **second** challenge in the `3615 Incident` series published at FCSC 2019."/>
+<meta name="twitter:site" content="@hashp4_"/>
+<meta name="application-name" content="hashp4">
+<meta name="apple-mobile-web-app-title" content="hashp4">
+
+<meta name="theme-color" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><meta name="twitter:creator" content="@hashp4_" /><link rel="icon" href="/favicon.ico"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="https://hashp4.fr/fcsc-2019-3615-incident-2/" /><link rel="prev" href="https://hashp4.fr/fcsc-2019-3615-incident-1/" /><link rel="next" href="https://hashp4.fr/fcsc-2019-3615-incident-3/" />
+<link rel="stylesheet" href="/css/main.4cb370884f3eb79df5ec8943416884c6aa730a30ceff5cd62fd0872f24b6b68e.css" integrity="sha256-TLNwiE8&#43;t5317IlDQWiExqpzCjDO/1zWL9CHLyS2to4="><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/css/color.728a2655c4cc249649c041d72af6111f81a1b57cb4f99fc4323550b7f966e960.css" integrity="sha256-coomVcTMJJZJwEHXKvYRH4GhtXy0&#43;Z/EMjVQt/lm6WA="><link rel="stylesheet" href="/css/style.min.aadeb0d1e0db9fd05aaaa62285215f80238b1e906367e8936725dd7de8c1642f.css" integrity="sha256-qt6w0eDbn9BaqqYihSFfgCOLHpBjZ&#43;iTZyXdfejBZC8="><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "[FCSC 2019] - 3615 Incident (2/3)",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https://hashp4.fr/fcsc-2019-3615-incident-2/"
+        },"image": ["https://hashp4.fr/images/Apple-Devices-Preview.png"],"genre": "posts","keywords": "Forensic, FCSC 2019, Volatility, Ransomware","wordcount":  1294 ,
+        "url": "https://hashp4.fr/fcsc-2019-3615-incident-2/","datePublished": "2023-12-08T00:00:00+00:00","dateModified": "2023-12-08T00:00:00+00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "hashp4","logo": {
+                    "@type": "ImageObject",
+                    "url": "https://hashp4.fr/images/logo.png",
+                    "width":  288 ,
+                    "height":  288 
+                }},"authors": [{
+                        "@type": "Person",
+                        "name": "hashp4"                    
+                    }],"description": "Solution to the **second** challenge in the `3615 Incident` series published at FCSC 2019."
+    }
+    </script></head>
+
+<body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">
+        function setTheme(theme) {document.body.setAttribute('theme', theme); document.documentElement.style.setProperty('color-scheme', theme === 'light' ? 'light' : 'dark'); window.theme = theme;   window.isDark = window.theme !== 'light' }
+        function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
+        function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
+        if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('black' === 'light' || 'black' === 'dark' || 'black' === 'black') setTheme('black'), saveTheme('black'); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
+        let metaColors = {'light': '#f8f8f8','dark': '#252627','black': '#000000'}
+        getMeta('theme-color').content = metaColors[document.body.getAttribute('theme')];
+        window.switchThemeEventSet = new Set()
+    </script>
+    <div id="back-to-top"></div>
+    <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Blog - hashp4"><span id="desktop-header-typeit" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/whoami">🇫🇷 whoami </a><a class="menu-item" href="/categories/article/">✒ Blog </a><a class="menu-item" href="/projects/">📚 Projects </a><a class="menu-item" href="/categories/writeup/">🚩 Writeups </a><a class="menu-item" href="/music/">🎵 Music </a><span class="menu-item delimiter"></span><a href="javascript:void(0);" class="menu-item language" title="Select Language">English<i class="fas fa-chevron-right fa-fw"></i>
+                        <select class="language-select" title="Select Language" id="language-select-desktop" onchange="location = this.value;"><option value="/fcsc-2019-3615-incident-2/" selected>English</option><option value="/fr/fcsc-2019-3615-incident-2/">Français</option></select>
+                    </a><a href="javascript:void(0);" class="menu-item theme-select" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw"></i>
+                    <select class="color-theme-select" id="theme-select-desktop" title="Switch Theme">
+                        <option value="light">Light</option>
+                        <option value="dark">Dark</option>
+                        <option value="black">Black</option>
+                        <option value="auto">Auto</option>
+                    </select>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Blog - hashp4"><span id="mobile-header-typeit" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><a class="menu-item" href="/whoami" title="">🇫🇷whoami</a><a class="menu-item" href="/categories/article/" title="">✒Blog</a><a class="menu-item" href="/projects/" title="">📚Projects</a><a class="menu-item" href="/categories/writeup/" title="">🚩Writeups</a><a class="menu-item" href="/music/" title="">🎵Music</a><a href="javascript:void(0);" class="menu-item theme-select" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw"></i>
+                <select class="color-theme-select" id="theme-select-mobile" title="Switch Theme">
+                    <option value="light">Light</option>
+                    <option value="dark">Dark</option>
+                    <option value="black">Black</option>
+                    <option value="auto">Auto</option>
+                </select>
+            </a><a href="javascript:void(0);" class="menu-item" title="Select Language">English<i class="fas fa-chevron-right fa-fw"></i>
+                    <select class="language-select" title="Select Language" onchange="location = this.value;"><option value="/fcsc-2019-3615-incident-2/" selected>English</option><option value="/fr/fcsc-2019-3615-incident-2/">Français</option></select>
+                </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+            <div class="container"><div class="toc" id="toc-auto">
+        <h2 class="toc-title">Contents</h2>
+        <div class="toc-content" id="toc-content-auto"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#introduction-pushpin">Introduction </a></li>
+    <li><a href="#1-analysis-of-the-ransomwares-source-code-">1. Analysis of the ransomware&rsquo;s source code 🔬</a>
+      <ul>
+        <li><a href="#zoom-on-ransomwarego">Zoom on <code>ransomware.go</code></a></li>
+        <li><a href="#zoom-on-utilsgo">Zoom on <code>utils.go</code></a></li>
+        <li><a href="#zoom-on-clientgo">Zoom on <code>client.go</code></a></li>
+        <li><a href="#in-a-nutshell">In a nutshell&hellip;</a></li>
+      </ul>
+    </li>
+    <li><a href="#2-extraction-of-the-encryption-key-">2. Extraction of the encryption key 🗝</a>
+      <ul>
+        <li><a href="#grep-for-the-win"><code>grep</code> for the win</a></li>
+        <li><a href="#keys-testing">Keys testing</a></li>
+      </ul>
+    </li>
+    <li><a href="#3-flag-">3. Flag 🚩</a></li>
+  </ul>
+</nav></div>
+    </div><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">[FCSC 2019] - 3615 Incident (2/3)</h1><div class="post-meta">
+            <div class="post-meta-line">
+                <span class="post-author"><span class='author'><span class="author fas fa-user-circle fa-fw"></span><span class='screen-reader-text'>  </span><a href='https://hashp4.fr/authors/hashp4'>hashp4</a></span>
+                </span>&nbsp;<span class="post-category">included in </span>&nbsp;<span class="post-category">category <a href="/categories/writeup/"><i class="far fa-folder fa-fw"></i>Writeup</a></span>&nbsp;<span class="post-category">and</span>&nbsp;<span class="post-series">series <a href=""><i class="far fa-list-alt fa-fw"></i></a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2023-12-08">2023-12-08</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2023-12-08">2023-12-08</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;1294 words&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;7 minutes&nbsp;</div>
+        </div><div class="featured-image"><img
+        
+        loading="eager"
+        src="/fcsc-2019-3615-incident-2/feature.png"
+        srcset="/fcsc-2019-3615-incident-2/feature.png, /fcsc-2019-3615-incident-2/feature.png 1.5x, /fcsc-2019-3615-incident-2/feature.png 2x"
+        sizes="auto"
+        alt="Solution to the **second** challenge in the `3615 Incident` series published at FCSC 2019."
+        title="Solution to the **second** challenge in the `3615 Incident` series published at FCSC 2019." height="360"   width="1200" ></div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#introduction-pushpin">Introduction </a></li>
+    <li><a href="#1-analysis-of-the-ransomwares-source-code-">1. Analysis of the ransomware&rsquo;s source code 🔬</a>
+      <ul>
+        <li><a href="#zoom-on-ransomwarego">Zoom on <code>ransomware.go</code></a></li>
+        <li><a href="#zoom-on-utilsgo">Zoom on <code>utils.go</code></a></li>
+        <li><a href="#zoom-on-clientgo">Zoom on <code>client.go</code></a></li>
+        <li><a href="#in-a-nutshell">In a nutshell&hellip;</a></li>
+      </ul>
+    </li>
+    <li><a href="#2-extraction-of-the-encryption-key-">2. Extraction of the encryption key 🗝</a>
+      <ul>
+        <li><a href="#grep-for-the-win"><code>grep</code> for the win</a></li>
+        <li><a href="#keys-testing">Keys testing</a></li>
+      </ul>
+    </li>
+    <li><a href="#3-flag-">3. Flag 🚩</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h2 id="introduction-pushpin" class="headerLink">
+    <a href="#introduction-pushpin" class="header-mark"></a>Introduction &#x1f4cc;</h2><p>The context remains the same as in the first part. Yet another victim has fallen victim to ransomware. Payment of the ransom is not an option, given the amount involved. So we&rsquo;re called in to try and restore the encrypted files.</p>
+<p>This time, the objective is to <strong>find the ransomware&rsquo;s encryption key</strong>!</p>
+<p>Note: Answer expected in <code>ECSC{hey.hex()}</code> format.</p>
+<p>(The challenge is always solved using the <code>mem.dmp.tar.xz</code> file. As a reminder, this is a memory image of the victim&rsquo;s computer. In concrete terms, it corresponds to the contents of the volatile memory (<code>RAM</code>) at the time of acquisition, and we&rsquo;ll see that it proves to be an excellent source of information for digital forensics.)</p>
+<h2 id="1-analysis-of-the-ransomwares-source-code-" class="headerLink">
+    <a href="#1-analysis-of-the-ransomwares-source-code-" class="header-mark"></a>1. Analysis of the ransomware&rsquo;s source code 🔬</h2><p>Following our analysis in Part 1, we are fortunate to have the source code for this ransomware. As a reminder, it can be found here: <a href="https://github.com/mauri870/ransomware" target="_blank" rel="noopener noreferrer">https://github.com/mauri870/ransomware</a>. And that&rsquo;s a good thing, because we didn&rsquo;t really want to reverse the Go, did we? :D</p>
+<h3 id="zoom-on-ransomwarego" class="headerLink">
+    <a href="#zoom-on-ransomwarego" class="header-mark"></a>Zoom on <code>ransomware.go</code></h3><p>Let&rsquo;s start by finding out how the key is generated. The <code>encryptFile()</code> function in the file <a href="https://github.com/mauri870/ransomware/blob/master/cmd/ransomware/ransomware.go#L112" target="_blank" rel="noopener noreferrer">cmd/ransomware/ransomware.go, line 112</a> tells us a bit more.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">encryptFiles</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">keys</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kt">string</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">[</span><span class="o">...</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">		<span class="c1">// Generate the id and encryption key
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="nx">keys</span><span class="p">[</span><span class="s">&#34;id&#34;</span><span class="p">],</span> <span class="nx">_</span> <span class="p">=</span> <span class="nx">utils</span><span class="p">.</span><span class="nf">GenerateRandomANString</span><span class="p">(</span><span class="mi">32</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">keys</span><span class="p">[</span><span class="s">&#34;enckey&#34;</span><span class="p">],</span> <span class="nx">_</span> <span class="p">=</span> <span class="nx">utils</span><span class="p">.</span><span class="nf">GenerateRandomANString</span><span class="p">(</span><span class="mi">32</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">		<span class="c1">// Persist the key pair on server
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="nx">res</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">Client</span><span class="p">.</span><span class="nf">AddNewKeyPair</span><span class="p">(</span><span class="nx">keys</span><span class="p">[</span><span class="s">&#34;id&#34;</span><span class="p">],</span> <span class="nx">keys</span><span class="p">[</span><span class="s">&#34;enckey&#34;</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">	<span class="p">[</span><span class="o">...</span><span class="p">]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>We can see 2 things:</p>
+<ul>
+<li>The generation of an <code>id</code> using the <code>GenerateRandomANString()</code> function located in the <code>utils</code> file and having the <code>32</code> parameter.</li>
+<li>The generation of <code>enckey</code> using the <code>GenerateRandomANString()</code> function located in the <code>utils</code> file and having <code>32</code> as parameter.</li>
+</ul>
+<p>This <code>id</code> and <code>enckey</code> pair is then sent to a server using the <code>AddNewKeyPair()</code> function in the <code>client</code> file.</p>
+<p>We can assume that both <code>id</code> and the encryption key <code>enckey</code> (<em>which is surely short for <code>encrypted key</code></em>) are a randomly generated 32-character string. To be sure, we can study the corresponding function.</p>
+<h3 id="zoom-on-utilsgo" class="headerLink">
+    <a href="#zoom-on-utilsgo" class="header-mark"></a>Zoom on <code>utils.go</code></h3><p>Here, we&rsquo;re interested in the <code>GenerateRandomANString()</code> function, <a href="https://github.com/mauri870/ransomware/blob/master/utils/utils.go#L13" target="_blank" rel="noopener noreferrer">on line 13 of utils/utils.go</a>.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="c1">// Generate a random alphanumeric string with the given size
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">func</span> <span class="nf">GenerateRandomANString</span><span class="p">(</span><span class="nx">size</span> <span class="kt">int</span><span class="p">)</span> <span class="p">(</span><span class="kt">string</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">key</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">([]</span><span class="kt">byte</span><span class="p">,</span> <span class="nx">size</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">_</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">rand</span><span class="p">.</span><span class="nf">Read</span><span class="p">(</span><span class="nx">key</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="k">return</span> <span class="s">&#34;&#34;</span><span class="p">,</span> <span class="nx">err</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="nx">hex</span><span class="p">.</span><span class="nf">EncodeToString</span><span class="p">(</span><span class="nx">key</span><span class="p">)[:</span><span class="nx">size</span><span class="p">],</span> <span class="kc">nil</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>The function is quite simple. It takes an integer as parameter and generates a random string of the same size. This is then encoded in hexadecimal using the function <code>hex.EncodeToString()</code> before being returned.</p>
+<p>Our hypothesis is therefore confirmed. We&rsquo;re looking for a 32-character string, and we know it&rsquo;s hexadecimal. But we still have no clue as to how to retrieve this famous key&hellip;</p>
+<h3 id="zoom-on-clientgo" class="headerLink">
+    <a href="#zoom-on-clientgo" class="header-mark"></a>Zoom on <code>client.go</code></h3><p>Let&rsquo;s take a closer look at the <code>AddNewKeyPair()</code> function <a href="https://github.com/mauri870/ransomware/blob/master/client/client.go#L90" target="_blank" rel="noopener noreferrer">in client/client.go, line 90</a>.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="c1">// AddNewKeyPair persist a new keypair on server
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">func</span> <span class="p">(</span><span class="nx">c</span> <span class="o">*</span><span class="nx">Client</span><span class="p">)</span> <span class="nf">AddNewKeyPair</span><span class="p">(</span><span class="nx">id</span><span class="p">,</span> <span class="nx">encKey</span> <span class="kt">string</span><span class="p">)</span> <span class="p">(</span><span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Response</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">payload</span> <span class="o">:=</span> <span class="nx">fmt</span><span class="p">.</span><span class="nf">Sprintf</span><span class="p">(</span><span class="s">`{&#34;id&#34;: &#34;%s&#34;, &#34;enckey&#34;: &#34;%s&#34;}`</span><span class="p">,</span> <span class="nx">id</span><span class="p">,</span> <span class="nx">encKey</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="nx">c</span><span class="p">.</span><span class="nf">SendEncryptedPayload</span><span class="p">(</span><span class="s">&#34;/api/keys/add&#34;</span><span class="p">,</span> <span class="nx">payload</span><span class="p">,</span> <span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kt">string</span><span class="p">{})</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>This function takes an <code>id</code> and an <code>enckey</code> encryption key as parameters. It will then format the payload as:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;id&#34;</span><span class="p">:</span> <span class="s2">&#34;l&#39;id associé&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;enckey&#34;</span><span class="p">:</span> <span class="s2">&#34;la clé de chiffrement&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>It will then be encrypted and sent to the attacker&rsquo;s server via an API through the URI <code>/api/key/add</code> via the function <code>SendEncryptedPayload()</code> <em>(I&rsquo;ll leave it to you to look at this function in more detail if you&rsquo;re interested)</em>. So it&rsquo;s worth concentrating on sending this payload to find the key. There may still be traces left in the memory dump!</p>
+<div class="details admonition info open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-info-circle fa-fw"></i>Info<i class="details-icon fas fa-angle-right fa-fw"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content"><em>You may be wondering what the <code>id</code> is for? As a rule, ransomware operators don&rsquo;t have just one victim. Each of them has a unique encryption key, and you need to be able to identify them to be able to decrypt the data if the ransom is paid. For this reason, a unique identifier is assigned to each victim and associated with the correct encryption key. However, this only applies if the attacker is willing to decrypt the data. There is absolutely <strong>no guarantee</strong> that he will keep his end of the bargain&hellip;</em>.</div>
+        </div>
+    </div>
+<h3 id="in-a-nutshell" class="headerLink">
+    <a href="#in-a-nutshell" class="header-mark"></a>In a nutshell&hellip;</h3><p>Well, it&rsquo;s time to summarize our analysis. What we know now:</p>
+<ul>
+<li>The unique identifier associated with the encryption key is a random sequence of 32 hexadecimal characters.</li>
+<li>The encryption key is also a random sequence of 32 hexadecimal characters.</li>
+<li>These are sent to the attacker&rsquo;s server via the respective parameters <code>id</code> and <code>enckey</code>, and formatted according to the following model: <code>{&quot;id&quot;: &quot;the id&quot;, &quot;enckey&quot;: &quot;the key&quot;}</code>.</li>
+</ul>
+<p>With this information, we can move on to extracting the encryption key.</p>
+<h2 id="2-extraction-of-the-encryption-key-" class="headerLink">
+    <a href="#2-extraction-of-the-encryption-key-" class="header-mark"></a>2. Extraction of the encryption key 🗝</h2><p>We need to find the <em>encryption key</em> within the memory dump. To do this, we can use the <em>pattern</em> that sends the payload containing <code>id</code> and <code>enckey</code> to the attacker&rsquo;s server. What could be better than <code>grep</code> to find a pattern in a file? :)</p>
+<h3 id="grep-for-the-win" class="headerLink">
+    <a href="#grep-for-the-win" class="header-mark"></a><code>grep</code> for the win</h3><p><code>grep</code> is a very interesting tool when it comes to repeating patterns within a file. Here, we&rsquo;ll add several options. The final command is: <code>grep -B 3 -A 3 -wE '{&quot;id&quot;: &quot;\w{32}&quot;, &quot;enckey&quot;:'</code>. Let&rsquo;s take a closer look at these options:</p>
+<ul>
+<li>The <code>-B 3</code> option displays 3 lines <strong>before</strong> the match</li>
+<li>The <code>-A 3</code> option displays 3 lines <strong>after</strong> the match</li>
+<li>The <code>-wE</code> option allows you to display only results that exactly match the specified pattern, and to activate extended regular expressions.</li>
+</ul>
+<p>Extended regular expression detail <code>{&quot;id&quot;:&quot;\w{32}&quot;, &quot;enckey&quot;:</code> :</p>
+<ul>
+<li><code>\w{32}</code>: matches a string of 32 alphanumeric characters (with the <code>_</code> character added). It&rsquo;s the equivalent of <code>[a-zA-Z0-9_]</code>.</li>
+</ul>
+<p>Now that our <code>grep</code> is ready, we can use it on the memory dump:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">┌──<span class="o">(</span>hashp4㉿kali<span class="o">)</span>-<span class="o">[</span>~/Bureau<span class="o">]</span>
+</span></span><span class="line"><span class="cl">└─$ strings mem.dmp <span class="p">|</span> grep -B <span class="m">3</span> -A <span class="m">3</span> -wE <span class="s1">&#39;{&#34;id&#34;: &#34;\w{32}&#34;, &#34;enckey&#34;:&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="s2">&#34;C:\Users\TNKLSAI3TGT7O9\Downloads\assistance.exe&#34;</span> 
+</span></span><span class="line"><span class="cl">C:<span class="se">\U</span>sers<span class="se">\T</span>NKLSAI3TGT7O9<span class="se">\D</span>ownloads<span class="se">\a</span>ssistance.exe
+</span></span><span class="line"><span class="cl">S-1-5-21-2377780471-3200203716-3353778491-1000
+</span></span><span class="line"><span class="cl"><span class="o">{</span><span class="s2">&#34;id&#34;</span>: <span class="s2">&#34;cd18c00bb476764220d05121867d62de&#34;</span>, <span class="s2">&#34;enckey&#34;</span>: <span class="s2">&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">cd18c00bb476764220d05121867d62de64e0821c53c7d161099be2188b6cac24cd18c00bb476764220d05121867d62de64e0821c53c7d161099be2188b6cac2495511870061fb3a2899aa6b2dc9838aa422d81e7e1c2aa46aa51405c13fed15b95511870061fb3a2899aa6b2dc9838aa422d81e7e1c2aa46aa51405c13fed15b
+</span></span></span><span class="line"><span class="cl"><span class="s2">Encrypting C:\Users\Administrateur\Contacts\desktop.ini...
+</span></span></span><span class="line"><span class="cl"><span class="s2">C:\Users\TNKLSA~1\AppData\Local\Temp\desktop.ini
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>As it turns out, we do have a correspondence!</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;id&#34;</span><span class="p">:</span> <span class="s2">&#34;cd18c00bb476764220d05121867d62de&#34;</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;enckey&#34;</span><span class="p">:</span> <span class="err">&#34;cd</span><span class="mi">18</span><span class="err">c</span><span class="mi">00</span><span class="err">bb</span><span class="mi">476764220</span><span class="err">d</span><span class="mi">05121867</span><span class="err">d</span><span class="mi">62</span><span class="err">de</span><span class="mf">64e0821</span><span class="err">c</span><span class="mi">53</span><span class="err">c</span><span class="mi">7</span><span class="err">d</span><span class="mi">161099</span><span class="err">be</span><span class="mi">2188</span><span class="err">b</span><span class="mi">6</span><span class="err">cac</span><span class="mi">24</span><span class="err">cd</span><span class="mi">18</span><span class="err">c</span><span class="mi">00</span><span class="err">bb</span><span class="mi">476764220</span><span class="err">d</span><span class="mi">05121867</span><span class="err">d</span><span class="mi">62</span><span class="err">de</span><span class="mf">64e0821</span><span class="err">c</span><span class="mi">53</span><span class="err">c</span><span class="mi">7</span><span class="err">d</span><span class="mi">161099</span><span class="err">be</span><span class="mi">2188</span><span class="err">b</span><span class="mi">6</span><span class="err">cac</span><span class="mi">2495511870061</span><span class="err">fb</span><span class="mi">3</span><span class="err">a</span><span class="mi">2899</span><span class="err">aa</span><span class="mi">6</span><span class="err">b</span><span class="mi">2</span><span class="err">dc</span><span class="mi">9838</span><span class="err">aa</span><span class="mi">422</span><span class="err">d</span><span class="mf">81e7</span><span class="err">e</span><span class="mi">1</span><span class="err">c</span><span class="mi">2</span><span class="err">aa</span><span class="mi">46</span><span class="err">aa</span><span class="mi">51405</span><span class="err">c</span><span class="mi">13</span><span class="err">fed</span><span class="mi">15</span><span class="err">b</span><span class="mi">95511870061</span><span class="err">fb</span><span class="mi">3</span><span class="err">a</span><span class="mi">2899</span><span class="err">aa</span><span class="mi">6</span><span class="err">b</span><span class="mi">2</span><span class="err">dc</span><span class="mi">9838</span><span class="err">aa</span><span class="mi">422</span><span class="err">d</span><span class="mf">81e7</span><span class="err">e</span><span class="mi">1</span><span class="err">c</span><span class="mi">2</span><span class="err">aa</span><span class="mi">46</span><span class="err">aa</span><span class="mi">51405</span><span class="err">c</span><span class="mi">13</span><span class="err">fed</span><span class="mi">15</span><span class="err">b</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Here, the <code>id</code> has the value <code>cd18c00bb476764220d05121867d62de</code>. However, the encryption key is much larger than expected. We therefore need to break it down into 32-character packets. To do this, we manually save the key in a <code>key.txt</code> file. Then we can use the <code>fold</code> utility, with the <code>-b32</code> option, to split our string:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">┌──<span class="o">(</span>hashp4㉿kali<span class="o">)</span>-<span class="o">[</span>~/Bureau<span class="o">]</span>
+</span></span><span class="line"><span class="cl">└─$ fold -b32 key.txt <span class="p">|</span> sort <span class="p">|</span> uniq
+</span></span><span class="line"><span class="cl">422d81e7e1c2aa46aa51405c13fed15b
+</span></span><span class="line"><span class="cl">64e0821c53c7d161099be2188b6cac24
+</span></span><span class="line"><span class="cl">95511870061fb3a2899aa6b2dc9838aa
+</span></span><span class="line"><span class="cl">cd18c00bb476764220d05121867d62de
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><em>(Using <code>sort</code> and <code>uniq</code> simply removes identical packets of 32).</em></p>
+<p>We end up with 4 potential candidates. That said, we notice that the last key is in fact identical to the <code>id</code>! We&rsquo;ve only got 3 keys left to test ;)</p>
+<h3 id="keys-testing" class="headerLink">
+    <a href="#keys-testing" class="header-mark"></a>Keys testing</h3><p>Under real-life conditions, we&rsquo;d have to analyze the ransomware code, learn about the encryption algorithm used, dump an encrypted file from the memory image and attempt to decrypt it with each of the potential keys. However, in the context of this writeup, this would be tantamount to giving away the solution to the last stage of this test&hellip;</p>
+<p>For this reason, and given the small proportion of keys to be evaluated, we need only test them one by one as a flag until the flag is valid.</p>
+<ul>
+<li>❌ <code>ECSC{422d81e7e1c2aa46aa51405c13fed15b}</code></li>
+<li>❌ <code>ECSC{64e0821c53c7d161099be2188b6cac24}</code></li>
+<li>✅ <code>ECSC{95511870061fb3a2899aa6b2dc9838aa}</code></li>
+</ul>
+<h2 id="3-flag-" class="headerLink">
+    <a href="#3-flag-" class="header-mark"></a>3. Flag 🚩</h2><p>Thanks to our analysis (<em>and a very liiiiiight bruteforce</em>), we obtain the following flag: <code>ECSC{95511870061fb3a2899aa6b2dc9838aa}</code>.</p>
+<p>This concludes the second part of the <code>3615 Incident</code> challenge. Firstly, we were able to see how the encryption key was generated and how it was transmitted to the attacker by studying the ransomware source code. Secondly, we found the key associated with our victim using a pattern search in the memory image. All that&rsquo;s left is for you to make a few more efforts to complete the final stage of this challenge ;)</p>
+</div>
+
+        <div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2023-12-08</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span><a class="link-to-mardown" href=/fcsc-2019-3615-incident-2/index.md target="_blank" rel="noopener noreferrer">Read markdown</a>
+                    </span></div>
+            <div class="post-info-share"><button title="Share on Twitter" data-sharer="twitter" data-url="https://hashp4.fr/fcsc-2019-3615-incident-2/" data-title="[FCSC 2019] - 3615 Incident (2/3)" data-via="hashp4_" data-hashtags="Forensic,FCSC 2019,Volatility,Ransomware"><span class="fab fa-twitter fa-fw"></span></button><button title="Share on Linkedin" data-sharer="linkedin" data-url="https://hashp4.fr/fcsc-2019-3615-incident-2/"><span class="fab fa-linkedin fa-fw"></span></button></div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/forensic/">Forensic</a>,&nbsp;<a href="/tags/fcsc-2019/">FCSC 2019</a>,&nbsp;<a href="/tags/volatility/">Volatility</a>,&nbsp;<a href="/tags/ransomware/">Ransomware</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/fcsc-2019-3615-incident-1/" class="prev" rel="prev" title="[FCSC 2019] - 3615 Incident (1/3)"><i class="fas fa-angle-left fa-fw"></i>[FCSC 2019] - 3615 Incident (1/3)</a>
+            <a href="/fcsc-2019-3615-incident-3/" class="next" rel="next" title="[FCSC 2019] - 3615 Incident (3/3)">[FCSC 2019] - 3615 Incident (3/3)<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+</article></div>
+        </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">
+                    Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreferrer" title="Hugo 0.121.1">Hugo</a>&nbsp;|&nbsp;Theme - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreferrer" title="DoIt 0.4.0"><i class="far fa-edit fa-fw"></i> DoIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2022 - 2024</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank" rel="noopener noreferrer"></a></span>&nbsp;|&nbsp;<span class="license"><a rel="" href="https://www.gnu.org/licenses/gpl-3.0.en.html" target="_blank">GPL-V3</a></span></div>
+            <div class="footer-line"></div>
+            <div class="footer-line">
+            </div>
+        </div></footer></div>
+
+    <div id="fixed-buttons"><a href="#back-to-top" id="back-to-top-button" class="fixed-button" title="Back to Top">
+            <i class="fas fa-arrow-up fa-fw"></i>
+        </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+            <i class="fas fa-comment fa-fw"></i>
+        </a>
+    </div><div class="assets"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/contrib/copy-tex.min.css">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/contrib/copy-tex.min.css"></noscript><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{},"data":{"desktop-header-typeit":"hashp4 (\u003eᴗ•)","mobile-header-typeit":"hashp4 (\u003eᴗ•)"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":false,"left":"$","right":"$"}],"strict":false},"sharerjs":true,"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"desktop-header-typeit":["desktop-header-typeit"],"mobile-header-typeit":["mobile-header-typeit"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.4.2/sharer.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/typeit@7.0.4/dist/typeit.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js" defer></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/contrib/auto-render.min.js" defer></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/contrib/copy-tex.min.js" defer></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/contrib/mhchem.min.js" defer></script><script type="text/javascript" src="/js/katex.min.js" defer></script><script type="text/javascript" src="/js/theme.min.js" defer></script></div>
+</body>
+
+</html>

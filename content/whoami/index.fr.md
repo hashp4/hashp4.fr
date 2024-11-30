@@ -33,19 +33,20 @@ Liste non-exhaustive des certifications et des cours que j'ai suivi.
 
 - Certifié [OSCP (Offensive Security Certified Professional, par Offsec)](https://www.offsec.com/courses/pen-200/) -> [(certification ici)](https://www.credential.net/a54e0af8-07ca-48bb-96ff-f757913e1bb8#gs.39qnkb)
 - Certifié [PJMR (Practical Junior Malware Researcher, par TCM)](https://certifications.tcm-sec.com/pjmr/) -> [(certification ici)](https://certified.tcm-sec.com/8b52c3d4-030a-4c47-b4a8-6b1ddd1b30e5?trk=public_profile_see-credential#gs.fthbky)
-- Certifié [Investigating Windows Endpoints par 13Cubed]() -> [(certification ici)](https://credsverse.com/credentials/8cdd5a9e-15c4-476e-b82e-71e6781700a1?trk=public_profile_see-credential)
+- Certifié [Investigating Windows Endpoints par 13Cubed](https://training.13cubed.com/investigating-windows-endpoints) -> [(certification ici)](https://credsverse.com/credentials/8cdd5a9e-15c4-476e-b82e-71e6781700a1?trk=public_profile_see-credential)
+- Certifié [Investigating Windows Memory par 13Cubed](https://training.13cubed.com/investigating-windows-memory) -> [(certification ici)](https://credsverse.com/credentials/7d92051a-85f7-4dbb-8459-af1db740e88c)
+- Certifié [IMBT (Introduction to Malware Binary Triage, Binary Ninja Edition, by Joshua Reynolds)](https://training.invokere.com/course/imbtbn)
 
 Une (courte) liste de livres que j'ai lu et que je recommande :
 - ["Practical Malware Analysis"](https://www.amazon.com/Practical-Malware-Analysis-Hands-Dissecting/dp/1593272901) par Michael Sikorski and Andrew Honig
 - [Visual Threat Intelligence: An Illustrated Guide For Threat Researchers](https://store.securitybreak.io/threatintel) par Thomas Roccia.
 
-Objectifs avant la fin de l'année (31/12/2024) :
-- Obtenir la certification [Investigating Windows Memory](https://training.13cubed.com/investigating-windows-memory) par 13Cubed. - EN COURS ⌛
+Objectifs pour 2025 :
 - Obtenir la certification [Zero2Automated](https://courses.zero2auto.com/) par Vitali Kremez (@VK_Intel), Daniel Bunce (@0verfl0w_) et Jason Reaves (@sysopfb). - EN COURS ⌛
-- Obtenir la certification [IMBT (Introduction to Malware Binary Triage) - Binary Ninja edition]() par Joshua Reynolds. - PAS COMMENCE ❌
-- Lire "Evasive Malware, A Field Guide to Detecting, Analyzing, and Defeating Advanced Threats" par Kyle Cucci - PAS COMMENCE ❌
-
-Ensuite j'en aurai fini avec les certifications pendant un moment... (:
+- Lire "Evasive Malware, A Field Guide to Detecting, Analyzing, and Defeating Advanced Threats" par Kyle Cucci - En attente de Papa Noël 🎅🏻⌛
+- Me procurer une copie de Windows Internals
+- Débuter [MalDev Academy](https://maldevacademy.com/) pour améliorer ma compréhension des malwares
+- Et deux autres projets sur lesquels je travaille en secret... :)
 
 
 ---

@@ -1,0 +1,77 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Tags - Tag - Blog - hashp4</title>
+        <link>https://hashp4.fr/tags/</link>
+        <description>Tags - Tag - Blog - hashp4</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sun, 12 May 2024 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://hashp4.fr/tags/" rel="self" type="application/rss+xml" /><item>
+    <title>APT</title>
+    <link>https://hashp4.fr/tags/apt/</link>
+    <pubDate>Sun, 12 May 2024 00:00:00 &#43;0000</pubDate><author>
+        <name>Author</name>
+    </author><guid>https://hashp4.fr/tags/apt/</guid>
+    <description><![CDATA[]]></description>
+</item><item>
+    <title>DFIR</title>
+    <link>https://hashp4.fr/tags/dfir/</link>
+    <pubDate>Sun, 12 May 2024 00:00:00 &#43;0000</pubDate><author>
+        <name>Author</name>
+    </author><guid>https://hashp4.fr/tags/dfir/</guid>
+    <description><![CDATA[]]></description>
+</item><item>
+    <title>Lab</title>
+    <link>https://hashp4.fr/tags/lab/</link>
+    <pubDate>Sun, 12 May 2024 00:00:00 &#43;0000</pubDate><author>
+        <name>Author</name>
+    </author><guid>https://hashp4.fr/tags/lab/</guid>
+    <description><![CDATA[]]></description>
+</item><item>
+    <title>Ransomware</title>
+    <link>https://hashp4.fr/tags/ransomware/</link>
+    <pubDate>Sun, 12 May 2024 00:00:00 &#43;0000</pubDate><author>
+        <name>Author</name>
+    </author><guid>https://hashp4.fr/tags/ransomware/</guid>
+    <description><![CDATA[]]></description>
+</item><item>
+    <title>Threat Hunting</title>
+    <link>https://hashp4.fr/tags/threat-hunting/</link>
+    <pubDate>Sun, 12 May 2024 00:00:00 &#43;0000</pubDate><author>
+        <name>Author</name>
+    </author><guid>https://hashp4.fr/tags/threat-hunting/</guid>
+    <description><![CDATA[]]></description>
+</item><item>
+    <title>Xintra</title>
+    <link>https://hashp4.fr/tags/xintra/</link>
+    <pubDate>Sun, 12 May 2024 00:00:00 &#43;0000</pubDate><author>
+        <name>Author</name>
+    </author><guid>https://hashp4.fr/tags/xintra/</guid>
+    <description><![CDATA[]]></description>
+</item><item>
+    <title>FCSC 2019</title>
+    <link>https://hashp4.fr/tags/fcsc-2019/</link>
+    <pubDate>Sat, 09 Dec 2023 00:00:00 &#43;0000</pubDate><author>
+        <name>Author</name>
+    </author><guid>https://hashp4.fr/tags/fcsc-2019/</guid>
+    <description><![CDATA[]]></description>
+</item><item>
+    <title>Forensic</title>
+    <link>https://hashp4.fr/tags/forensic/</link>
+    <pubDate>Sat, 09 Dec 2023 00:00:00 &#43;0000</pubDate><author>
+        <name>Author</name>
+    </author><guid>https://hashp4.fr/tags/forensic/</guid>
+    <description><![CDATA[]]></description>
+</item><item>
+    <title>Volatility</title>
+    <link>https://hashp4.fr/tags/volatility/</link>
+    <pubDate>Sat, 09 Dec 2023 00:00:00 &#43;0000</pubDate><author>
+        <name>Author</name>
+    </author><guid>https://hashp4.fr/tags/volatility/</guid>
+    <description><![CDATA[]]></description>
+</item><item>
+    <title>Cutter</title>
+    <link>https://hashp4.fr/tags/cutter/</link>
+    <pubDate>Sun, 26 Nov 2023 22:00:53 &#43;0100</pubDate><author>
+        <name>Author</name>
+    </author><guid>https://hashp4.fr/tags/cutter/</guid>
+    <description><![CDATA[]]></description>
+</item></channel>
+</rss>
