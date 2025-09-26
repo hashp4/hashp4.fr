@@ -3,7 +3,42 @@
         <title>Tags - Tag - Blog - hashp4</title>
         <link>https://hashp4.fr/tags/</link>
         <description>Tags - Tag - Blog - hashp4</description>
-        <generator>Hugo -- gohugo.io</generator><language>en</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sun, 12 May 2024 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://hashp4.fr/tags/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Fri, 26 Sep 2025 19:00:00 &#43;0100</lastBuildDate><atom:link href="https://hashp4.fr/tags/" rel="self" type="application/rss+xml" /><item>
+    <title>Linux</title>
+    <link>https://hashp4.fr/tags/linux/</link>
+    <pubDate>Fri, 26 Sep 2025 19:00:00 &#43;0100</pubDate><author>
+        <name>Author</name>
+    </author><guid>https://hashp4.fr/tags/linux/</guid>
+    <description><![CDATA[]]></description>
+</item><item>
+    <title>Memory dump</title>
+    <link>https://hashp4.fr/tags/memory-dump/</link>
+    <pubDate>Fri, 26 Sep 2025 19:00:00 &#43;0100</pubDate><author>
+        <name>Author</name>
+    </author><guid>https://hashp4.fr/tags/memory-dump/</guid>
+    <description><![CDATA[]]></description>
+</item><item>
+    <title>Network impersonation</title>
+    <link>https://hashp4.fr/tags/network-impersonation/</link>
+    <pubDate>Fri, 26 Sep 2025 19:00:00 &#43;0100</pubDate><author>
+        <name>Author</name>
+    </author><guid>https://hashp4.fr/tags/network-impersonation/</guid>
+    <description><![CDATA[]]></description>
+</item><item>
+    <title>Rootkit</title>
+    <link>https://hashp4.fr/tags/rootkit/</link>
+    <pubDate>Fri, 26 Sep 2025 19:00:00 &#43;0100</pubDate><author>
+        <name>Author</name>
+    </author><guid>https://hashp4.fr/tags/rootkit/</guid>
+    <description><![CDATA[]]></description>
+</item><item>
+    <title>Volatility3</title>
+    <link>https://hashp4.fr/tags/volatility3/</link>
+    <pubDate>Fri, 26 Sep 2025 19:00:00 &#43;0100</pubDate><author>
+        <name>Author</name>
+    </author><guid>https://hashp4.fr/tags/volatility3/</guid>
+    <description><![CDATA[]]></description>
+</item><item>
     <title>APT</title>
     <link>https://hashp4.fr/tags/apt/</link>
     <pubDate>Sun, 12 May 2024 00:00:00 &#43;0000</pubDate><author>
@@ -37,41 +72,6 @@
     <pubDate>Sun, 12 May 2024 00:00:00 &#43;0000</pubDate><author>
         <name>Author</name>
     </author><guid>https://hashp4.fr/tags/threat-hunting/</guid>
-    <description><![CDATA[]]></description>
-</item><item>
-    <title>Xintra</title>
-    <link>https://hashp4.fr/tags/xintra/</link>
-    <pubDate>Sun, 12 May 2024 00:00:00 &#43;0000</pubDate><author>
-        <name>Author</name>
-    </author><guid>https://hashp4.fr/tags/xintra/</guid>
-    <description><![CDATA[]]></description>
-</item><item>
-    <title>FCSC 2019</title>
-    <link>https://hashp4.fr/tags/fcsc-2019/</link>
-    <pubDate>Sat, 09 Dec 2023 00:00:00 &#43;0000</pubDate><author>
-        <name>Author</name>
-    </author><guid>https://hashp4.fr/tags/fcsc-2019/</guid>
-    <description><![CDATA[]]></description>
-</item><item>
-    <title>Forensic</title>
-    <link>https://hashp4.fr/tags/forensic/</link>
-    <pubDate>Sat, 09 Dec 2023 00:00:00 &#43;0000</pubDate><author>
-        <name>Author</name>
-    </author><guid>https://hashp4.fr/tags/forensic/</guid>
-    <description><![CDATA[]]></description>
-</item><item>
-    <title>Volatility</title>
-    <link>https://hashp4.fr/tags/volatility/</link>
-    <pubDate>Sat, 09 Dec 2023 00:00:00 &#43;0000</pubDate><author>
-        <name>Author</name>
-    </author><guid>https://hashp4.fr/tags/volatility/</guid>
-    <description><![CDATA[]]></description>
-</item><item>
-    <title>Cutter</title>
-    <link>https://hashp4.fr/tags/cutter/</link>
-    <pubDate>Sun, 26 Nov 2023 22:00:53 &#43;0100</pubDate><author>
-        <name>Author</name>
-    </author><guid>https://hashp4.fr/tags/cutter/</guid>
     <description><![CDATA[]]></description>
 </item></channel>
 </rss>

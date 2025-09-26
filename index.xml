@@ -3,9 +3,18 @@
         <title>Blog - hashp4</title>
         <link>https://hashp4.fr/</link>
         <description>Personal blog</description>
-        <generator>Hugo -- gohugo.io</generator><language>en</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sun, 12 May 2024 00:00:00 &#43;0000</lastBuildDate>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Fri, 26 Sep 2025 19:00:00 &#43;0100</lastBuildDate>
             <atom:link href="https://hashp4.fr/index.xml" rel="self" type="application/rss+xml" />
         <item>
+    <title>HTB Holmes CTF 2025 - The Tunnel Without Walls</title>
+    <link>https://hashp4.fr/htb-holmes-ctf-the-tunnel-without-walls/</link>
+    <pubDate>Fri, 26 Sep 2025 19:00:00 &#43;0100</pubDate><author>
+                    <name>hashp4</name>
+                </author><guid>https://hashp4.fr/htb-holmes-ctf-the-tunnel-without-walls/</guid>
+    <description><![CDATA[<div class="featured-image">
+                <img src="/htb-holmes-ctf-the-tunnel-without-walls/feature.png" referrerpolicy="no-referrer">
+            </div>Walkthrough of the challenge, labelled as hard during the CTF. Let&rsquo;s dive into the analysis of a memory dump from a Linux host!]]></description>
+</item><item>
     <title>Xintra APT Emulation Lab - Waifu University ♡ (＞ω＜)</title>
     <link>https://hashp4.fr/xintra-lab-waifu-university/</link>
     <pubDate>Sun, 12 May 2024 00:00:00 &#43;0000</pubDate><author>
@@ -86,14 +95,5 @@
     <description><![CDATA[<div class="featured-image">
                 <img src="/esaip-ctf-2022/feature.png" referrerpolicy="no-referrer">
             </div>Solution of the challenge &lsquo;The Proof of the Malware&rsquo; made by Hippie at ESAIP 2022.]]></description>
-</item><item>
-    <title>Hello World</title>
-    <link>https://hashp4.fr/hello-world/</link>
-    <pubDate>Sun, 20 Nov 2022 23:53:53 &#43;0100</pubDate><author>
-                    <name>hashp4</name>
-                </author><guid>https://hashp4.fr/hello-world/</guid>
-    <description><![CDATA[<div class="featured-image">
-                <img src="/hello-world/feature.png" referrerpolicy="no-referrer">
-            </div>This is just a short post to describe the aim of this blog and what you will find on here. And in case you wondered, yes this title is a reference to Mr. Robot.]]></description>
 </item></channel>
 </rss>
