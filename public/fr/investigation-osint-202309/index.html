@@ -1,0 +1,177 @@
+
+
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noodp" />
+    <title>Investigation Phishing &amp; OSINT ↗ - Blog - hashp4</title><meta name="Description" content="Un exemple d&#39;investigation menée suite à la réception d&#39;un email de phishing. Rétroingénierie puis investigation OSINT permettront de remonter jusqu&#39;à l&#39;attaquant."><meta property="og:title" content="Investigation Phishing &amp; OSINT ↗" />
+<meta property="og:description" content="Un exemple d&#39;investigation menée suite à la réception d&#39;un email de phishing. Rétroingénierie puis investigation OSINT permettront de remonter jusqu&#39;à l&#39;attaquant." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://hashp4.fr/fr/investigation-osint-202309/" /><meta property="og:image" content="https://hashp4.fr/fr/investigation-osint-202309/feature.jpg" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-09-19T00:00:00+00:00" />
+<meta property="article:modified_time" content="2023-09-19T00:00:00+00:00" /><meta property="og:site_name" content="hashp4" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://hashp4.fr/fr/investigation-osint-202309/feature.jpg" /><meta name="twitter:title" content="Investigation Phishing &amp; OSINT ↗"/>
+<meta name="twitter:description" content="Un exemple d&#39;investigation menée suite à la réception d&#39;un email de phishing. Rétroingénierie puis investigation OSINT permettront de remonter jusqu&#39;à l&#39;attaquant."/>
+<meta name="twitter:site" content="@hashp4_"/>
+<meta name="application-name" content="hashp4">
+<meta name="apple-mobile-web-app-title" content="hashp4">
+
+<meta name="theme-color" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><meta name="twitter:creator" content="@hashp4_" /><link rel="icon" href="/favicon.ico"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="https://hashp4.fr/fr/investigation-osint-202309/" /><link rel="prev" href="https://hashp4.fr/fr/breizh-ctf-2023/" /><link rel="next" href="https://hashp4.fr/fr/fcsc-2019-3615-incident-1/" />
+<link rel="stylesheet" href="/css/main.4cb370884f3eb79df5ec8943416884c6aa730a30ceff5cd62fd0872f24b6b68e.css" integrity="sha256-TLNwiE8&#43;t5317IlDQWiExqpzCjDO/1zWL9CHLyS2to4="><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/css/color.728a2655c4cc249649c041d72af6111f81a1b57cb4f99fc4323550b7f966e960.css" integrity="sha256-coomVcTMJJZJwEHXKvYRH4GhtXy0&#43;Z/EMjVQt/lm6WA="><link rel="stylesheet" href="/css/style.min.aadeb0d1e0db9fd05aaaa62285215f80238b1e906367e8936725dd7de8c1642f.css" integrity="sha256-qt6w0eDbn9BaqqYihSFfgCOLHpBjZ&#43;iTZyXdfejBZC8="><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Investigation Phishing \u0026 OSINT ↗",
+        "inLanguage": "fr",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https://hashp4.fr/fr/investigation-osint-202309/"
+        },"image": ["https://hashp4.fr/images/Apple-Devices-Preview.png"],"genre": "posts","keywords": "OSINT, malware, reverse","wordcount":  0 ,
+        "url": "https://hashp4.fr/fr/investigation-osint-202309/","datePublished": "2023-09-19T00:00:00+00:00","dateModified": "2023-09-19T00:00:00+00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "hashp4","logo": {
+                    "@type": "ImageObject",
+                    "url": "https://hashp4.fr/images/logo.png",
+                    "width":  288 ,
+                    "height":  288 
+                }},"authors": [{
+                        "@type": "Person",
+                        "name": "hashp4"                    
+                    }],"description": "Un exemple d'investigation menée suite à la réception d'un email de phishing. Rétroingénierie puis investigation OSINT permettront de remonter jusqu'à l'attaquant."
+    }
+    </script></head>
+
+<body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">
+        function setTheme(theme) {document.body.setAttribute('theme', theme); document.documentElement.style.setProperty('color-scheme', theme === 'light' ? 'light' : 'dark'); window.theme = theme;   window.isDark = window.theme !== 'light' }
+        function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
+        function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
+        if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('black' === 'light' || 'black' === 'dark' || 'black' === 'black') setTheme('black'), saveTheme('black'); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
+        let metaColors = {'light': '#f8f8f8','dark': '#252627','black': '#000000'}
+        getMeta('theme-color').content = metaColors[document.body.getAttribute('theme')];
+        window.switchThemeEventSet = new Set()
+    </script>
+    <div id="back-to-top"></div>
+    <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/fr/" title="Blog - hashp4"><span id="desktop-header-typeit" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/fr/whoami">🇫🇷 whoami </a><a class="menu-item" href="/fr/categories/article/">✒ Blog </a><a class="menu-item" href="/fr/projects/">📚 Projets </a><a class="menu-item" href="/fr/categories/writeup">🚩 Writeups </a><a class="menu-item" href="/fr/music/">🎵 Musique </a><span class="menu-item delimiter"></span><a href="javascript:void(0);" class="menu-item language" title="Choisir la langue">Français<i class="fas fa-chevron-right fa-fw"></i>
+                        <select class="language-select" title="Choisir la langue" id="language-select-desktop" onchange="location = this.value;"><option value="/fr/investigation-osint-202309/" selected>Français</option></select>
+                    </a><a href="javascript:void(0);" class="menu-item theme-select" title="Changer de thème">
+                    <i class="fas fa-adjust fa-fw"></i>
+                    <select class="color-theme-select" id="theme-select-desktop" title="Changer de thème">
+                        <option value="light">Clair</option>
+                        <option value="dark">Sombre</option>
+                        <option value="black">Noir</option>
+                        <option value="auto">Auto</option>
+                    </select>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/fr/" title="Blog - hashp4"><span id="mobile-header-typeit" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><a class="menu-item" href="/fr/whoami" title="">🇫🇷whoami</a><a class="menu-item" href="/fr/categories/article/" title="">✒Blog</a><a class="menu-item" href="/fr/projects/" title="">📚Projets</a><a class="menu-item" href="/fr/categories/writeup" title="">🚩Writeups</a><a class="menu-item" href="/fr/music/" title="">🎵Musique</a><a href="javascript:void(0);" class="menu-item theme-select" title="Changer de thème">
+                <i class="fas fa-adjust fa-fw"></i>
+                <select class="color-theme-select" id="theme-select-mobile" title="Changer de thème">
+                    <option value="light">Clair</option>
+                    <option value="dark">Sombre</option>
+                    <option value="black">Noir</option>
+                    <option value="auto">Auto</option>
+                </select>
+            </a><a href="javascript:void(0);" class="menu-item" title="Choisir la langue">Français<i class="fas fa-chevron-right fa-fw"></i>
+                    <select class="language-select" title="Choisir la langue" onchange="location = this.value;"><option value="/fr/investigation-osint-202309/" selected>Français</option></select>
+                </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+            <div class="container"><div class="toc" id="toc-auto">
+        <h2 class="toc-title">Contenu</h2>
+        <div class="toc-content" id="toc-content-auto"><nav id="TableOfContents"></nav></div>
+    </div><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Investigation Phishing &amp; OSINT ↗</h1><div class="post-meta">
+            <div class="post-meta-line">
+                <span class="post-author"><span class='author'><span class="author fas fa-user-circle fa-fw"></span><span class='screen-reader-text'>  </span><a href='https://hashp4.fr/fr/authors/hashp4'>hashp4</a></span>
+                </span>&nbsp;<span class="post-category">inclus dans </span>&nbsp;<span class="post-category">catégorie <a href="/fr/categories/article/"><i class="far fa-folder fa-fw"></i>Article</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="19-09-2023">19-09-2023</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="19-09-2023">19-09-2023</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;Un mot&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;Une minute&nbsp;</div>
+        </div><div class="featured-image"><img
+        
+        loading="eager"
+        src="/fr/investigation-osint-202309/feature.jpg"
+        srcset="/fr/investigation-osint-202309/feature.jpg, /fr/investigation-osint-202309/feature.jpg 1.5x, /fr/investigation-osint-202309/feature.jpg 2x"
+        sizes="auto"
+        alt="Un exemple d&#39;investigation menée suite à la réception d&#39;un email de phishing. Rétroingénierie puis investigation OSINT permettront de remonter jusqu&#39;à l&#39;attaquant."
+        title="Un exemple d&#39;investigation menée suite à la réception d&#39;un email de phishing. Rétroingénierie puis investigation OSINT permettront de remonter jusqu&#39;à l&#39;attaquant." height="754"   width="2416" ></div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>Contenu</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents"></nav></div>
+            </div><div class="content" id="content"><meta http-equiv="Refresh" content="0; url='https://www.algosecure.fr/actualites/article/investigation-osint-phishing'" /></div>
+
+        <div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Mis à jour le 19-09-2023</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span><a class="link-to-mardown" href=/fr/investigation-osint-202309/index.md target="_blank" rel="noopener noreferrer">Lire en Markdown</a>
+                    </span></div>
+            <div class="post-info-share"><button title="Partager sur Twitter" data-sharer="twitter" data-url="https://hashp4.fr/fr/investigation-osint-202309/" data-title="Investigation Phishing &amp; OSINT ↗" data-via="hashp4_" data-hashtags="OSINT,malware,reverse"><span class="fab fa-twitter fa-fw"></span></button><button title="Partager sur Linkedin" data-sharer="linkedin" data-url="https://hashp4.fr/fr/investigation-osint-202309/"><span class="fab fa-linkedin fa-fw"></span></button></div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/fr/tags/osint/">OSINT</a>,&nbsp;<a href="/fr/tags/malware/">malware</a>,&nbsp;<a href="/fr/tags/reverse/">reverse</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Retour</a></span>&nbsp;|&nbsp;<span><a href="/fr/">Accueil</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/fr/breizh-ctf-2023/" class="prev" rel="prev" title="[BreizhCTF 2023] - Série Yakuza"><i class="fas fa-angle-left fa-fw"></i>[BreizhCTF 2023] - Série Yakuza</a>
+            <a href="/fr/fcsc-2019-3615-incident-1/" class="next" rel="next" title="[FCSC 2019] - 3615 Incident (1/3)">[FCSC 2019] - 3615 Incident (1/3)<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+</article></div>
+        </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">
+                    Propulsé par <a href="https://gohugo.io/" target="_blank" rel="noopener noreferrer" title="Hugo 0.121.1">Hugo</a>&nbsp;|&nbsp;Thème - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreferrer" title="DoIt 0.4.0"><i class="far fa-edit fa-fw"></i> DoIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2022 - 2026</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/fr/" target="_blank" rel="noopener noreferrer"></a></span>&nbsp;|&nbsp;<span class="license"><a rel="" href="https://www.gnu.org/licenses/gpl-3.0.en.html" target="_blank">GPL-V3</a></span></div>
+            <div class="footer-line"></div>
+            <div class="footer-line">
+            </div>
+        </div></footer></div>
+
+    <div id="fixed-buttons"><a href="#back-to-top" id="back-to-top-button" class="fixed-button" title="Retour en haut">
+            <i class="fas fa-arrow-up fa-fw"></i>
+        </a><a href="#" id="view-comments" class="fixed-button" title="Afficher les commentaires">
+            <i class="fas fa-comment fa-fw"></i>
+        </a>
+    </div><div class="assets"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/contrib/copy-tex.min.css">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/contrib/copy-tex.min.css"></noscript><script type="text/javascript">window.config={"code":{"copyTitle":"Copier dans le presse-papiers","maxShownLines":50},"comment":{},"data":{"desktop-header-typeit":"hashp4 (\u003eᴗ•)","mobile-header-typeit":"hashp4 (\u003eᴗ•)"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":false,"left":"$","right":"$"}],"strict":false},"sharerjs":true,"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"desktop-header-typeit":["desktop-header-typeit"],"mobile-header-typeit":["mobile-header-typeit"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.4.2/sharer.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/typeit@7.0.4/dist/typeit.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js" defer></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/contrib/auto-render.min.js" defer></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/contrib/copy-tex.min.js" defer></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/contrib/mhchem.min.js" defer></script><script type="text/javascript" src="/js/katex.min.js" defer></script><script type="text/javascript" src="/js/theme.min.js" defer></script></div>
+</body>
+
+</html>

@@ -32,6 +32,27 @@
     </author><guid>https://hashp4.fr/fr/tags/volatility/</guid>
     <description><![CDATA[]]></description>
 </item><item>
+    <title>malware</title>
+    <link>https://hashp4.fr/fr/tags/malware/</link>
+    <pubDate>Tue, 19 Sep 2023 00:00:00 &#43;0000</pubDate><author>
+        <name>Auteur</name>
+    </author><guid>https://hashp4.fr/fr/tags/malware/</guid>
+    <description><![CDATA[]]></description>
+</item><item>
+    <title>OSINT</title>
+    <link>https://hashp4.fr/fr/tags/osint/</link>
+    <pubDate>Tue, 19 Sep 2023 00:00:00 &#43;0000</pubDate><author>
+        <name>Auteur</name>
+    </author><guid>https://hashp4.fr/fr/tags/osint/</guid>
+    <description><![CDATA[]]></description>
+</item><item>
+    <title>reverse</title>
+    <link>https://hashp4.fr/fr/tags/reverse/</link>
+    <pubDate>Tue, 19 Sep 2023 00:00:00 &#43;0000</pubDate><author>
+        <name>Auteur</name>
+    </author><guid>https://hashp4.fr/fr/tags/reverse/</guid>
+    <description><![CDATA[]]></description>
+</item><item>
     <title>BreizhCTF</title>
     <link>https://hashp4.fr/fr/tags/breizhctf/</link>
     <pubDate>Sun, 19 Mar 2023 22:00:53 &#43;0100</pubDate><author>
@@ -51,27 +72,6 @@
     <pubDate>Sun, 19 Mar 2023 22:00:53 &#43;0100</pubDate><author>
         <name>Auteur</name>
     </author><guid>https://hashp4.fr/fr/tags/irl/</guid>
-    <description><![CDATA[]]></description>
-</item><item>
-    <title>OSINT</title>
-    <link>https://hashp4.fr/fr/tags/osint/</link>
-    <pubDate>Sun, 19 Mar 2023 22:00:53 &#43;0100</pubDate><author>
-        <name>Auteur</name>
-    </author><guid>https://hashp4.fr/fr/tags/osint/</guid>
-    <description><![CDATA[]]></description>
-</item><item>
-    <title>SOCMINT</title>
-    <link>https://hashp4.fr/fr/tags/socmint/</link>
-    <pubDate>Sun, 19 Mar 2023 22:00:53 &#43;0100</pubDate><author>
-        <name>Auteur</name>
-    </author><guid>https://hashp4.fr/fr/tags/socmint/</guid>
-    <description><![CDATA[]]></description>
-</item><item>
-    <title>Electro</title>
-    <link>https://hashp4.fr/fr/tags/electro/</link>
-    <pubDate>Sun, 19 Mar 2023 00:00:00 &#43;0000</pubDate><author>
-        <name>Auteur</name>
-    </author><guid>https://hashp4.fr/fr/tags/electro/</guid>
     <description><![CDATA[]]></description>
 </item></channel>
 </rss>

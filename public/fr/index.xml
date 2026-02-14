@@ -33,6 +33,15 @@
                 <img src="/fr/fcsc-2019-3615-incident-1/feature.png" referrerpolicy="no-referrer">
             </div>Solution du <strong>premier</strong> challenge de la série <code>3615 Incident</code> paru lors du FCSC 2019.]]></description>
 </item><item>
+    <title>Investigation Phishing &amp; OSINT ↗</title>
+    <link>https://hashp4.fr/fr/investigation-osint-202309/</link>
+    <pubDate>Tue, 19 Sep 2023 00:00:00 &#43;0000</pubDate><author>
+                    <name>hashp4</name>
+                </author><guid>https://hashp4.fr/fr/investigation-osint-202309/</guid>
+    <description><![CDATA[<div class="featured-image">
+                <img src="/fr/investigation-osint-202309/feature.jpg" referrerpolicy="no-referrer">
+            </div>Un exemple d'investigation menée suite à la réception d'un email de phishing. Rétroingénierie puis investigation OSINT permettront de remonter jusqu'à l'attaquant.]]></description>
+</item><item>
     <title>[BreizhCTF 2023] - Série Yakuza</title>
     <link>https://hashp4.fr/fr/breizh-ctf-2023/</link>
     <pubDate>Sun, 19 Mar 2023 22:00:53 &#43;0100</pubDate><author>

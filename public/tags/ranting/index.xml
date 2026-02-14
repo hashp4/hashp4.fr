@@ -1,0 +1,16 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>ranting - Tag - Blog - hashp4</title>
+        <link>https://hashp4.fr/tags/ranting/</link>
+        <description>ranting - Tag - Blog - hashp4</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sat, 14 Feb 2026 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://hashp4.fr/tags/ranting/" rel="self" type="application/rss+xml" /><item>
+    <title>Reflections</title>
+    <link>https://hashp4.fr/reflections/</link>
+    <pubDate>Sat, 14 Feb 2026 00:00:00 &#43;0000</pubDate><author>
+                    <name>hashp4</name>
+                </author><guid>https://hashp4.fr/reflections/</guid>
+    <description><![CDATA[<div class="featured-image">
+                <img src="feature.png" referrerpolicy="no-referrer">
+            </div>Coming soon&hellip;]]></description>
+</item></channel>
+</rss>

@@ -39,3 +39,11 @@
   url = "/music/"
   title = ""
   weight = 5
+[[main]]
+  identifier = "reflections"
+  pre = "💭"
+  post = ""
+  name = "Reflections"
+  url = "/reflections/"
+  title = ""
+  weight = 6

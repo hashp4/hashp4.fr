@@ -3,7 +3,28 @@
         <title>Tags - Tag - Blog - hashp4</title>
         <link>https://hashp4.fr/tags/</link>
         <description>Tags - Tag - Blog - hashp4</description>
-        <generator>Hugo -- gohugo.io</generator><language>en</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Fri, 26 Sep 2025 19:00:00 &#43;0100</lastBuildDate><atom:link href="https://hashp4.fr/tags/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sat, 14 Feb 2026 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://hashp4.fr/tags/" rel="self" type="application/rss+xml" /><item>
+    <title>philosophy</title>
+    <link>https://hashp4.fr/tags/philosophy/</link>
+    <pubDate>Sat, 14 Feb 2026 00:00:00 &#43;0000</pubDate><author>
+        <name>Author</name>
+    </author><guid>https://hashp4.fr/tags/philosophy/</guid>
+    <description><![CDATA[]]></description>
+</item><item>
+    <title>ranting</title>
+    <link>https://hashp4.fr/tags/ranting/</link>
+    <pubDate>Sat, 14 Feb 2026 00:00:00 &#43;0000</pubDate><author>
+        <name>Author</name>
+    </author><guid>https://hashp4.fr/tags/ranting/</guid>
+    <description><![CDATA[]]></description>
+</item><item>
+    <title>thoughts</title>
+    <link>https://hashp4.fr/tags/thoughts/</link>
+    <pubDate>Sat, 14 Feb 2026 00:00:00 &#43;0000</pubDate><author>
+        <name>Author</name>
+    </author><guid>https://hashp4.fr/tags/thoughts/</guid>
+    <description><![CDATA[]]></description>
+</item><item>
     <title>Linux</title>
     <link>https://hashp4.fr/tags/linux/</link>
     <pubDate>Fri, 26 Sep 2025 19:00:00 &#43;0100</pubDate><author>
@@ -51,27 +72,6 @@
     <pubDate>Sun, 12 May 2024 00:00:00 &#43;0000</pubDate><author>
         <name>Author</name>
     </author><guid>https://hashp4.fr/tags/dfir/</guid>
-    <description><![CDATA[]]></description>
-</item><item>
-    <title>Lab</title>
-    <link>https://hashp4.fr/tags/lab/</link>
-    <pubDate>Sun, 12 May 2024 00:00:00 &#43;0000</pubDate><author>
-        <name>Author</name>
-    </author><guid>https://hashp4.fr/tags/lab/</guid>
-    <description><![CDATA[]]></description>
-</item><item>
-    <title>Ransomware</title>
-    <link>https://hashp4.fr/tags/ransomware/</link>
-    <pubDate>Sun, 12 May 2024 00:00:00 &#43;0000</pubDate><author>
-        <name>Author</name>
-    </author><guid>https://hashp4.fr/tags/ransomware/</guid>
-    <description><![CDATA[]]></description>
-</item><item>
-    <title>Threat Hunting</title>
-    <link>https://hashp4.fr/tags/threat-hunting/</link>
-    <pubDate>Sun, 12 May 2024 00:00:00 &#43;0000</pubDate><author>
-        <name>Author</name>
-    </author><guid>https://hashp4.fr/tags/threat-hunting/</guid>
     <description><![CDATA[]]></description>
 </item></channel>
 </rss>
