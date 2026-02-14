@@ -128,6 +128,35 @@
                     hreflang="fr"
                     href="https://hashp4.fr/fr/fcsc-2019-3615-incident-1/"
                     /></url><url>
+            <loc>https://hashp4.fr/fr/categories/article/</loc><lastmod>2023-09-19T00:00:00&#43;00:00</lastmod><changefreq>daily</changefreq><priority>0.5</priority><xhtml:link
+                        rel="alternate"
+                        hreflang="en"
+                        href="https://hashp4.fr/categories/article/"
+                        /><xhtml:link
+                    rel="alternate"
+                    hreflang="fr"
+                    href="https://hashp4.fr/fr/categories/article/"
+                    /></url><url>
+            <loc>https://hashp4.fr/fr/investigation-osint-202309/</loc><lastmod>2023-09-19T00:00:00&#43;00:00</lastmod><changefreq>daily</changefreq><priority>0.5</priority></url><url>
+            <loc>https://hashp4.fr/fr/tags/malware/</loc><lastmod>2023-09-19T00:00:00&#43;00:00</lastmod><changefreq>daily</changefreq><priority>0.5</priority><xhtml:link
+                        rel="alternate"
+                        hreflang="en"
+                        href="https://hashp4.fr/tags/malware/"
+                        /><xhtml:link
+                    rel="alternate"
+                    hreflang="fr"
+                    href="https://hashp4.fr/fr/tags/malware/"
+                    /></url><url>
+            <loc>https://hashp4.fr/fr/tags/osint/</loc><lastmod>2023-09-19T00:00:00&#43;00:00</lastmod><changefreq>daily</changefreq><priority>0.5</priority><xhtml:link
+                        rel="alternate"
+                        hreflang="en"
+                        href="https://hashp4.fr/tags/osint/"
+                        /><xhtml:link
+                    rel="alternate"
+                    hreflang="fr"
+                    href="https://hashp4.fr/fr/tags/osint/"
+                    /></url><url>
+            <loc>https://hashp4.fr/fr/tags/reverse/</loc><lastmod>2023-09-19T00:00:00&#43;00:00</lastmod><changefreq>daily</changefreq><priority>0.5</priority></url><url>
             <loc>https://hashp4.fr/fr/breizh-ctf-2023/</loc><lastmod>2023-03-19T22:00:53&#43;01:00</lastmod><changefreq>daily</changefreq><priority>0.5</priority><xhtml:link
                         rel="alternate"
                         hreflang="en"
@@ -163,15 +192,6 @@
                     rel="alternate"
                     hreflang="fr"
                     href="https://hashp4.fr/fr/tags/irl/"
-                    /></url><url>
-            <loc>https://hashp4.fr/fr/tags/osint/</loc><lastmod>2023-03-19T22:00:53&#43;01:00</lastmod><changefreq>daily</changefreq><priority>0.5</priority><xhtml:link
-                        rel="alternate"
-                        hreflang="en"
-                        href="https://hashp4.fr/tags/osint/"
-                        /><xhtml:link
-                    rel="alternate"
-                    hreflang="fr"
-                    href="https://hashp4.fr/fr/tags/osint/"
                     /></url><url>
             <loc>https://hashp4.fr/fr/tags/socmint/</loc><lastmod>2023-03-19T22:00:53&#43;01:00</lastmod><changefreq>daily</changefreq><priority>0.5</priority><xhtml:link
                         rel="alternate"
@@ -209,15 +229,6 @@
                     rel="alternate"
                     hreflang="fr"
                     href="https://hashp4.fr/fr/tags/techno/"
-                    /></url><url>
-            <loc>https://hashp4.fr/fr/categories/article/</loc><lastmod>2022-11-20T23:53:53&#43;01:00</lastmod><changefreq>daily</changefreq><priority>0.5</priority><xhtml:link
-                        rel="alternate"
-                        hreflang="en"
-                        href="https://hashp4.fr/categories/article/"
-                        /><xhtml:link
-                    rel="alternate"
-                    hreflang="fr"
-                    href="https://hashp4.fr/fr/categories/article/"
                     /></url><url>
             <loc>https://hashp4.fr/fr/hello-world/</loc><lastmod>2022-11-20T23:53:53&#43;01:00</lastmod><changefreq>daily</changefreq><priority>0.5</priority><xhtml:link
                         rel="alternate"

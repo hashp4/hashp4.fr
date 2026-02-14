@@ -3,7 +3,16 @@
         <title>Article - Catégorie - Blog - hashp4</title>
         <link>https://hashp4.fr/fr/categories/article/</link>
         <description>Article - Catégorie - Blog - hashp4</description>
-        <generator>Hugo -- gohugo.io</generator><language>fr</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sun, 20 Nov 2022 23:53:53 &#43;0100</lastBuildDate><atom:link href="https://hashp4.fr/fr/categories/article/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>fr</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Tue, 19 Sep 2023 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://hashp4.fr/fr/categories/article/" rel="self" type="application/rss+xml" /><item>
+    <title>Investigation Phishing &amp; OSINT ↗</title>
+    <link>https://hashp4.fr/fr/investigation-osint-202309/</link>
+    <pubDate>Tue, 19 Sep 2023 00:00:00 &#43;0000</pubDate><author>
+                    <name>hashp4</name>
+                </author><guid>https://hashp4.fr/fr/investigation-osint-202309/</guid>
+    <description><![CDATA[<div class="featured-image">
+                <img src="/fr/investigation-osint-202309/feature.jpg" referrerpolicy="no-referrer">
+            </div>Un exemple d'investigation menée suite à la réception d'un email de phishing. Rétroingénierie puis investigation OSINT permettront de remonter jusqu'à l'attaquant.]]></description>
+</item><item>
     <title>Hello World</title>
     <link>https://hashp4.fr/fr/hello-world/</link>
     <pubDate>Sun, 20 Nov 2022 23:53:53 &#43;0100</pubDate><author>
