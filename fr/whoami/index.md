@@ -15,7 +15,7 @@ Mes catégories préférées sont l'**OSINT**, le **forensic** et l'**analyse de
 ### 💻 Infosec, ou environs 80% de ma vie
 Passionné par la sécurité informatique, je pratique pendant mon temps libre diverses activités dans ce domaine. Actuellement, je me concentre principalement sur l'analyse de malware (Binary Ninja FTW 😎) et la CTI.  
 
-Par ailleurs, je suis l'un des fondateurs et membres de l'équipe CTF [MILF](https://milfctf.com/) (*Mother I'd Like to Flag*), aujourd'hui malheureusement inactive. Nous avions l'habitude de participer à divers CTF tout au long de l'année, que ce soit en ligne ou sur le terrain. Aujourd'hui, je participe en solo. Si tu es membre d'une équipe CTF active à la recherche de nouveaux membres et que tu lis ce blog, n'hésite pas à m'envoyer un message !
+Par ailleurs, je suis l'un des fondateurs et membres de l'équipe CTF [MILF](https://milf.club/) (*Mother I'd Like to Flag*), aujourd'hui malheureusement inactive. Nous avions l'habitude de participer à divers CTF tout au long de l'année, que ce soit en ligne ou sur le terrain. Aujourd'hui, je participe en solo. Si tu es membre d'une équipe CTF active à la recherche de nouveaux membres et que tu lis ce blog, n'hésite pas à m'envoyer un message !
 
 En dehors des CTFs, j'aime m'entraîner sur diverses plateformes d'apprentissage comme TryHackMe, HackTheBox et plus récemment [XINTRA Labs](https://www.xintra.org/simulations) (gros coup de coeur 🥰) et [Malops.io](https://malops.io/). Je participe également à des conférences et événements sur la cybersécurité partout en Europe dès que j'en ai l'occasion. 
 

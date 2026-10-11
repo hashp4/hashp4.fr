@@ -3,7 +3,16 @@
         <title>All Posts - Blog - hashp4</title>
         <link>https://hashp4.fr/posts/</link>
         <description>All Posts | Blog - hashp4</description>
-        <generator>Hugo -- gohugo.io</generator><language>en</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Fri, 26 Sep 2025 19:00:00 &#43;0100</lastBuildDate><atom:link href="https://hashp4.fr/posts/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Thu, 01 Oct 2026 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://hashp4.fr/posts/" rel="self" type="application/rss+xml" /><item>
+    <title>Gotta Breach &#39;Em All! The journey of ShinyHunters ↗</title>
+    <link>https://hashp4.fr/gotta-breach-em-all-202601/</link>
+    <pubDate>Thu, 01 Oct 2026 00:00:00 &#43;0000</pubDate><author>
+                    <name>hashp4</name>
+                </author><guid>https://hashp4.fr/gotta-breach-em-all-202601/</guid>
+    <description><![CDATA[<div class="featured-image">
+                <img src="/gotta-breach-em-all-202601/feature.webp" referrerpolicy="no-referrer">
+            </div>A report I wrote in collaboration with Beazley Security on ShinyHunters as part of my work @ Sekoia. I dug into 6 years of activity (from their debut until &ldquo;now&rdquo;). Tactics and structure evolution, key arrests, law enforcement responses and the breaches that made them infamous.]]></description>
+</item><item>
     <title>HTB Holmes CTF 2025 - The Tunnel Without Walls</title>
     <link>https://hashp4.fr/htb-holmes-ctf-the-tunnel-without-walls/</link>
     <pubDate>Fri, 26 Sep 2025 19:00:00 &#43;0100</pubDate><author>
@@ -84,14 +93,5 @@
     <description><![CDATA[<div class="featured-image">
                 <img src="/breizh-ctf-2023/feature.png" referrerpolicy="no-referrer">
             </div>Solution to the OSINT challenges I created for BreizhCTF 2023.]]></description>
-</item><item>
-    <title>[ESAIP CTF 2022] - The Proof of the Malware</title>
-    <link>https://hashp4.fr/esaip-ctf-2022/</link>
-    <pubDate>Mon, 21 Nov 2022 23:53:53 &#43;0100</pubDate><author>
-                    <name>hashp4</name>
-                </author><guid>https://hashp4.fr/esaip-ctf-2022/</guid>
-    <description><![CDATA[<div class="featured-image">
-                <img src="/esaip-ctf-2022/feature.png" referrerpolicy="no-referrer">
-            </div>Solution of the challenge &lsquo;The Proof of the Malware&rsquo; made by Hippie at ESAIP 2022.]]></description>
 </item></channel>
 </rss>
