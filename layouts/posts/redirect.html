@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="{{ .Site.LanguageCode }}">
+<head>
+  <meta charset="utf-8">
+  <title>{{ .Title }}</title>
+  <link rel="canonical" href="{{ .Params.externalUrl }}">
+  <meta name="robots" content="noindex">
+  <meta http-equiv="refresh" content="0; url={{ .Params.externalUrl }}">
+</head>
+<body>
+  <p>Redirecting to <a href="{{ .Params.externalUrl }}">{{ .Params.externalUrl }}</a>…</p>
+</body>
+</html>

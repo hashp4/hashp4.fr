@@ -41,7 +41,7 @@ tryhackme:
 # 006: MILFCTF
 milfctf:
   Weight: 6
-  Prefix: https://milfctf.com
+  Prefix: https://milf.club/
   Title: MILF CTF Website
   Icon:
     Simpleicons: metrodeparis

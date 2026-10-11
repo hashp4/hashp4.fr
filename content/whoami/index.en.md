@@ -24,7 +24,7 @@ My favorite infosec fields are **OSINT**, **forensics** and **malware analysis**
 ### 💻 Infosec, or about 80% of my life
 Being passionate about computer security, I practice during my free time various activities in the field. Currently, I'm *heavily* focusing on malware analysis (Binary Ninja FTW 😎) and CTI.  
 
-I'm one of the founder and a member of the [MILF](https://milfctf.com/) (*Mother I'd Like to Flag*) CTF Team, now sadly inactive. We used to participate in various CTFs throughout the year wether they are online or on-site. Now I just participate as a solo participant or with a couple of friends when I get the chance. If you're a member of an active CTF team looking for new members and reading that, feel free to hit me up!
+I'm one of the founder and a member of the [MILF](https://milf.club/) (*Mother I'd Like to Flag*) CTF Team, now sadly inactive. We used to participate in various CTFs throughout the year wether they are online or on-site. Now I just participate as a solo participant or with a couple of friends when I get the chance. If you're a member of an active CTF team looking for new members and reading that, feel free to hit me up!
 
 Apart from CTF, I like to practice on various infosec learning platforms such as TryHackMe, HackTheBox and more recently [XINTRA Labs](https://www.xintra.org/simulations) (highly recommend 🥰) and [Malops.io](https://malops.io/). I also participate in cybersecurity conferences and events in Europe whenever I can. 
 

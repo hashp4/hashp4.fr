@@ -12,7 +12,7 @@ Je ne sais pas encore vraiment ce que cette section contiendra. Il s'agira proba
 Dans cette section, vous trouverez les projets sur lesquels j'ai travaillé pendant ma scolarité, en entreprise et sur mon temps libre.
 
 ### Writeups
-En tant que membre de l"équipe [MILF](https://milfctf.com/), je participe souvent à des compétitions CTF (Capture The Flag). Si je trouve un défi particulièrement intéressant et si je n'ai pas la flemme de le faire, il m'arrive de poster des comptes-rendus ici et là. Le but est de montrer comment j'ai réussi à résoudre le challenge. 
+En tant que membre de l"équipe [MILF](https://milf.club/), je participe souvent à des compétitions CTF (Capture The Flag). Si je trouve un défi particulièrement intéressant et si je n'ai pas la flemme de le faire, il m'arrive de poster des comptes-rendus ici et là. Le but est de montrer comment j'ai réussi à résoudre le challenge. 
 
 ### Musique
 En tant qu'amateur de musique, j'adore concocter des playlists. C'est ici que vous trouverez ce que j'aime écouter pendant les compétitions CTF ou en travaillant. Vous y trouverez également les playlists officielles de diverses compétitions CTF.
